@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class='react-content'></div>
+
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script src="tonic-query-data-model.js"></script>
+        <script src="tonic-widgets.js"></script>
+        <script src="tonic-image-builder.js"></script>
+
+        <script>
+            var widget = document.querySelector('.react-content'),
+                queryDataModel = null,
+                imageBuilder = null,
+                reactElement = null,
+                reactComponent = null;
+
+            // Fetch data model
+            $.ajax({
+              dataType: "json",
+              url: '/data/info.json',
+              success: function(data) {
+                queryDataModel = tonicQueryDataModel.createQueryDataModel(data, '/data/');
+                imageBuilder = new tonicImageBuilder.DataProberImageBuilder(queryDataModel);
+                // imageBuilder.fgCanvas.el.style.display = 'block';
+                imageBuilder.update();
+
+                reactElement = React.createElement(tonicWidgets.react.CatalystWeb.ProbeViewerWidget, {model: imageBuilder, probe: true});
+                reactComponent = React.render(reactElement, widget);
+              }
+            });
+        </script>
+    </body>
+</html>

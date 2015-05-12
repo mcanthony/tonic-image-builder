@@ -1,0 +1,49 @@
+{
+  "name": "tonic-query-data-model",
+  "description": "JavaScript library meant to simplify interaction with a multi-data type query based remote data model.",
+  "version": "0.0.1",
+  "license": "BSD-3-Clause",
+  "main": "./src/tonic-query-data-model.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kitware/tonic-query-data-model.git"
+  },
+  "dependencies": {
+    "node-event-emitter": "latest",
+    "tonic-data-manager": "Kitware/tonic-data-manager",
+    "mout": "latest"
+  },
+  "devDependencies": {
+    "tonic-site-generator": "Kitware/tonic-site-generator",
+
+    "tonic-query-data-model": "Kitware/tonic-query-data-model",
+    "tonic-widgets" : "Kitware/tonic-widgets",
+
+    "jshint-loader": "latest",
+    "babel-loader": "latest",
+    "babel-runtime": "latest",
+    "strict-loader": "latest",
+    "expose-loader": "latest",
+    "webpack": "latest",
+    "jasmine-core": "latest",
+    "jest-cli": "latest",
+    "karma-cli": "latest",
+    "karma-jasmine": "latest",
+    "karma-phantomjs-launcher": "latest",
+    "karma-chrome-launcher": "latest",
+    "karma-firefox-launcher": "latest",
+    "karma-safari-launcher": "latest",
+    "serve": "latest"
+  },
+  "scripts": {
+    "build": "webpack",
+    "build:debug": "webpack --display-modules",
+    "build:release": "webpack -p",
+
+    "www": "tonic-site-generator site.config.js",
+    "www:http" : "tonic-site-generator site.config.js --local-test && serve docs/www",
+
+    "pretest:sample": "npm run build && mkdir -p ./tests/sample && cp node_modules/tonic-query-data-model/dist/* tests/sample  && cp node_modules/tonic-widgets/dist/* tests/sample  && cp ./dist/* ./tests/sample && cp ./tests/sample.html ./tests/sample/index.html",
+    "test:sample": "serve ./tests/sample"
+  }
+}
