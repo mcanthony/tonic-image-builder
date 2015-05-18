@@ -1,12 +1,12 @@
 {
-  "name": "tonic-query-data-model",
-  "description": "JavaScript library meant to simplify interaction with a multi-data type query based remote data model.",
+  "name": "tonic-image-builder",
+  "description": "JavaScript library used to gather image generation based on various input data.",
   "version": "0.0.1",
   "license": "BSD-3-Clause",
-  "main": "./src/tonic-query-data-model.js",
+  "main": "./src/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Kitware/tonic-query-data-model.git"
+    "url": "https://github.com/Kitware/tonic-image-builder.git"
   },
   "dependencies": {
     "node-event-emitter": "latest",
@@ -39,9 +39,6 @@
     "build": "webpack",
     "build:debug": "webpack --display-modules",
     "build:release": "webpack -p",
-
-    "www": "tonic-site-generator site.config.js",
-    "www:http" : "tonic-site-generator site.config.js --local-test && serve docs/www",
 
     "pretest:sample": "npm run build && mkdir -p ./tests/sample && cp node_modules/tonic-query-data-model/dist/* tests/sample  && cp node_modules/tonic-widgets/dist/* tests/sample  && cp ./dist/* ./tests/sample && cp ./tests/sample.html ./tests/sample/index.html",
     "test:sample": "serve ./tests/sample"
