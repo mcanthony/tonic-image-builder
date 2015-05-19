@@ -3,7 +3,7 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     </head>
     <body>
-        <div class='react-content'></div>
+        <div class='react-content' style='width: 100%; height: 100%;'></div>
 
         <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <script src="tonic-query-data-model.js"></script>
@@ -23,7 +23,7 @@
               url: '/data/info.json',
               success: function(data) {
                 queryDataModel = tonicQueryDataModel.createQueryDataModel(data, '/data/');
-                imageBuilder = new tonicImageBuilder.DataProberImageBuilder(queryDataModel);
+                imageBuilder = new tonicImageBuilder.DataProberImageBuilder(queryDataModel, true);
                 // imageBuilder.fgCanvas.el.style.display = 'block';
                 imageBuilder.update();
 
