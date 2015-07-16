@@ -1,7 +1,7 @@
 {
   "name": "tonic-image-builder",
   "description": "JavaScript library used to gather image generation based on various input data.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
   "repository": {
@@ -9,36 +9,43 @@
     "url": "https://github.com/Kitware/tonic-image-builder.git"
   },
   "dependencies": {
-    "node-event-emitter": "latest",
-    "tonic-data-manager": "Kitware/tonic-data-manager",
-    "mout": "latest"
+      "tonic-data-manager": "0.0.3",
+      "monologue.js": "^0.3.3",
+      "mout": "0.11.0"
   },
   "devDependencies": {
     "tonic-site-generator": "Kitware/tonic-site-generator",
-
     "tonic-query-data-model": "Kitware/tonic-query-data-model",
     "tonic-widgets" : "Kitware/tonic-widgets",
 
-    "jshint-loader": "latest",
-    "babel-loader": "latest",
-    "babel-runtime": "latest",
-    "strict-loader": "latest",
-    "expose-loader": "latest",
-    "webpack": "latest",
-    "jasmine-core": "latest",
-    "jest-cli": "latest",
-    "karma-cli": "latest",
-    "karma-jasmine": "latest",
-    "karma-phantomjs-launcher": "latest",
-    "karma-chrome-launcher": "latest",
-    "karma-firefox-launcher": "latest",
-    "karma-safari-launcher": "latest",
-    "serve": "latest"
+    "jshint": "2.5.0",
+    "jshint-loader": "0.8.3",
+
+    "babel-core": "5.7.0",
+    "babel-loader": "5.3.1",
+    "expose-loader": "0.7.0",
+    "node-libs-browser": "0.5.2",
+    "webpack": "1.10.1",
+
+    "jasmine-core": "2.3.4",
+    "karma": "0.12.37",
+    "karma-cli": "0.1.0",
+    "karma-jasmine": "0.3.6",
+    "phantomjs": "1.9.17",
+    "karma-phantomjs-launcher": "0.2.0",
+    "karma-chrome-launcher": "0.2.0",
+    "karma-firefox-launcher": "0.1.6",
+    "karma-safari-launcher": "0.1.1",
+
+    "serve": "1.4.0"
   },
   "scripts": {
     "build": "webpack",
     "build:debug": "webpack --display-modules",
     "build:release": "webpack -p",
+
+    "www": "tonic-site-generator site.config.js",
+    "www:http" : "tonic-site-generator site.config.js --local-test && serve docs/www",
 
     "pretest:sample": "npm run build && mkdir -p ./tests/sample && cp node_modules/tonic-query-data-model/dist/* tests/sample  && cp node_modules/tonic-widgets/dist/* tests/sample  && cp ./dist/* ./tests/sample && cp ./tests/sample.html ./tests/sample/index.html",
     "test:sample": "serve ./tests/sample"

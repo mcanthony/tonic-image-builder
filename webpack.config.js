@@ -5,28 +5,31 @@ module.exports = {
   entry: './lib/index.js',
   output: {
     path: './dist',
-    filename: 'tonic-image-builder.js',
+    filename: 'TonicImageBuilder.js',
   },
   module: {
     preLoaders: [
       {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: "jshint-loader"
+          loader: "jshint!babel"
+      },{
+          test: /\.js$/,
+          include: /node_modules\/tonic-/,
+          loader: "babel"
       }
     ],
     loaders: [
         {
           test: require.resolve("./lib/index.js"),
-          loader: "expose?tonicImageBuilder!babel"
-        },{
-          test: /\.js$/i,
-          loader: "babel-loader"
+          loader: "expose?TonicImageBuilder"
         }
     ]
   },
   jshint: {
-    esnext: true
+    esnext: true,
+    browser: true,
+    globalstrict: true // Babel add 'use strict'
   },
   externals: {
   }
