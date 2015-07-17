@@ -9,7 +9,6 @@
     "url": "https://github.com/Kitware/tonic-image-builder.git"
   },
   "dependencies": {
-      "tonic-data-manager": "0.0.3",
       "monologue.js": "^0.3.3",
       "mout": "0.11.0"
   },
