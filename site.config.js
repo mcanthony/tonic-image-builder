@@ -10,7 +10,7 @@ module.exports = {
     "ctx"   : {
         "title": "Tonic Image Builder",
         "vision": "Toolkit for data processing and Image building",
-        "description": "JavaScript library meant to gather algorithm for image generation.",
+        "description": "JavaScript library meant to gather algorithms for image generation.",
         "details": "",
         "license": "BSD 3 Clause Open Source",
         "company": "Kitware, Inc.",

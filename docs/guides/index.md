@@ -31,7 +31,7 @@ layout: default
                 </p>
             </div>
             <div class="unit one-third">
-                <h2>Several ImageBuilder</h2>
+                <h2>Several ImageBuilders</h2>
                 <p>
                     Tonic Image Builder rely on JavaScript and/or WebGL in
                     order to perform complex data processing the most efficiently.
@@ -59,8 +59,7 @@ layout: default
 ~ $ git clone git@github.com:{{site.repository}}.git
 ~ $ cd {{site.project}}
 ~/{{site.project}} $ npm install
-~/{{site.project}} $ npm run test:basic
-# => Now browse to http://localhost:3000
+~/{{site.project}} $ npm run test
 {% endhighlight %}
 
         <h2>Documentation</h2>

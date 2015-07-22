@@ -46,4 +46,4 @@ dependency. You can refer to the
 You can download manually our packaged version **_[here][JS-File]_** for an
 integration into your code base.
 
-[JS-File]: https://raw.githubusercontent.com/Kitware/tonic-query-data-model/master/dist/TonicImageBuilder.js
+[JS-File]: https://raw.githubusercontent.com/Kitware/tonic-image-builder/master/dist/TonicImageBuilder.js
