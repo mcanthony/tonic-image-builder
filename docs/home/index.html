@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Setup</title>
+  <meta name="description" content="JavaScript library meant to gather algorithms for image generation.">
+
+  <link rel="stylesheet" href="/tonic-image-builder/css/main.css">
+  <link rel="canonical" href="/tonic-image-builder/docs/home/">
+  <link rel="alternate" type="application/rss+xml" title="Tonic Image Builder" href="/tonic-image-builder/feed.xml" />
+</head>
+
+
+<body>
+
+<header class="site-header">
+
+    <nav class="mobile-nav show-on-mobiles">
+        <a class="page-link" href="/tonic-image-builder/"><i class="fa fa-home fa-fw fa-lg"></i></a>
+<a class="page-link" href="/tonic-image-builder/docs/home"><i class="fa fa-book fa-fw fa-lg"></i></a>
+<a class="page-link" href="/tonic-image-builder/news"><i class="fa fa-newspaper-o fa-fw fa-lg"></i></a>
+    </nav>
+    <div class="wrapper">
+
+        <a class="site-title center-on-mobiles" href="/tonic-image-builder/">
+            <img src="/tonic-image-builder/img/logo.png" height="40" alt="Logo">
+            Tonic Image Builder
+        </a>
+        <nav class="site-nav hide-on-mobiles">
+            <a href="#" class="menu-icon">
+                <svg viewBox="0 0 18 15">
+                    <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                    <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                    <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                </svg>
+            </a>
+            <div class="trigger">
+                <a class="page-link" href="/tonic-image-builder/">Home</a>
+<a class="page-link" href="/tonic-image-builder/docs/home">Docs</a>
+<a class="page-link" href="/tonic-image-builder/news">News</a>
+
+            </div>
+        </nav>
+    </div>
+
+</header>
+
+<div class="wrapper">
+    <nav class="docs-nav hide-on-mobiles">
+        <a href="#" class="menu-icon">
+            <svg viewBox="0 0 18 15">
+                <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+        </a>
+    </nav>
+</div>
+
+<div class="page-content">
+    <div class="wrapper">
+          <section class="docs">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the docs…</option>
+    
+    <optgroup label="Installation">
+      
+
+
+  
+
+  
+    
+      <option value="/tonic-image-builder/docs/home/">Setup</option>
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+      <option value="/tonic-image-builder/docs/webpack/">Using webpack</option>
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Developer guide">
+      <option value="/tonic-image-builder/dev/">Development</option>
+      <option value="/tonic-image-builder/api/">API</option>
+      <option value="/tonic-image-builder/source/index.html">Source</option>
+    </optgroup>
+  </select>
+</div>
+
+
+      <div class="unit five-sixths">
+        <article>
+            
+            <div class="improve right hide-on-mobiles">
+                <a href="https://github.com/Kitware/tonic-image-builder/edit/master/docs/guides/setup/installation.md"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
+            </div>
+            
+          <h1>Setup</h1>
+          <p>Tonic Image Builder is a library that is meant to be easily integrated into
+your environment. For that we provide two ways of integration.</p>
+
+<h2>npm dependency</h2>
+
+<p>Our preferred integration path is through npm using <em>require</em> within your
+code and relying on <em>WebPack</em> or <em>Browserify</em> to package all your code
+dependency into a single or multiple JavaScript files that are dedicated
+for your application.</p>
+
+<p>Tonic Data Manager can be added to your package.json with the following
+configuration subset.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&quot;dependencies&quot;: {
+    &quot;monologue.js&quot;: &quot;0.3.3&quot;,
+    &quot;mout&quot;: &quot;0.11.0&quot;,
+    &quot;tonic-image-builder&quot;: &quot;0.0.2&quot;
+}
+</code></pre></div>
+<p>or if you want the latest code base that has not been publish yet to the npm
+registry.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&quot;dependencies&quot;: {
+    &quot;tonic-data-manager&quot;: &quot;&quot;Kitware/tonic-data-manager&quot;
+}
+</code></pre></div>
+<p>To read more on how to use the library within your code and how to
+configure <em>WebPack</em> to package your application with all its
+dependency. You can refer to the
+<strong><em><a href="/docs/webpack">WebPack documentation guide</a></em></strong>.</p>
+
+<h2>Drop in</h2>
+
+<p>You can download manually our packaged version <strong><em><a href="https://raw.githubusercontent.com/Kitware/tonic-image-builder/master/dist/TonicImageBuilder.js">here</a></em></strong> for an
+integration into your code base.</p>
+
+          <div class="section-nav">
+    <div class=""grid">
+  <div class="unit half">
+    
+      <span class="prev disabled">Back</span>
+    
+  </div>
+    <div class="unit half">
+    
+      <a href="/tonic-image-builder/docs/webpack/" class="next">
+        Next
+      </a>
+    
+  </div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+
+        </article>
+      </div>
+
+      <div class="unit one-sixth hide-on-mobiles">
+  <aside>
+    
+    <h4>Installation</h4>
+    
+
+<ul>
+
+  
+
+  
+    
+  
+
+  
+    
+      <li class="current"><a href="/tonic-image-builder/docs/home/">Setup</a></li>
+    
+  
+    
+  
+
+
+  
+
+  
+    
+  
+
+  
+    
+  
+    
+      <li class=""><a href="/tonic-image-builder/docs/webpack/">Using webpack</a></li>
+    
+  
+
+
+</ul>
+
+    
+    <h4>Developer guide</h4>
+    <ul>
+      <li><a class="page-link" href="/tonic-image-builder/dev/">Development</a></li>
+      <li><a class="page-link" href="/tonic-image-builder/api/">API</a></li>
+      <li><a class="page-link" href="/tonic-image-builder/source/index.html">Source</a></li>
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+    </div>
+</div>
+
+<div class="site-footer">
+    <div class="grid">
+        <div class="unit whole">
+            <div class="wrapper">
+                <p>&copy;&nbsp;2015 <a href="http://www.kitware.com">Kitware, Inc.</a> under the terms of the BSD 3 Clause Open Source
+                    <a href="Kitware/tonic-image-builder/blob/master/LICENSE">License</a>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>

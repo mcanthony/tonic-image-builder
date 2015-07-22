@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Using webpack</title>
+  <meta name="description" content="JavaScript library meant to gather algorithms for image generation.">
+
+  <link rel="stylesheet" href="/tonic-image-builder/css/main.css">
+  <link rel="canonical" href="/tonic-image-builder/docs/webpack/">
+  <link rel="alternate" type="application/rss+xml" title="Tonic Image Builder" href="/tonic-image-builder/feed.xml" />
+</head>
+
+
+<body>
+
+<header class="site-header">
+
+    <nav class="mobile-nav show-on-mobiles">
+        <a class="page-link" href="/tonic-image-builder/"><i class="fa fa-home fa-fw fa-lg"></i></a>
+<a class="page-link" href="/tonic-image-builder/docs/home"><i class="fa fa-book fa-fw fa-lg"></i></a>
+<a class="page-link" href="/tonic-image-builder/news"><i class="fa fa-newspaper-o fa-fw fa-lg"></i></a>
+    </nav>
+    <div class="wrapper">
+
+        <a class="site-title center-on-mobiles" href="/tonic-image-builder/">
+            <img src="/tonic-image-builder/img/logo.png" height="40" alt="Logo">
+            Tonic Image Builder
+        </a>
+        <nav class="site-nav hide-on-mobiles">
+            <a href="#" class="menu-icon">
+                <svg viewBox="0 0 18 15">
+                    <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                    <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                    <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                </svg>
+            </a>
+            <div class="trigger">
+                <a class="page-link" href="/tonic-image-builder/">Home</a>
+<a class="page-link" href="/tonic-image-builder/docs/home">Docs</a>
+<a class="page-link" href="/tonic-image-builder/news">News</a>
+
+            </div>
+        </nav>
+    </div>
+
+</header>
+
+<div class="wrapper">
+    <nav class="docs-nav hide-on-mobiles">
+        <a href="#" class="menu-icon">
+            <svg viewBox="0 0 18 15">
+                <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+        </a>
+    </nav>
+</div>
+
+<div class="page-content">
+    <div class="wrapper">
+          <section class="docs">
+    <div class="grid">
+
+      <div class="docs-nav-mobile unit whole show-on-mobiles">
+  <select onchange="if (this.value) window.location.href=this.value">
+    <option value="">Navigate the docs…</option>
+    
+    <optgroup label="Installation">
+      
+
+
+  
+
+  
+    
+      <option value="/tonic-image-builder/docs/home/">Setup</option>
+    
+  
+    
+  
+
+  
+
+  
+    
+  
+    
+      <option value="/tonic-image-builder/docs/webpack/">Using webpack</option>
+    
+  
+
+
+    </optgroup>
+    
+    <optgroup label="Developer guide">
+      <option value="/tonic-image-builder/dev/">Development</option>
+      <option value="/tonic-image-builder/api/">API</option>
+      <option value="/tonic-image-builder/source/index.html">Source</option>
+    </optgroup>
+  </select>
+</div>
+
+
+      <div class="unit five-sixths">
+        <article>
+            
+            <div class="improve right hide-on-mobiles">
+                <a href="https://github.com/Kitware/tonic-image-builder/edit/master/docs/guides/setup/webpack.md"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
+            </div>
+            
+          <h1>Using webpack</h1>
+          <h1>Get the library</h1>
+
+<p>To add the <em>Tonic Image Builder</em> library to your project dependency, just edit
+your <em>package.json</em> file and add the following entry inside your <em>dependencies</em>
+group.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&quot;dependencies&quot;: {
+    &quot;monologue.js&quot;: &quot;0.3.3&quot;,
+    &quot;mout&quot;: &quot;0.11.0&quot;,
+    &quot;tonic-image-builder&quot;: &quot;0.0.2&quot;,
+    [...]
+}
+</code></pre></div>
+<blockquote>
+<p>Adding the <em>monologue.js</em> and <em>mout</em> here at the root of your project will prevent
+Webpack to encapsulate several versions of it if used across other internal
+dependencies.</p>
+</blockquote>
+
+<h1>Webpack Configuration</h1>
+
+<p>Webpack go through your application dependencies and bundle them within
+JavaScript file(s) so they can be used within web pages.</p>
+
+<p>For Webpack to work, you need to provide the entry point of your application
+and describe in a configuration file how package should be resolved.
+This is specially useful when you are not only requiring JavaScript file but CSS,
+Stylus, Jade, Coffee or any other format that may need pre-processing.</p>
+
+<p>Here is a basic setup that may work for you.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">// webpack.config.js
+var webpack = require(&#39;webpack&#39;);
+
+module.exports = {
+  plugins: [],
+  entry: &#39;./lib/YOUR_APPLICATION_ENTRY_POINT.js&#39;,
+  output: {
+    path: &#39;./dist&#39;,
+    filename: &#39;BUNDLE_NAME.js&#39;,
+  },
+  module: {
+    preLoaders: [
+      {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: &quot;jshint-loader!babel&quot; // This will validate your code at bundle time and handle ES6/7
+      }
+    ]
+  },
+  jshint: {
+    esnext: true,
+    browser: true,
+    globalstrict: true // Babel add &#39;use strict&#39;
+  },
+};
+</code></pre></div>
+<p>And by extending the <em>scripts</em> section of your <em>package.json</em> file you can
+have shortcut to build/bundle your application.</p>
+
+<p>Here is the set of commands that we tend to use in <em>Tonic</em> components:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&quot;scripts&quot;: {
+    &quot;build&quot;: &quot;webpack&quot;,
+    &quot;build:debug&quot;: &quot;webpack --display-modules&quot;,
+    &quot;build:release&quot;: &quot;webpack -p&quot;
+}
+</code></pre></div>
+          <div class="section-nav">
+    <div class=""grid">
+  <div class="unit half">
+    
+      <a href="/tonic-image-builder/docs/home/" class="prev">
+        Back
+      </a>
+    
+  </div>
+    <div class="unit half">
+    
+      <span class="next disabled">Next ></span>
+    
+  </div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+
+        </article>
+      </div>
+
+      <div class="unit one-sixth hide-on-mobiles">
+  <aside>
+    
+    <h4>Installation</h4>
+    
+
+<ul>
+
+  
+
+  
+    
+  
+
+  
+    
+      <li class=""><a href="/tonic-image-builder/docs/home/">Setup</a></li>
+    
+  
+    
+  
+
+
+  
+
+  
+    
+  
+
+  
+    
+  
+    
+      <li class="current"><a href="/tonic-image-builder/docs/webpack/">Using webpack</a></li>
+    
+  
+
+
+</ul>
+
+    
+    <h4>Developer guide</h4>
+    <ul>
+      <li><a class="page-link" href="/tonic-image-builder/dev/">Development</a></li>
+      <li><a class="page-link" href="/tonic-image-builder/api/">API</a></li>
+      <li><a class="page-link" href="/tonic-image-builder/source/index.html">Source</a></li>
+    </ul>
+  </aside>
+</div>
+
+
+      <div class="clear"></div>
+
+    </div>
+  </section>
+
+    </div>
+</div>
+
+<div class="site-footer">
+    <div class="grid">
+        <div class="unit whole">
+            <div class="wrapper">
+                <p>&copy;&nbsp;2015 <a href="http://www.kitware.com">Kitware, Inc.</a> under the terms of the BSD 3 Clause Open Source
+                    <a href="Kitware/tonic-image-builder/blob/master/LICENSE">License</a>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>

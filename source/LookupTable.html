@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Tonic Image Builder</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="/tonic-image-builder/css/main.css">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+<header class="site-header">
+
+    <nav class="mobile-nav show-on-mobiles">
+        <a class="page-link" href="/tonic-image-builder/"><i class="fa fa-home fa-fw fa-lg"></i></a>
+        <a class="page-link" href="/tonic-image-builder/docs/home"><i class="fa fa-book fa-fw fa-lg"></i></a>
+        <a class="page-link" href="/tonic-image-builder/news"><i class="fa fa-newspaper-o fa-fw fa-lg"></i></a>
+    </nav>
+    <div class="wrapper">
+
+        <a class="site-title center-on-mobiles" href="/">
+            <img src="/tonic-image-builder/img/logo.png" height="40" alt="Logo">
+            Tonic Image Builder
+        </a>
+        <nav class="site-nav hide-on-mobiles">
+            <a href="#" class="menu-icon">
+                <svg viewBox="0 0 18 15">
+                    <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                    <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                    <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                </svg>
+            </a>
+            <div class="trigger">
+                <a class="page-link" href="/tonic-image-builder/">Home</a>
+                <a class="page-link" href="/tonic-image-builder/docs/home">Docs</a>
+                <a class="page-link" href="/tonic-image-builder/news">News</a>
+            </div>
+        </nav>
+    </div>
+
+</header>
+
+  <div class="container">
+    <div class="page">
+
+      <div class="header">
+        
+          <h1>LookupTable.js</h1>
+        
+
+        
+          <div class="toc">
+            <h3>Table of Contents</h3>
+            <ol>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="LookupTable.html">
+                    LookupTable.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="LookupTableManager.html">
+                    LookupTableManager.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Presets.html">
+                    Presets.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="test-lookuptable.html">
+                    test-lookuptable.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+            </ol>
+          </div>
+        
+      </div>
+
+      
+        
+        
+        
+          <div class='highlight'><pre><span class="hljs-keyword">var</span> Presets = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./Presets.js'</span>),
+    Monologue = <span class="hljs-built_in">require</span>(<span class="hljs-string">'monologue.js'</span>),
+    CHANGE_TOPIC = <span class="hljs-string">'lookuptable.change'</span>;</pre></div>
+        
+      
+        
+        <p>Initialize liste</p>
+
+        
+          <div class='highlight'><pre><span class="hljs-keyword">var</span> presetList = [];
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> key <span class="hljs-keyword">in</span> Presets.lookuptables) {
+    presetList.push(key);
+}</pre></div>
+        
+      
+        
+        <p>Global helper methods ———————————————————————————</p>
+
+        
+          <div class='highlight'><pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">applyRatio</span>(<span class="hljs-params">a, b, ratio</span>) </span>{
+    <span class="hljs-keyword">return</span> ((b - a) * ratio) + a;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">interpolateColor</span>(<span class="hljs-params">pointA, pointB, scalar</span>) </span>{
+    <span class="hljs-keyword">var</span> ratio = (scalar - pointA[<span class="hljs-number">0</span>]) / (pointB[<span class="hljs-number">0</span>] - pointA[<span class="hljs-number">0</span>]);
+    <span class="hljs-keyword">return</span> [ applyRatio(pointA[<span class="hljs-number">1</span>], pointB[<span class="hljs-number">1</span>], ratio),
+             applyRatio(pointA[<span class="hljs-number">2</span>], pointB[<span class="hljs-number">2</span>], ratio),
+             applyRatio(pointA[<span class="hljs-number">3</span>], pointB[<span class="hljs-number">3</span>], ratio) ];
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">extractPoint</span>(<span class="hljs-params">controlPoints, idx</span>) </span>{
+    <span class="hljs-keyword">return</span> [ controlPoints[idx].x, controlPoints[idx].r, controlPoints[idx].g, controlPoints[idx].b ];
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">xrgbCompare</span>(<span class="hljs-params">a,b</span>) </span>{
+  <span class="hljs-keyword">return</span> (a.x - b.x);
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">LookupTable</span>(<span class="hljs-params">name</span>) </span>{
+    <span class="hljs-keyword">this</span>.name = name;
+    <span class="hljs-keyword">this</span>.scalarRange = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>];
+    <span class="hljs-keyword">this</span>.delta = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">this</span>.controlPoints = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">this</span>.colorTableSize = <span class="hljs-number">256</span>;
+    <span class="hljs-keyword">this</span>.colorTable = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">this</span>.setPreset(<span class="hljs-string">'spectral'</span>);</pre></div>
+        
+      
+        
+        <p>Auto rebuild</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.build();
+}</pre></div>
+        
+      
+        
+        <p>Add Observer pattern to TonicDataManager using Monologue.js</p>
+
+        
+          <div class='highlight'><pre>Monologue.mixInto(LookupTable);
+
+LookupTable.prototype.getName = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.name;
+};
+
+LookupTable.prototype.getPresets = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> presetList;
+};
+
+LookupTable.prototype.setPreset = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>) </span>{
+    <span class="hljs-keyword">this</span>.colorTable = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">this</span>.controlPoints = [];
+
+    <span class="hljs-keyword">var</span> colors = Presets.lookuptables[name].controlpoints,
+        count = colors.length;
+
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; count; i++) {
+        <span class="hljs-keyword">this</span>.controlPoints.push({
+            x: colors[i].x,
+            r: colors[i].r,
+            g: colors[i].g,
+            b: colors[i].b
+        });
+    }</pre></div>
+        
+      
+        
+        <p>Auto rebuild</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.build();
+
+    <span class="hljs-keyword">this</span>.emit(CHANGE_TOPIC, { change: <span class="hljs-string">'preset'</span>, lut: <span class="hljs-keyword">this</span> });
+};
+
+LookupTable.prototype.getScalarRange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.scalarRange;
+};
+
+LookupTable.prototype.setScalarRange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">min, max</span>) </span>{
+    <span class="hljs-keyword">this</span>.scalarRange = [min, max];
+    <span class="hljs-keyword">this</span>.delta = max - min;
+
+    <span class="hljs-keyword">this</span>.emit(CHANGE_TOPIC, { change: <span class="hljs-string">'scalarRange'</span>, lut: <span class="hljs-keyword">this</span> });
+};
+
+LookupTable.prototype.build = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">trigger</span>) </span>{
+    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.colorTable) {
+        <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-keyword">this</span>.colorTable = [];
+
+    <span class="hljs-keyword">var</span> currentControlIdx = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> idx = <span class="hljs-number">0</span>; idx &lt; <span class="hljs-keyword">this</span>.colorTableSize; idx++) {
+        <span class="hljs-keyword">var</span> value = idx / (<span class="hljs-keyword">this</span>.colorTableSize - <span class="hljs-number">1</span>),
+            pointA = extractPoint(<span class="hljs-keyword">this</span>.controlPoints, currentControlIdx),
+            pointB = extractPoint(<span class="hljs-keyword">this</span>.controlPoints, currentControlIdx + <span class="hljs-number">1</span>);
+
+        <span class="hljs-keyword">if</span> (value &gt; pointB[<span class="hljs-number">0</span>]) {
+            currentControlIdx += <span class="hljs-number">1</span>;
+            pointA = extractPoint(<span class="hljs-keyword">this</span>.controlPoints, currentControlIdx);
+            pointB = extractPoint(<span class="hljs-keyword">this</span>.controlPoints, currentControlIdx + <span class="hljs-number">1</span>);
+        }
+
+        <span class="hljs-keyword">this</span>.colorTable.push(interpolateColor(pointA, pointB, value));
+    }
+
+    <span class="hljs-keyword">if</span>(trigger) {
+        <span class="hljs-keyword">this</span>.emit(CHANGE_TOPIC, { change: <span class="hljs-string">'controlPoints'</span>, lut: <span class="hljs-keyword">this</span> });
+    }
+};
+
+LookupTable.prototype.setNumberOfColors = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">nbColors</span>) </span>{
+    <span class="hljs-keyword">this</span>.colorTableSize = nbColors;
+    <span class="hljs-keyword">this</span>.colorTable = <span class="hljs-literal">null</span>;</pre></div>
+        
+      
+        
+        <p>Auto rebuild</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.build();
+
+    <span class="hljs-keyword">this</span>.emit(CHANGE_TOPIC, { change: <span class="hljs-string">'numberOfColors'</span>, lut: <span class="hljs-keyword">this</span> });
+};
+
+LookupTable.prototype.getNumberOfControlPoints = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.controlPoints ? <span class="hljs-keyword">this</span>.controlPoints.length : <span class="hljs-number">0</span>;
+};
+
+LookupTable.prototype.removeControlPoint = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">idx</span>) </span>{
+    <span class="hljs-keyword">if</span>(idx &gt; <span class="hljs-number">0</span> &amp;&amp; idx &lt; <span class="hljs-keyword">this</span>.controlPoints.length - <span class="hljs-number">1</span>) {
+        <span class="hljs-keyword">this</span>.controlPoints.splice(idx, <span class="hljs-number">1</span>);</pre></div>
+        
+      
+        
+        <p>Auto rebuild and trigger change</p>
+
+        
+          <div class='highlight'><pre>        <span class="hljs-keyword">this</span>.colorTable = <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">this</span>.build(<span class="hljs-literal">true</span>);
+
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+};
+
+LookupTable.prototype.getControlPoint = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">idx</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.controlPoints[idx];
+};
+
+LookupTable.prototype.updateControlPoint = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">idx, xrgb</span>) </span>{
+    <span class="hljs-keyword">this</span>.controlPoints[idx] = xrgb;
+    <span class="hljs-keyword">var</span> xValue = xrgb.x;</pre></div>
+        
+      
+        
+        <p>Ensure order</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.controlPoints.sort(xrgbCompare);</pre></div>
+        
+      
+        
+        <p>Auto rebuild and trigger change</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.colorTable = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">this</span>.build(<span class="hljs-literal">true</span>);</pre></div>
+        
+      
+        
+        <p>Return the modified index of current control point</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-keyword">this</span>.controlPoints.length; i++) {
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.controlPoints[i].x === xValue) {
+            <span class="hljs-keyword">return</span> i;
+        }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+};
+
+LookupTable.prototype.addControlPoint = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">xrgb</span>) </span>{
+    <span class="hljs-keyword">this</span>.controlPoints.push(xrgb);
+    <span class="hljs-keyword">var</span> xValue = xrgb.x;</pre></div>
+        
+      
+        
+        <p>Ensure order</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.controlPoints.sort(xrgbCompare);</pre></div>
+        
+      
+        
+        <p>Auto rebuild and trigger change</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.colorTable = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">this</span>.build(<span class="hljs-literal">true</span>);</pre></div>
+        
+      
+        
+        <p>Return the modified index of current control point</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-keyword">this</span>.controlPoints.length; i++) {
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.controlPoints[i].x === xValue) {
+            <span class="hljs-keyword">return</span> i;
+        }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+};
+
+LookupTable.prototype.drawToCanvas = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">canvas</span>) </span>{
+    <span class="hljs-keyword">var</span> colors = <span class="hljs-keyword">this</span>.colorTable,
+        length = colors.length,
+        ctx = canvas.getContext(<span class="hljs-string">"2d"</span>),
+        canvasData = ctx.getImageData(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, length, <span class="hljs-number">1</span>);
+
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
+        canvasData.data[i*<span class="hljs-number">4</span> + <span class="hljs-number">0</span>] = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-number">255</span> * colors[i][<span class="hljs-number">0</span>]);
+        canvasData.data[i*<span class="hljs-number">4</span> + <span class="hljs-number">1</span>] = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-number">255</span> * colors[i][<span class="hljs-number">1</span>]);
+        canvasData.data[i*<span class="hljs-number">4</span> + <span class="hljs-number">2</span>] = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-number">255</span> * colors[i][<span class="hljs-number">2</span>]);
+        canvasData.data[i*<span class="hljs-number">4</span> + <span class="hljs-number">3</span>] = <span class="hljs-number">255</span>;
+    }
+    ctx.putImageData(canvasData, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+};
+
+LookupTable.prototype.getColor = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">scalar</span>) </span>{
+    <span class="hljs-keyword">var</span> idxValue = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-keyword">this</span>.colorTableSize * (scalar - <span class="hljs-keyword">this</span>.scalarRange[<span class="hljs-number">0</span>]) / <span class="hljs-keyword">this</span>.delta);
+    <span class="hljs-keyword">if</span>(idxValue &lt; <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.colorTable[<span class="hljs-number">0</span>];
+    }
+    <span class="hljs-keyword">if</span>(idxValue &gt;= <span class="hljs-keyword">this</span>.colorTableSize) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.colorTable[<span class="hljs-keyword">this</span>.colorTable.length  - <span class="hljs-number">1</span>];
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.colorTable[idxValue];
+};
+
+
+LookupTable.prototype.delete = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">this</span>.off(CHANGE_TOPIC);
+};
+
+LookupTable.prototype.onChange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">callback</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.on(CHANGE_TOPIC, callback);
+};
+
+LookupTable.prototype.TopicChange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> CHANGE_TOPIC;
+};</pre></div>
+        
+      
+    </div>
+  </div>
+</body>
+</html>
