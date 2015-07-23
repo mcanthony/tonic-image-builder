@@ -19,6 +19,7 @@ module.exports = {
         "url" : "",
         "repository": "Kitware/tonic-image-builder",
         "timezone": "America/Denver",
-        "project": "tonic-image-builder"
+        "project": "tonic-image-builder",
+        "noSource" : "no docco source documentation"
     }
 };
