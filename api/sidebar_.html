@@ -28,5 +28,273 @@ in a resolution of 96 dpi.</span>
                     <span class="desc">Free the internal resources and remove the DOM element from the tree. </span>
                 </a>
             </div>
+            <h3 class="toc-mod-title"><a href="CompositeImageBuilder.html">CompositeImageBuilder</a></h3>
+            <div class="toc-list">
+                <a class="toc-item" href="CompositeImageBuilder.html#constructor">
+                    <h4>constructor(queryDataModel, pushAsBuffer)</h4>
+                    <span class="desc">Create an instance of a CompositeImageBuilder using the associated <strong>queryDataModel</strong> that should be used to fetch the data.</span>
+                </a>
+                <a class="toc-item" href="CompositeImageBuilder.html#update">
+                    <h4>update()</h4>
+                    <span class="desc">Trigger the fetching of the data (composite.json + rgb.jpg).</span>
+                </a>
+                <a class="toc-item" href="CompositeImageBuilder.html#setPushMethodAsBuffer">
+                    <h4>setPushMethodAsBuffer()</h4>
+                    <span class="desc">Change the method to share the image to the outside world. After that method get called, the notification event will look as follow.</span>
+                </a>
+                <a class="toc-item" href="CompositeImageBuilder.html#setPushMethodAsImage">
+                    <h4>setPushMethodAsImage()</h4>
+                    <span class="desc">Change the method to share the image to the outside world. After that method get called, the notification event will look as follow.</span>
+                </a>
+                <a class="toc-item" href="CompositeImageBuilder.html#setPipelineQuery">
+                    <h4>setPipelineQuery(pipelineQuery)</h4>
+                    <span class="desc">This method should be called each time the pipeline setting is changed.</span>
+                </a>
+                <a class="toc-item" href="CompositeImageBuilder.html#render">
+                    <h4>render()</h4>
+                    <span class="desc">Process the current set of loaded data and render it into the background canvas. Once done, an event get triggered to let the application know that the image is
+ready to be rendered/display somewhere.</span>
+                </a>
+                <a class="toc-item" href="CompositeImageBuilder.html#onImageReady">
+                    <h4>onImageReady(callback) : subscription</h4>
+                    <span class="desc">This allow the registration of a <strong>callback(data, envelope)</strong> function when the actual generated image is ready.</span>
+                </a>
+                <a class="toc-item" href="CompositeImageBuilder.html#TopicImageReady">
+                    <h4>TopicImageReady() : &#x27;image-ready&#x27;</h4>
+                    <span class="desc">Return the topic used for the notification of the image.</span>
+                </a>
+                <a class="toc-item" href="CompositeImageBuilder.html#destroy">
+                    <h4>destroy()</h4>
+                    <span class="desc">Free the internal resources of the current instance.</span>
+                </a>
+                <a class="toc-item" href="CompositeImageBuilder.html#* updateCompositeMap">
+                    <h4>* updateCompositeMap(query, composite)</h4>
+                    <span class="desc">Internal function used to update the composite map for faster rendering.</span>
+                </a>
+                <a class="toc-item" href="CompositeImageBuilder.html#* updateOffsetMap">
+                    <h4>* updateOffsetMap(pipelineQuery)</h4>
+                    <span class="desc">Internal function used to update the offset map based on the Pipeline configuration. The <strong>pipelineQuery</strong> is a String that encode the pipeline configuration such as
+which layer is visible or not and which field should be rendered for a given layer.</span>
+                </a>
+                <a class="toc-item" href="CompositeImageBuilder.html#* pushToFront">
+                    <h4>* pushToFront(width, height)</h4>
+                    <span class="desc">Trigger the event notification that the image ready. This will call the proper method to either send the ImageData or an ImageURL.</span>
+                </a>
+                <a class="toc-item" href="CompositeImageBuilder.html#* pushToFrontAsImage">
+                    <h4>* pushToFrontAsImage(width, height)</h4>
+                    <span class="desc">Method called as <strong>pushToFront</strong> when <strong>setPushMethodAsImage()</strong> is used.</span>
+                </a>
+                <a class="toc-item" href="CompositeImageBuilder.html#* pushToFrontAsBuffer">
+                    <h4>* pushToFrontAsBuffer(width, height)</h4>
+                    <span class="desc">Method called as <strong>pushToFront</strong> when setPushMethodAsBuffer()__ is used.</span>
+                </a>
+            </div>
+            <h3 class="toc-mod-title"><a href="DataProberImageBuilder.html">DataProberImageBuilder</a></h3>
+            <div class="toc-list">
+                <a class="toc-item" href="DataProberImageBuilder.html#constructor">
+                    <h4>constructor(queryDataModel, pushAsBuffer, lookupTableManager)</h4>
+                    <span class="desc">Create an instance of a DataProberImageBuilder using the associated <strong>queryDataModel</strong> that should be used to fetch the data and the associated set
+of LookupTable managed by the <strong>lookupTableManager</strong> instance.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#update">
+                    <h4>update()</h4>
+                    <span class="desc">Trigger the fetching of the data (composite.json + rgb.jpg).</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#setPushMethodAsBuffer">
+                    <h4>setPushMethodAsBuffer()</h4>
+                    <span class="desc">Change the method to share the image to the outside world. After that method get called, the notification event will look as follow.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#setPushMethodAsImage">
+                    <h4>setPushMethodAsImage()</h4>
+                    <span class="desc">Change the method to share the image to the outside world. After that method get called, the notification event will look as follow.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#setProbe">
+                    <h4>setProbe(x, y, z)</h4>
+                    <span class="desc">Update the current probe location. [x,y,z] must be integers and be within the extent of the dataset.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#getProbe">
+                    <h4>getProbe() : [x, y, z]</h4>
+                    <span class="desc">Return the current probe location within the dataset.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#setField">
+                    <h4>setField(fieldName)</h4>
+                    <span class="desc">Set which field should be rendered.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#getField">
+                    <h4>getField() : fieldName</h4>
+                    <span class="desc">Return the name of the field that is currently used.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#getFields">
+                    <h4>getFields() : [ ... ]</h4>
+                    <span class="desc">Return the set of possible fields that can be set.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#getLookupTable">
+                    <h4>getLookupTable() : LookupTable</h4>
+                    <span class="desc">Return the LookupTable associated to the current <strong>field</strong>.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#getLookupTableManager">
+                    <h4>getLookupTableManager() : LookupTableManager</h4>
+                    <span class="desc">Return the LookupTableManager instance that was provided at the creation of this instance.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#render">
+                    <h4>render()</h4>
+                    <span class="desc">Process the current set of loaded data and render it into the background canvas. Once done, an event get triggered to let the application know that the image is
+ready to be rendered/display somewhere.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#onImageReady">
+                    <h4>onImageReady(callback) : subscription</h4>
+                    <span class="desc">This allow the registration of a <strong>callback(data, envelope)</strong> function when the actual generated image is ready.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#TopicImageReady">
+                    <h4>TopicImageReady() : &#x27;image-ready&#x27;</h4>
+                    <span class="desc">Return the topic used for the notification of the image.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#destroy">
+                    <h4>destroy()</h4>
+                    <span class="desc">Free the internal resources of the current instance.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#* renderXY">
+                    <h4>* renderXY()</h4>
+                    <span class="desc">Concrete render method that get called by the generic <strong>render()</strong> one.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#* renderZY">
+                    <h4>* renderZY()</h4>
+                    <span class="desc">Concrete render method that get called by the generic <strong>render()</strong> one.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#* renderXZ">
+                    <h4>* renderXZ()</h4>
+                    <span class="desc">Concrete render method that get called by the generic <strong>render()</strong> one.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#* pushToFront">
+                    <h4>* pushToFront(width, height)</h4>
+                    <span class="desc">Trigger the event notification that the image ready. This will call the proper method to either send the ImageData or an ImageURL.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#* pushToFrontAsImage">
+                    <h4>* pushToFrontAsImage(width, height)</h4>
+                    <span class="desc">Method called as <strong>pushToFront</strong> when <strong>setPushMethodAsImage()</strong> is used.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#* pushToFrontAsBuffer">
+                    <h4>* pushToFrontAsBuffer(width, height)</h4>
+                    <span class="desc">Method called as <strong>pushToFront</strong> when setPushMethodAsBuffer()__ is used.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#* applyLookupTable">
+                    <h4>* applyLookupTable(width, height)</h4>
+                    <span class="desc">Internal method used to convert RGB encoded scalar value into the appropriate color based on the current LookupTable setting.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#* getYOffset">
+                    <h4>* getYOffset(slice) : Integer</h4>
+                    <span class="desc">Internal method used to return the offset index of the image that should be used within the current image sprite.</span>
+                </a>
+                <a class="toc-item" href="DataProberImageBuilder.html#* getImage">
+                    <h4>* getImage(slice, callback)</h4>
+                    <span class="desc">Internal method used to call the callback method on the image when that one is ready.</span>
+                </a>
+            </div>
+            <h3 class="toc-mod-title"><a href="LookupTable.html">LookupTable</a></h3>
+            <div class="toc-list">
+                <a class="toc-item" href="LookupTable.html#constructor">
+                    <h4>constructor(name)</h4>
+                    <span class="desc">Create an instance of a LookupTable while giving it a name. Usually we use the field name that we want to use that lookupTable for.</span>
+                </a>
+                <a class="toc-item" href="LookupTable.html#getName">
+                    <h4>getName() : String</h4>
+                    <span class="desc">Return the name of the given LookupTable.</span>
+                </a>
+                <a class="toc-item" href="LookupTable.html#getPresets">
+                    <h4>getPresets() : [ String... ]</h4>
+                    <span class="desc">Return the names of the available presets.</span>
+                </a>
+                <a class="toc-item" href="LookupTable.html#setPreset">
+                    <h4>setPreset(name)</h4>
+                    <span class="desc">Use a preset to configure the current instance. This will reset all the control points and used the one defined inside the preset.</span>
+                </a>
+                <a class="toc-item" href="LookupTable.html#getScalarRange">
+                    <h4>getScalarRange() : [min, max]</h4>
+                    <span class="desc">Return the scalar range the LookupTable is using.</span>
+                </a>
+                <a class="toc-item" href="LookupTable.html#setScalarRange">
+                    <h4>setScalarRange(min, max)</h4>
+                    <span class="desc">Update the scalar range that LookupTable is using.</span>
+                </a>
+                <a class="toc-item" href="LookupTable.html#build">
+                    <h4>build(trigger)</h4>
+                    <span class="desc">This generate a precomputed table for the lookuptable.</span>
+                </a>
+                <a class="toc-item" href="LookupTable.html#setNumberOfColors">
+                    <h4>setNumberOfColors( numberOfColors )</h4>
+                    <span class="desc">Set the number of colors to be used for the concrete scalar to color mapping.</span>
+                </a>
+                <a class="toc-item" href="LookupTable.html#getNumberOfControlPoints">
+                    <h4>getNumberOfControlPoints() : Number</h4>
+                    <span class="desc">Return the number of control points used to define the color map.</span>
+                </a>
+                <a class="toc-item" href="LookupTable.html#removeControlPoint">
+                    <h4>removeControlPoint(idx) : Boolean</h4>
+                    <span class="desc">If the provided control point index is valid, the given control point will be removed and the method will return true. Otherwise, the method will return false letting you know that nothing has changed.</span>
+                </a>
+                <a class="toc-item" href="LookupTable.html#getControlPoint">
+                    <h4>getControlPoint(idx) : {x, r, g, b}</h4>
+                    <span class="desc">Return the control point define at the provided index.</span>
+                </a>
+                <a class="toc-item" href="LookupTable.html#updateControlPoint">
+                    <h4>updateControlPoint(idx, xrgb) : Number</h4>
+                    <span class="desc">Update the control point define in the given index by replacing it with the provided object. The control points will be resorted and the table rebuilt.</span>
+                </a>
+                <a class="toc-item" href="LookupTable.html#addControlPoint">
+                    <h4>addControlPoint(xrgb) : Number</h4>
+                    <span class="desc">Add a new control point and return its corresponding index while rebuilding the full index map.</span>
+                </a>
+                <a class="toc-item" href="LookupTable.html#drawToCanvas">
+                    <h4>drawToCanvas(canvas)</h4>
+                    <span class="desc">Draw the index map into the canvas using a height of 1 pixel and a width corresponding to the number of colors defined.</span>
+                </a>
+                <a class="toc-item" href="LookupTable.html#getColor">
+                    <h4>getColor(scalar) : [r, g, b]</h4>
+                    <span class="desc">Return the color that should be used for a given scalar value. If the value is outside the scalar range, then the last color defined for that edge will be used.</span>
+                </a>
+                <a class="toc-item" href="LookupTable.html#onChange">
+                    <h4>onChange(callback) : subscription</h4>
+                    <span class="desc">Helper method used to attach a listener to the topic that is used when the LookupTable change. We rely on Monologue.js for our observer pattern.</span>
+                </a>
+                <a class="toc-item" href="LookupTable.html#TopicChange">
+                    <h4>TopicChange() : &#x27;lookuptable.change&#x27;</h4>
+                    <span class="desc">Return the topic used to notify change.</span>
+                </a>
+                <a class="toc-item" href="LookupTable.html#destroy">
+                    <h4>destroy()</h4>
+                    <span class="desc">Remove any listener attached to this LookupTable instance.</span>
+                </a>
+            </div>
+            <h3 class="toc-mod-title"><a href="LookupTableManager.html">LookupTableManager</a></h3>
+            <div class="toc-list">
+                <a class="toc-item" href="LookupTableManager.html#constructor">
+                    <h4>constructor()</h4>
+                    <span class="desc">Create an instance of a LookupTableManager.</span>
+                </a>
+                <a class="toc-item" href="LookupTableManager.html#addLookupTable">
+                    <h4>addLookupTable(name, range, preset) : LookupTable</h4>
+                    <span class="desc">Create a new LookupTable for a given name, scalar range and which preset should be used. If no preset name is provided, the 'spectral' preset will be used.</span>
+                </a>
+                <a class="toc-item" href="LookupTableManager.html#removeLookupTable">
+                    <h4>removeLookupTable(name)</h4>
+                    <span class="desc">Remove the LookupTable instance that was registered under the given name.</span>
+                </a>
+                <a class="toc-item" href="LookupTableManager.html#getLookupTable">
+                    <h4>getLookupTable(name)</h4>
+                    <span class="desc">Return the LookupTable instance that was registered under the given name.</span>
+                </a>
+                <a class="toc-item" href="LookupTableManager.html#addFields">
+                    <h4>addFields(fieldsMap)</h4>
+                    <span class="desc">This will create a LookupTable for each field defined within the map using the given scalar range.</span>
+                </a>
+                <a class="toc-item" href="LookupTableManager.html#onChange">
+                    <h4>onChange(callback) : subscription</h4>
+                    <span class="desc">Helper method used to bind a listener to the change topic. This will return a subscription object.</span>
+                </a>
+                <a class="toc-item" href="LookupTableManager.html#TopicChange">
+                    <h4>TopicChange() : &#x27;LookupTable.change&#x27;</h4>
+                    <span class="desc">Return the name of the topic used for change notification. </span>
+                </a>
+            </div>
     </div>
 </div>

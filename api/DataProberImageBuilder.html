@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Tonic Image Builder</title>
+  <meta name="description" content="JavaScript library meant to gather algorithms for image generation.">
+
+  <link rel="stylesheet" href="/tonic-image-builder/css/main.css">
+  <link rel="stylesheet" href="assets_/css/shCore.css">
+  <link rel="stylesheet" href="assets_/css/shThemeDefault.css">
+  <link rel="stylesheet" href="assets_/css/main.css">
+</head>
+
+<body data-root-path="">
+
+<header class="site-header">
+
+    <nav class="mobile-nav show-on-mobiles">
+        <a class="page-link" href="/tonic-image-builder/"><i class="fa fa-home fa-fw fa-lg"></i></a>
+        <a class="page-link" href="/tonic-image-builder/docs/home"><i class="fa fa-book fa-fw fa-lg"></i></a>
+        <a class="page-link" href="/tonic-image-builder/news"><i class="fa fa-newspaper-o fa-fw fa-lg"></i></a>
+    </nav>
+    <div class="wrapper">
+
+        <a class="site-title center-on-mobiles" href="/">
+            <img src="/tonic-image-builder/img/logo.png" height="40" alt="Logo">
+            Tonic Image Builder
+        </a>
+        <nav class="site-nav hide-on-mobiles">
+            <a href="#" class="menu-icon">
+                <svg viewBox="0 0 18 15">
+                    <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                    <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                    <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                </svg>
+            </a>
+            <div class="trigger">
+                <a class="page-link" href="/tonic-image-builder/">Home</a>
+                <a class="page-link" href="/tonic-image-builder/docs/home">Docs</a>
+                <a class="page-link" href="/tonic-image-builder/news">News</a>
+            </div>
+        </nav>
+    </div>
+
+</header>
+
+<div class="wrapper">
+    <nav class="docs-nav hide-on-mobiles">
+        <a href="#" class="menu-icon">
+            <svg viewBox="0 0 18 15">
+                <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+        </a>
+    </nav>
+</div>
+<div id="wrapper">
+   <div id="content">
+<ul id="topnav">
+    <li><a href="index.html">Index</a></li>
+    <li><a href="#toc">TOC</a></li>
+</ul>
+<h1>DataProberImageBuilder</h1>
+
+<p>This class definition let you create an ImageBuilder that let you process probe
+datasets. The implementation rely on a single off-screen canvas to generate the
+resulting image of a image stack.</p>
+
+<h2>Table of Contents <a href="#toc" name="toc" class="deep-link">#</a></h2>
+
+<ul>
+<li><a href="#constructor">constructor()</a></li>
+<li><a href="#update">update()</a></li>
+<li><a href="#setPushMethodAsBuffer">setPushMethodAsBuffer()</a></li>
+<li><a href="#setPushMethodAsImage">setPushMethodAsImage()</a></li>
+<li><a href="#setProbe">setProbe()</a></li>
+<li><a href="#getProbe">getProbe()</a></li>
+<li><a href="#setField">setField()</a></li>
+<li><a href="#getField">getField()</a></li>
+<li><a href="#getFields">getFields()</a></li>
+<li><a href="#getLookupTable">getLookupTable()</a></li>
+<li><a href="#getLookupTableManager">getLookupTableManager()</a></li>
+<li><a href="#render">render()</a></li>
+<li><a href="#onImageReady">onImageReady()</a></li>
+<li><a href="#TopicImageReady">TopicImageReady()</a></li>
+<li><a href="#destroy">destroy()</a></li>
+<li><a href="#* renderXY">* renderXY()</a></li>
+<li><a href="#* renderZY">* renderZY()</a></li>
+<li><a href="#* renderXZ">* renderXZ()</a></li>
+<li><a href="#* pushToFront">* pushToFront()</a></li>
+<li><a href="#* pushToFrontAsImage">* pushToFrontAsImage()</a></li>
+<li><a href="#* pushToFrontAsBuffer">* pushToFrontAsBuffer()</a></li>
+<li><a href="#* applyLookupTable">* applyLookupTable()</a></li>
+<li><a href="#* getYOffset">* getYOffset()</a></li>
+<li><a href="#* getImage">* getImage()</a></li>
+</ul>
+
+<h2>constructor(queryDataModel, pushAsBuffer, lookupTableManager) <a href="#constructor" id="constructor" class="deep-link">#</a></h2>
+
+<p>Create an instance of a DataProberImageBuilder using the associated
+<strong>queryDataModel</strong> that should be used to fetch the data and the associated set
+of LookupTable managed by the <strong>lookupTableManager</strong> instance.</p>
+
+<p>Under the cover that will create an off-screen canvas for the image generation.
+Then depending of the value of the flag <strong>pushAsBuffer</strong> the 'image-ready' notification
+won't contain the same thing.</p>
+
+<p>Below are the two event structure</p>
+
+<pre class="brush:js">
+// pushAsBuffer = true
+var eventAsBuffer = {
+    canvas: DOMElement,
+    imageData: ImageDataFromCanvas,
+    area: [0, 0, width, height],
+    outputSize: [width, height],
+    type: 'composite'
+};
+
+// pushAsBuffer = false
+var eventAsImage = {
+    url: 'data:image/png:ASDGFsdfgsdgf...'
+    type: 'composite'
+};
+</pre>
+
+<h2>update() <a href="#update" id="update" class="deep-link">#</a></h2>
+
+<p>Trigger the fetching of the data (composite.json + rgb.jpg).</p>
+
+<h2>setPushMethodAsBuffer() <a href="#setPushMethodAsBuffer" id="setPushMethodAsBuffer" class="deep-link">#</a></h2>
+
+<p>Change the method to share the image to the outside world.
+After that method get called, the notification event will look as follow.</p>
+
+<pre class="brush:js">
+{
+    canvas: DOMElement,
+    imageData: ImageDataFromCanvas,
+    area: [0, 0, width, height],
+    outputSize: [width, height],
+    type: 'composite'
+}
+</pre>
+
+<h2>setPushMethodAsImage() <a href="#setPushMethodAsImage" id="setPushMethodAsImage" class="deep-link">#</a></h2>
+
+<p>Change the method to share the image to the outside world.
+After that method get called, the notification event will look as follow.</p>
+
+<pre class="brush:js">
+{
+    url: 'data:image/png:ASDGFsdfgsdgf...'
+    type: 'composite'
+}
+</pre>
+
+<h2>setProbe(x, y, z) <a href="#setProbe" id="setProbe" class="deep-link">#</a></h2>
+
+<p>Update the current probe location. [x,y,z] must be integers and be within the
+extent of the dataset.</p>
+
+<h2>getProbe() : [x, y, z] <a href="#getProbe" id="getProbe" class="deep-link">#</a></h2>
+
+<p>Return the current probe location within the dataset.</p>
+
+<h2>setField(fieldName) <a href="#setField" id="setField" class="deep-link">#</a></h2>
+
+<p>Set which field should be rendered.</p>
+
+<h2>getField() : fieldName <a href="#getField" id="getField" class="deep-link">#</a></h2>
+
+<p>Return the name of the field that is currently used.</p>
+
+<h2>getFields() : [ ... ] <a href="#getFields" id="getFields" class="deep-link">#</a></h2>
+
+<p>Return the set of possible fields that can be set.</p>
+
+<h2>getLookupTable() : LookupTable <a href="#getLookupTable" id="getLookupTable" class="deep-link">#</a></h2>
+
+<p>Return the LookupTable associated to the current <strong>field</strong>.</p>
+
+<h2>getLookupTableManager() : LookupTableManager <a href="#getLookupTableManager" id="getLookupTableManager" class="deep-link">#</a></h2>
+
+<p>Return the LookupTableManager instance that was provided at the creation of
+this instance.</p>
+
+<h2>render() <a href="#render" id="render" class="deep-link">#</a></h2>
+
+<p>Process the current set of loaded data and render it into the background canvas.
+Once done, an event get triggered to let the application know that the image is
+ready to be rendered/display somewhere.</p>
+
+<p>Under the cover one of the following methods [renderXY, renderZY, renderXZ] will be called.</p>
+
+<h2>onImageReady(callback) : subscription <a href="#onImageReady" id="onImageReady" class="deep-link">#</a></h2>
+
+<p>This allow the registration of a <strong>callback(data, envelope)</strong> function when the
+actual generated image is ready.</p>
+
+<h2>TopicImageReady() : 'image-ready' <a href="#TopicImageReady" id="TopicImageReady" class="deep-link">#</a></h2>
+
+<p>Return the topic used for the notification of the image.</p>
+
+<h2>destroy() <a href="#destroy" id="destroy" class="deep-link">#</a></h2>
+
+<p>Free the internal resources of the current instance.</p>
+
+<h2>* renderXY() <a href="#* renderXY" id="* renderXY" class="deep-link">#</a></h2>
+
+<p>Concrete render method that get called by the generic <strong>render()</strong> one.</p>
+
+<h2>* renderZY() <a href="#* renderZY" id="* renderZY" class="deep-link">#</a></h2>
+
+<p>Concrete render method that get called by the generic <strong>render()</strong> one.</p>
+
+<h2>* renderXZ() <a href="#* renderXZ" id="* renderXZ" class="deep-link">#</a></h2>
+
+<p>Concrete render method that get called by the generic <strong>render()</strong> one.</p>
+
+<h2>* pushToFront(width, height) <a href="#* pushToFront" id="* pushToFront" class="deep-link">#</a></h2>
+
+<p>Trigger the event notification that the image ready. This will call the proper
+method to either send the ImageData or an ImageURL.</p>
+
+<h2>* pushToFrontAsImage(width, height) <a href="#* pushToFrontAsImage" id="* pushToFrontAsImage" class="deep-link">#</a></h2>
+
+<p>Method called as <strong>pushToFront</strong> when <strong>setPushMethodAsImage()</strong> is used.</p>
+
+<h2>* pushToFrontAsBuffer(width, height) <a href="#* pushToFrontAsBuffer" id="* pushToFrontAsBuffer" class="deep-link">#</a></h2>
+
+<p>Method called as <strong>pushToFront</strong> when setPushMethodAsBuffer()__ is used.</p>
+
+<h2>* applyLookupTable(width, height) <a href="#* applyLookupTable" id="* applyLookupTable" class="deep-link">#</a></h2>
+
+<p>Internal method used to convert RGB encoded scalar value into the appropriate
+color based on the current LookupTable setting.</p>
+
+<h2>* getYOffset(slice) : Integer <a href="#* getYOffset" id="* getYOffset" class="deep-link">#</a></h2>
+
+<p>Internal method used to return the offset index of the image that should be used
+within the current image sprite.</p>
+
+<h2>* getImage(slice, callback) <a href="#* getImage" id="* getImage" class="deep-link">#</a></h2>
+
+<p>Internal method used to call the callback method on the image when that one is
+ready.</p>
+        </div>
+        <script src="assets_/js/lib/jquery.js"></script>
+        <script src="assets_/js/lib/syntax-highlighter/shCore.js"></script>
+        <script src="assets_/js/lib/syntax-highlighter/shAutoloader.js"></script>
+        <script src="assets_/js/main.js"></script>
+    </body>
+</html>

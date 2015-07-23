@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Tonic Image Builder</title>
+  <meta name="description" content="JavaScript library meant to gather algorithms for image generation.">
+
+  <link rel="stylesheet" href="/tonic-image-builder/css/main.css">
+  <link rel="stylesheet" href="assets_/css/shCore.css">
+  <link rel="stylesheet" href="assets_/css/shThemeDefault.css">
+  <link rel="stylesheet" href="assets_/css/main.css">
+</head>
+
+<body data-root-path="">
+
+<header class="site-header">
+
+    <nav class="mobile-nav show-on-mobiles">
+        <a class="page-link" href="/tonic-image-builder/"><i class="fa fa-home fa-fw fa-lg"></i></a>
+        <a class="page-link" href="/tonic-image-builder/docs/home"><i class="fa fa-book fa-fw fa-lg"></i></a>
+        <a class="page-link" href="/tonic-image-builder/news"><i class="fa fa-newspaper-o fa-fw fa-lg"></i></a>
+    </nav>
+    <div class="wrapper">
+
+        <a class="site-title center-on-mobiles" href="/">
+            <img src="/tonic-image-builder/img/logo.png" height="40" alt="Logo">
+            Tonic Image Builder
+        </a>
+        <nav class="site-nav hide-on-mobiles">
+            <a href="#" class="menu-icon">
+                <svg viewBox="0 0 18 15">
+                    <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                    <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                    <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                </svg>
+            </a>
+            <div class="trigger">
+                <a class="page-link" href="/tonic-image-builder/">Home</a>
+                <a class="page-link" href="/tonic-image-builder/docs/home">Docs</a>
+                <a class="page-link" href="/tonic-image-builder/news">News</a>
+            </div>
+        </nav>
+    </div>
+
+</header>
+
+<div class="wrapper">
+    <nav class="docs-nav hide-on-mobiles">
+        <a href="#" class="menu-icon">
+            <svg viewBox="0 0 18 15">
+                <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+        </a>
+    </nav>
+</div>
+<div id="wrapper">
+   <div id="content">
+<ul id="topnav">
+    <li><a href="index.html">Index</a></li>
+    <li><a href="#toc">TOC</a></li>
+</ul>
+<h1>LookupTable</h1>
+
+<h2>Table of Contents <a href="#toc" name="toc" class="deep-link">#</a></h2>
+
+<ul>
+<li><a href="#constructor">constructor()</a></li>
+<li><a href="#getName">getName()</a></li>
+<li><a href="#getPresets">getPresets()</a></li>
+<li><a href="#setPreset">setPreset()</a></li>
+<li><a href="#getScalarRange">getScalarRange()</a></li>
+<li><a href="#setScalarRange">setScalarRange()</a></li>
+<li><a href="#build">build()</a></li>
+<li><a href="#setNumberOfColors">setNumberOfColors()</a></li>
+<li><a href="#getNumberOfControlPoints">getNumberOfControlPoints()</a></li>
+<li><a href="#removeControlPoint">removeControlPoint()</a></li>
+<li><a href="#getControlPoint">getControlPoint()</a></li>
+<li><a href="#updateControlPoint">updateControlPoint()</a></li>
+<li><a href="#addControlPoint">addControlPoint()</a></li>
+<li><a href="#drawToCanvas">drawToCanvas()</a></li>
+<li><a href="#getColor">getColor()</a></li>
+<li><a href="#onChange">onChange()</a></li>
+<li><a href="#TopicChange">TopicChange()</a></li>
+<li><a href="#destroy">destroy()</a></li>
+</ul>
+
+<h2>constructor(name) <a href="#constructor" id="constructor" class="deep-link">#</a></h2>
+
+<p>Create an instance of a LookupTable while giving it a name. Usually we use the
+field name that we want to use that lookupTable for.</p>
+
+<h2>getName() : String <a href="#getName" id="getName" class="deep-link">#</a></h2>
+
+<p>Return the name of the given LookupTable.</p>
+
+<h2>getPresets() : [ String... ] <a href="#getPresets" id="getPresets" class="deep-link">#</a></h2>
+
+<p>Return the names of the available presets.</p>
+
+<h2>setPreset(name) <a href="#setPreset" id="setPreset" class="deep-link">#</a></h2>
+
+<p>Use a preset to configure the current instance. This will reset all the
+control points and used the one defined inside the preset.</p>
+
+<p>This will trigger the following change event</p>
+
+<pre class="brush:js">
+{
+    change: 'preset',
+    lut: lutInstance
+}
+</pre>
+
+<h2>getScalarRange() : [min, max] <a href="#getScalarRange" id="getScalarRange" class="deep-link">#</a></h2>
+
+<p>Return the scalar range the LookupTable is using.</p>
+
+<h2>setScalarRange(min, max) <a href="#setScalarRange" id="setScalarRange" class="deep-link">#</a></h2>
+
+<p>Update the scalar range that LookupTable is using.</p>
+
+<h2>build(trigger) <a href="#build" id="build" class="deep-link">#</a></h2>
+
+<p>This generate a precomputed table for the lookuptable.</p>
+
+<p>If <strong>trigger</strong> is true, this will trigger the following change event</p>
+
+<pre class="brush:js">
+{
+    change: 'controlPoints',
+    lut: lutInstance
+}
+</pre>
+
+<h2>setNumberOfColors( numberOfColors ) <a href="#setNumberOfColors" id="setNumberOfColors" class="deep-link">#</a></h2>
+
+<p>Set the number of colors to be used for the concrete scalar to color mapping.</p>
+
+<p>This will trigger the following change event</p>
+
+<pre class="brush:js">
+{
+    change: 'numberOfColors',
+    lut: lutInstance
+}
+</pre>
+
+<h2>getNumberOfControlPoints() : Number <a href="#getNumberOfControlPoints" id="getNumberOfControlPoints" class="deep-link">#</a></h2>
+
+<p>Return the number of control points used to define the color map.</p>
+
+<h2>removeControlPoint(idx) : Boolean <a href="#removeControlPoint" id="removeControlPoint" class="deep-link">#</a></h2>
+
+<p>If the provided control point index is valid, the given control point will be
+removed and the method will return true. Otherwise, the method will return false letting you know that nothing has changed.</p>
+
+<h2>getControlPoint(idx) : {x, r, g, b} <a href="#getControlPoint" id="getControlPoint" class="deep-link">#</a></h2>
+
+<p>Return the control point define at the provided index.</p>
+
+<h2>updateControlPoint(idx, xrgb) : Number <a href="#updateControlPoint" id="updateControlPoint" class="deep-link">#</a></h2>
+
+<p>Update the control point define in the given index by replacing it with the
+provided object. The control points will be resorted and the table rebuilt.</p>
+
+<p>The method will return the index of the updated control point which could be different if the x value is different.</p>
+
+<h2>addControlPoint(xrgb) : Number <a href="#addControlPoint" id="addControlPoint" class="deep-link">#</a></h2>
+
+<p>Add a new control point and return its corresponding index while rebuilding
+the full index map.</p>
+
+<p>A control point should be composed of 4 fields x, r, g and b with a number between 0 and 1.</p>
+
+<pre class="brush:js">
+var xrgb = {
+    x: 0.5,
+    r: 1,
+    g: 0,
+    b: 0.1
+};
+</pre>
+
+<h2>drawToCanvas(canvas) <a href="#drawToCanvas" id="drawToCanvas" class="deep-link">#</a></h2>
+
+<p>Draw the index map into the canvas using a height of 1 pixel and a width corresponding to the number of colors defined.</p>
+
+<h2>getColor(scalar) : [r, g, b] <a href="#getColor" id="getColor" class="deep-link">#</a></h2>
+
+<p>Return the color that should be used for a given scalar value. If the value is outside the scalar range, then the last color defined for that edge will be used.</p>
+
+<h2>onChange(callback) : subscription <a href="#onChange" id="onChange" class="deep-link">#</a></h2>
+
+<p>Helper method used to attach a listener to the topic that is used when the LookupTable change. We rely on Monologue.js for our observer pattern.</p>
+
+<h2>TopicChange() : 'lookuptable.change' <a href="#TopicChange" id="TopicChange" class="deep-link">#</a></h2>
+
+<p>Return the topic used to notify change.</p>
+
+<h2>destroy() <a href="#destroy" id="destroy" class="deep-link">#</a></h2>
+
+<p>Remove any listener attached to this LookupTable instance.</p>
+        </div>
+        <script src="assets_/js/lib/jquery.js"></script>
+        <script src="assets_/js/lib/syntax-highlighter/shCore.js"></script>
+        <script src="assets_/js/lib/syntax-highlighter/shAutoloader.js"></script>
+        <script src="assets_/js/main.js"></script>
+    </body>
+</html>

@@ -156,7 +156,7 @@ LookupTableManager.prototype.addLookupTable = <span class="hljs-function"><span 
 LookupTableManager.prototype.removeLookupTable = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>) </span>{
     <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.luts.hasOwn(name)) {
         <span class="hljs-keyword">this</span>.lutSubscriptions[name].unsubscribe();
-        <span class="hljs-keyword">this</span>.luts[name].delete();
+        <span class="hljs-keyword">this</span>.luts[name].destroy();
 
         <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>.luts[name];
         <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>.lutSubscriptions[name];

@@ -362,7 +362,7 @@ LookupTable.prototype.addControlPoint = <span class="hljs-function"><span class=
             <span class="hljs-keyword">return</span> i;
         }
     }
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
 };
 
 LookupTable.prototype.drawToCanvas = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">canvas</span>) </span>{
@@ -392,7 +392,7 @@ LookupTable.prototype.getColor = <span class="hljs-function"><span class="hljs-k
 };
 
 
-LookupTable.prototype.delete = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+LookupTable.prototype.destroy = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">this</span>.off(CHANGE_TOPIC);
 };
 
