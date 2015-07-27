@@ -1,7 +1,7 @@
 # CompositeImageBuilder
 
-This class definition let you create an ImageBuilder that let you process composite
-datasets. The implementation rely on a single off-screen canvas to generate the
+This class definition lets you create an ImageBuilder that lets you process composite
+datasets. The implementation relies on a single off-screen canvas to generate the
 resulting image of a composite structure (rgb.jpg + composite.json).
 
 ## constructor(queryDataModel, pushAsBuffer)
@@ -9,11 +9,11 @@ resulting image of a composite structure (rgb.jpg + composite.json).
 Create an instance of a CompositeImageBuilder using the associated
 __queryDataModel__ that should be used to fetch the data.
 
-Under the cover that will create an off-screen canvas for the image generation.
-Then depending of the value of the flag __pushAsBuffer__ the 'image-ready' notification
-won't contain the same thing.
+Under the hood, this will create an off-screen canvas for image generation.
+Depending of the value of the flag __pushAsBuffer__, the 'image-ready' notification
+will not contain the same object.
 
-Below are the two event structure
+Below are the two event structures:
 
 ```js
 // pushAsBuffer = true
@@ -54,7 +54,7 @@ After that method get called, the notification event will look as follow.
 ## setPushMethodAsImage()
 
 Change the method to share the image to the outside world.
-After that method get called, the notification event will look as follow.
+After the method gets called, the notification event will look as follows:
 
 ```js
 {
@@ -65,12 +65,12 @@ After that method get called, the notification event will look as follow.
 
 ## setPipelineQuery(pipelineQuery)
 
-This method should be called each time the pipeline setting is changed.
+Should be called each time the pipeline setting is changed.
 
-The __pipelineQuery__ is a String that encode the pipeline configuration such as
+The __pipelineQuery__ is a string that encodes the pipeline configuration such as
 which layer is visible or not and which field should be rendered for a given layer.
 
-The __pipelineQuery__ is structured as follow.
+The __pipelineQuery__ is structured as follows:
 
 ```js
 var pipelineQuery = "A_BBCAD_EA";
@@ -88,12 +88,12 @@ var layerSettings = [
 ## render()
 
 Process the current set of loaded data and render it into the background canvas.
-Once done, an event get triggered to let the application know that the image is
-ready to be rendered/display somewhere.
+Once done, an event gets triggered to let the application know that the image is
+ready to be rendered/displayed somewhere.
 
 ## onImageReady(callback) : subscription
 
-This allow the registration of a __callback(data, envelope)__ function when the
+Allows the registration of a __callback(data, envelope)__ function when the
 actual generated image is ready.
 
 ## TopicImageReady() : 'image-ready'
@@ -116,15 +116,15 @@ which layer is visible or not and which field should be rendered for a given lay
 
 ## * pushToFront(width, height)
 
-Trigger the event notification that the image ready. This will call the proper
+Trigger the event notification that the image is ready. This will call the proper
 method to either send the ImageData or an ImageURL.
 
 ## * pushToFrontAsImage(width, height)
 
-Method called as __pushToFront__ when __setPushMethodAsImage()__ is used.
+Called as __pushToFront__ when __setPushMethodAsImage()__ is used.
 
 ## * pushToFrontAsBuffer(width, height)
 
-Method called as __pushToFront__ when setPushMethodAsBuffer()__ is used.
+Called as __pushToFront__ when __setPushMethodAsBuffer()__ is used.
 
 

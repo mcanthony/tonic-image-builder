@@ -49,17 +49,17 @@ layout: default
         <h2>npm</h2>
 
 {% highlight bash %}
-~ $ npm install {{ site.project }} --save
+$ npm install {{ site.project }} --save
 {% endhighlight %}
 
         <h2>Quick-start</h2>
         For the impatient, here's how to get boilerplate {{ site.project }} up and running.
 
 {% highlight bash %}
-~ $ git clone git@github.com:{{site.repository}}.git
-~ $ cd {{site.project}}
-~/{{site.project}} $ npm install
-~/{{site.project}} $ npm run test
+$ git clone git@github.com:{{site.repository}}.git
+$ cd {{site.project}}
+$ npm install
+$ npm run test
 {% endhighlight %}
 
         <h2>Documentation</h2>

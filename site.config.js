@@ -20,6 +20,10 @@ module.exports = {
         "repository": "Kitware/tonic-image-builder",
         "timezone": "America/Denver",
         "project": "tonic-image-builder",
-        "noSource" : "no docco source documentation"
+        "noSource" : "no docco source documentation",
+        "status": [
+            {"subject":"api_stability", "status":"fair", "color":"green"},
+            {"subject":"feature_complete" ,"status":"★★☆☆☆", "color":"green"}
+        ]
     }
 };

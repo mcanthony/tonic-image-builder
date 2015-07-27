@@ -1,6 +1,6 @@
 # CanvasOffscreenBuffer #
 
-This class definition let you create an off-screen canvas to do image manipulation.
+This class definition lets you create an off-screen canvas to do image manipulation.
 
 ## constructor(width, height)
 
@@ -23,24 +23,23 @@ instance.size(200,500);
 
 ## get2DContext()
 
-Return the context 2D of the given canvas.
+Return the 2D context of the given canvas.
 
 ```js
 var ctx = instance.get2DContext();
 
-ctx.fillRect(0,0,10, 200);
+ctx.fillRect(0,0,10,200);
 
 // ...
 ```
 
 ## toDataURL(type='image/png', encoderOptions=1)
 
-The method returns a data URIs containing a representation of the image in the
-format specified by the type parameter (defaults to PNG). The returned image is
-in a resolution of 96 dpi.
+Returns a data URI containing a representation of the image in the
+format specified by the type parameter (defaults to PNG). The returned image has a resolution of 96 dpi.
 
-- __type__ : A string indicating the image format. The default type is image/png.
-- __encoderOptions__ : A Number between 0 and 1 indicating image quality if the requested type is image/jpeg or image/webp.
+- __type__ : A string indicating the image format, the default is image/png.
+- __encoderOptions__ : A number between 0 and 1 indicating image quality if the requested type is image/jpeg or image/webp.
 
 ## destroy()
 

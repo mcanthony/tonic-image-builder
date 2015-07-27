@@ -16,9 +16,9 @@ Return the names of the available presets.
 ## setPreset(name)
 
 Use a preset to configure the current instance. This will reset all the
-control points and used the one defined inside the preset.
+control points and use the one defined inside the preset.
 
-This will trigger the following change event
+This will trigger the following change event:
 
 ```js
 {
@@ -39,7 +39,7 @@ Update the scalar range that LookupTable is using.
 
 This generate a precomputed table for the lookuptable.
 
-If __trigger__ is true, this will trigger the following change event
+If __trigger__ is true, this will trigger the following change event:
 
 ```js
 {
@@ -52,7 +52,7 @@ If __trigger__ is true, this will trigger the following change event
 
 Set the number of colors to be used for the concrete scalar to color mapping.
 
-This will trigger the following change event
+This will trigger the following change event:
 
 ```js
 {
@@ -67,17 +67,17 @@ Return the number of control points used to define the color map.
 
 ## removeControlPoint(idx) : Boolean
 
-If the provided control point index is valid, the given control point will be
-removed and the method will return true. Otherwise, the method will return false letting you know that nothing has changed.
+Removes the provided control point index and returns true if the index is
+valid and the point was removed, the method will otherwise return false.
 
 ## getControlPoint(idx) : {x, r, g, b}
 
-Return the control point define at the provided index.
+Return the control point defined at the provided index.
 
 ## updateControlPoint(idx, xrgb) : Number
 
-Update the control point define in the given index by replacing it with the
-provided object. The control points will be resorted and the table rebuilt.
+Update the control point defined in the given index by replacing it with the
+provided object. The control points will be reset and the table rebuilt.
 
 The method will return the index of the updated control point which could be different if the x value is different.
 
@@ -86,7 +86,7 @@ The method will return the index of the updated control point which could be dif
 Add a new control point and return its corresponding index while rebuilding
 the full index map.
 
-A control point should be composed of 4 fields x, r, g and b with a number between 0 and 1.
+A control point should be composed of four fields x, r, g and b with a number between 0 and 1.
 
 ```js
 var xrgb = {

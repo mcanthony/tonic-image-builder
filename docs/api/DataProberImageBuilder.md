@@ -1,7 +1,7 @@
 # DataProberImageBuilder
 
-This class definition let you create an ImageBuilder that let you process probe
-datasets. The implementation rely on a single off-screen canvas to generate the
+This class definition lets you create an ImageBuilder that lets you process probe
+datasets. The implementation relies on a single off-screen canvas to generate the
 resulting image of a image stack.
 
 ## constructor(queryDataModel, pushAsBuffer, lookupTableManager)
@@ -10,11 +10,11 @@ Create an instance of a DataProberImageBuilder using the associated
 __queryDataModel__ that should be used to fetch the data and the associated set
 of LookupTable managed by the __lookupTableManager__ instance.
 
-Under the cover that will create an off-screen canvas for the image generation.
-Then depending of the value of the flag __pushAsBuffer__ the 'image-ready' notification
-won't contain the same thing.
+Under the hood this will create an off-screen canvas for the image generation.
+Then, depending of the value of the flag __pushAsBuffer__, the 'image-ready' notification
+will not contain the same object.
 
-Below are the two event structure
+Below are the two event structures
 
 ```js
 // pushAsBuffer = true
@@ -40,7 +40,7 @@ Trigger the fetching of the data (composite.json + rgb.jpg).
 ## setPushMethodAsBuffer()
 
 Change the method to share the image to the outside world.
-After that method get called, the notification event will look as follow.
+After the method gets called, the notification event will look as follows:
 
 ```js
 {
@@ -55,7 +55,7 @@ After that method get called, the notification event will look as follow.
 ## setPushMethodAsImage()
 
 Change the method to share the image to the outside world.
-After that method get called, the notification event will look as follow.
+After the method gets called, the notification event will look as follows:
 
 ```js
 {
@@ -97,14 +97,14 @@ this instance.
 ## render()
 
 Process the current set of loaded data and render it into the background canvas.
-Once done, an event get triggered to let the application know that the image is
+Once done, an event is triggered to let the application know that the image is
 ready to be rendered/display somewhere.
 
-Under the cover one of the following methods [renderXY, renderZY, renderXZ] will be called.
+Under the hood, one of the following methods [renderXY, renderZY, renderXZ] will be called.
 
 ## onImageReady(callback) : subscription
 
-This allow the registration of a __callback(data, envelope)__ function when the
+This allows the registration of a __callback(data, envelope)__ function when the
 actual generated image is ready.
 
 ## TopicImageReady() : 'image-ready'
@@ -129,20 +129,20 @@ Concrete render method that get called by the generic __render()__ one.
 
 ## * pushToFront(width, height)
 
-Trigger the event notification that the image ready. This will call the proper
+Trigger the event notification that says the image ready. This will call the proper
 method to either send the ImageData or an ImageURL.
 
 ## * pushToFrontAsImage(width, height)
 
-Method called as __pushToFront__ when __setPushMethodAsImage()__ is used.
+Called as __pushToFront__ when __setPushMethodAsImage()__ is used.
 
 ## * pushToFrontAsBuffer(width, height)
 
-Method called as __pushToFront__ when setPushMethodAsBuffer()__ is used.
+Called as __pushToFront__ when setPushMethodAsBuffer()__ is used.
 
 ## * applyLookupTable(width, height)
 
-Internal method used to convert RGB encoded scalar value into the appropriate
+Internal method used to convert RGB encoded scalar values into the appropriate
 color based on the current LookupTable setting.
 
 ## * getYOffset(slice) : Integer
