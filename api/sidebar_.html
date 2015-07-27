@@ -16,12 +16,11 @@
                 </a>
                 <a class="toc-item" href="CanvasOffscreenBuffer.html#get2DContext">
                     <h4>get2DContext()</h4>
-                    <span class="desc">Return the context 2D of the given canvas.</span>
+                    <span class="desc">Return the 2D context of the given canvas.</span>
                 </a>
                 <a class="toc-item" href="CanvasOffscreenBuffer.html#toDataURL">
                     <h4>toDataURL(type=&#x27;image/png&#x27;, encoderOptions=1)</h4>
-                    <span class="desc">The method returns a data URIs containing a representation of the image in the format specified by the type parameter (defaults to PNG). The returned image is
-in a resolution of 96 dpi.</span>
+                    <span class="desc">Returns a data URI containing a representation of the image in the format specified by the type parameter (defaults to PNG). The returned image has a resolution of 96 dpi.</span>
                 </a>
                 <a class="toc-item" href="CanvasOffscreenBuffer.html#destroy">
                     <h4>destroy()</h4>
@@ -44,20 +43,20 @@ in a resolution of 96 dpi.</span>
                 </a>
                 <a class="toc-item" href="CompositeImageBuilder.html#setPushMethodAsImage">
                     <h4>setPushMethodAsImage()</h4>
-                    <span class="desc">Change the method to share the image to the outside world. After that method get called, the notification event will look as follow.</span>
+                    <span class="desc">Change the method to share the image to the outside world. After the method gets called, the notification event will look as follows:</span>
                 </a>
                 <a class="toc-item" href="CompositeImageBuilder.html#setPipelineQuery">
                     <h4>setPipelineQuery(pipelineQuery)</h4>
-                    <span class="desc">This method should be called each time the pipeline setting is changed.</span>
+                    <span class="desc">Should be called each time the pipeline setting is changed.</span>
                 </a>
                 <a class="toc-item" href="CompositeImageBuilder.html#render">
                     <h4>render()</h4>
-                    <span class="desc">Process the current set of loaded data and render it into the background canvas. Once done, an event get triggered to let the application know that the image is
-ready to be rendered/display somewhere.</span>
+                    <span class="desc">Process the current set of loaded data and render it into the background canvas. Once done, an event gets triggered to let the application know that the image is
+ready to be rendered/displayed somewhere.</span>
                 </a>
                 <a class="toc-item" href="CompositeImageBuilder.html#onImageReady">
                     <h4>onImageReady(callback) : subscription</h4>
-                    <span class="desc">This allow the registration of a <strong>callback(data, envelope)</strong> function when the actual generated image is ready.</span>
+                    <span class="desc">Allows the registration of a <strong>callback(data, envelope)</strong> function when the actual generated image is ready.</span>
                 </a>
                 <a class="toc-item" href="CompositeImageBuilder.html#TopicImageReady">
                     <h4>TopicImageReady() : &#x27;image-ready&#x27;</h4>
@@ -78,15 +77,15 @@ which layer is visible or not and which field should be rendered for a given lay
                 </a>
                 <a class="toc-item" href="CompositeImageBuilder.html#* pushToFront">
                     <h4>* pushToFront(width, height)</h4>
-                    <span class="desc">Trigger the event notification that the image ready. This will call the proper method to either send the ImageData or an ImageURL.</span>
+                    <span class="desc">Trigger the event notification that the image is ready. This will call the proper method to either send the ImageData or an ImageURL.</span>
                 </a>
                 <a class="toc-item" href="CompositeImageBuilder.html#* pushToFrontAsImage">
                     <h4>* pushToFrontAsImage(width, height)</h4>
-                    <span class="desc">Method called as <strong>pushToFront</strong> when <strong>setPushMethodAsImage()</strong> is used.</span>
+                    <span class="desc">Called as <strong>pushToFront</strong> when <strong>setPushMethodAsImage()</strong> is used.</span>
                 </a>
                 <a class="toc-item" href="CompositeImageBuilder.html#* pushToFrontAsBuffer">
                     <h4>* pushToFrontAsBuffer(width, height)</h4>
-                    <span class="desc">Method called as <strong>pushToFront</strong> when setPushMethodAsBuffer()__ is used.</span>
+                    <span class="desc">Called as <strong>pushToFront</strong> when <strong>setPushMethodAsBuffer()</strong> is used.</span>
                 </a>
             </div>
             <h3 class="toc-mod-title"><a href="DataProberImageBuilder.html">DataProberImageBuilder</a></h3>
@@ -102,11 +101,11 @@ of LookupTable managed by the <strong>lookupTableManager</strong> instance.</spa
                 </a>
                 <a class="toc-item" href="DataProberImageBuilder.html#setPushMethodAsBuffer">
                     <h4>setPushMethodAsBuffer()</h4>
-                    <span class="desc">Change the method to share the image to the outside world. After that method get called, the notification event will look as follow.</span>
+                    <span class="desc">Change the method to share the image to the outside world. After the method gets called, the notification event will look as follows:</span>
                 </a>
                 <a class="toc-item" href="DataProberImageBuilder.html#setPushMethodAsImage">
                     <h4>setPushMethodAsImage()</h4>
-                    <span class="desc">Change the method to share the image to the outside world. After that method get called, the notification event will look as follow.</span>
+                    <span class="desc">Change the method to share the image to the outside world. After the method gets called, the notification event will look as follows:</span>
                 </a>
                 <a class="toc-item" href="DataProberImageBuilder.html#setProbe">
                     <h4>setProbe(x, y, z)</h4>
@@ -138,12 +137,12 @@ of LookupTable managed by the <strong>lookupTableManager</strong> instance.</spa
                 </a>
                 <a class="toc-item" href="DataProberImageBuilder.html#render">
                     <h4>render()</h4>
-                    <span class="desc">Process the current set of loaded data and render it into the background canvas. Once done, an event get triggered to let the application know that the image is
+                    <span class="desc">Process the current set of loaded data and render it into the background canvas. Once done, an event is triggered to let the application know that the image is
 ready to be rendered/display somewhere.</span>
                 </a>
                 <a class="toc-item" href="DataProberImageBuilder.html#onImageReady">
                     <h4>onImageReady(callback) : subscription</h4>
-                    <span class="desc">This allow the registration of a <strong>callback(data, envelope)</strong> function when the actual generated image is ready.</span>
+                    <span class="desc">This allows the registration of a <strong>callback(data, envelope)</strong> function when the actual generated image is ready.</span>
                 </a>
                 <a class="toc-item" href="DataProberImageBuilder.html#TopicImageReady">
                     <h4>TopicImageReady() : &#x27;image-ready&#x27;</h4>
@@ -167,19 +166,19 @@ ready to be rendered/display somewhere.</span>
                 </a>
                 <a class="toc-item" href="DataProberImageBuilder.html#* pushToFront">
                     <h4>* pushToFront(width, height)</h4>
-                    <span class="desc">Trigger the event notification that the image ready. This will call the proper method to either send the ImageData or an ImageURL.</span>
+                    <span class="desc">Trigger the event notification that says the image ready. This will call the proper method to either send the ImageData or an ImageURL.</span>
                 </a>
                 <a class="toc-item" href="DataProberImageBuilder.html#* pushToFrontAsImage">
                     <h4>* pushToFrontAsImage(width, height)</h4>
-                    <span class="desc">Method called as <strong>pushToFront</strong> when <strong>setPushMethodAsImage()</strong> is used.</span>
+                    <span class="desc">Called as <strong>pushToFront</strong> when <strong>setPushMethodAsImage()</strong> is used.</span>
                 </a>
                 <a class="toc-item" href="DataProberImageBuilder.html#* pushToFrontAsBuffer">
                     <h4>* pushToFrontAsBuffer(width, height)</h4>
-                    <span class="desc">Method called as <strong>pushToFront</strong> when setPushMethodAsBuffer()__ is used.</span>
+                    <span class="desc">Called as <strong>pushToFront</strong> when setPushMethodAsBuffer()__ is used.</span>
                 </a>
                 <a class="toc-item" href="DataProberImageBuilder.html#* applyLookupTable">
                     <h4>* applyLookupTable(width, height)</h4>
-                    <span class="desc">Internal method used to convert RGB encoded scalar value into the appropriate color based on the current LookupTable setting.</span>
+                    <span class="desc">Internal method used to convert RGB encoded scalar values into the appropriate color based on the current LookupTable setting.</span>
                 </a>
                 <a class="toc-item" href="DataProberImageBuilder.html#* getYOffset">
                     <h4>* getYOffset(slice) : Integer</h4>
@@ -206,7 +205,7 @@ ready to be rendered/display somewhere.</span>
                 </a>
                 <a class="toc-item" href="LookupTable.html#setPreset">
                     <h4>setPreset(name)</h4>
-                    <span class="desc">Use a preset to configure the current instance. This will reset all the control points and used the one defined inside the preset.</span>
+                    <span class="desc">Use a preset to configure the current instance. This will reset all the control points and use the one defined inside the preset.</span>
                 </a>
                 <a class="toc-item" href="LookupTable.html#getScalarRange">
                     <h4>getScalarRange() : [min, max]</h4>
@@ -230,15 +229,15 @@ ready to be rendered/display somewhere.</span>
                 </a>
                 <a class="toc-item" href="LookupTable.html#removeControlPoint">
                     <h4>removeControlPoint(idx) : Boolean</h4>
-                    <span class="desc">If the provided control point index is valid, the given control point will be removed and the method will return true. Otherwise, the method will return false letting you know that nothing has changed.</span>
+                    <span class="desc">Removes the provided control point index and returns true if the index is valid and the point was removed, the method will otherwise return false.</span>
                 </a>
                 <a class="toc-item" href="LookupTable.html#getControlPoint">
                     <h4>getControlPoint(idx) : {x, r, g, b}</h4>
-                    <span class="desc">Return the control point define at the provided index.</span>
+                    <span class="desc">Return the control point defined at the provided index.</span>
                 </a>
                 <a class="toc-item" href="LookupTable.html#updateControlPoint">
                     <h4>updateControlPoint(idx, xrgb) : Number</h4>
-                    <span class="desc">Update the control point define in the given index by replacing it with the provided object. The control points will be resorted and the table rebuilt.</span>
+                    <span class="desc">Update the control point defined in the given index by replacing it with the provided object. The control points will be reset and the table rebuilt.</span>
                 </a>
                 <a class="toc-item" href="LookupTable.html#addControlPoint">
                     <h4>addControlPoint(xrgb) : Number</h4>

@@ -67,8 +67,8 @@
 </ul>
 <h1>DataProberImageBuilder</h1>
 
-<p>This class definition let you create an ImageBuilder that let you process probe
-datasets. The implementation rely on a single off-screen canvas to generate the
+<p>This class definition lets you create an ImageBuilder that lets you process probe
+datasets. The implementation relies on a single off-screen canvas to generate the
 resulting image of a image stack.</p>
 
 <h2>Table of Contents <a href="#toc" name="toc" class="deep-link">#</a></h2>
@@ -106,11 +106,11 @@ resulting image of a image stack.</p>
 <strong>queryDataModel</strong> that should be used to fetch the data and the associated set
 of LookupTable managed by the <strong>lookupTableManager</strong> instance.</p>
 
-<p>Under the cover that will create an off-screen canvas for the image generation.
-Then depending of the value of the flag <strong>pushAsBuffer</strong> the 'image-ready' notification
-won't contain the same thing.</p>
+<p>Under the hood this will create an off-screen canvas for the image generation.
+Then, depending of the value of the flag <strong>pushAsBuffer</strong>, the 'image-ready' notification
+will not contain the same object.</p>
 
-<p>Below are the two event structure</p>
+<p>Below are the two event structures</p>
 
 <pre class="brush:js">
 // pushAsBuffer = true
@@ -136,7 +136,7 @@ var eventAsImage = {
 <h2>setPushMethodAsBuffer() <a href="#setPushMethodAsBuffer" id="setPushMethodAsBuffer" class="deep-link">#</a></h2>
 
 <p>Change the method to share the image to the outside world.
-After that method get called, the notification event will look as follow.</p>
+After the method gets called, the notification event will look as follows:</p>
 
 <pre class="brush:js">
 {
@@ -151,7 +151,7 @@ After that method get called, the notification event will look as follow.</p>
 <h2>setPushMethodAsImage() <a href="#setPushMethodAsImage" id="setPushMethodAsImage" class="deep-link">#</a></h2>
 
 <p>Change the method to share the image to the outside world.
-After that method get called, the notification event will look as follow.</p>
+After the method gets called, the notification event will look as follows:</p>
 
 <pre class="brush:js">
 {
@@ -193,14 +193,14 @@ this instance.</p>
 <h2>render() <a href="#render" id="render" class="deep-link">#</a></h2>
 
 <p>Process the current set of loaded data and render it into the background canvas.
-Once done, an event get triggered to let the application know that the image is
+Once done, an event is triggered to let the application know that the image is
 ready to be rendered/display somewhere.</p>
 
-<p>Under the cover one of the following methods [renderXY, renderZY, renderXZ] will be called.</p>
+<p>Under the hood, one of the following methods [renderXY, renderZY, renderXZ] will be called.</p>
 
 <h2>onImageReady(callback) : subscription <a href="#onImageReady" id="onImageReady" class="deep-link">#</a></h2>
 
-<p>This allow the registration of a <strong>callback(data, envelope)</strong> function when the
+<p>This allows the registration of a <strong>callback(data, envelope)</strong> function when the
 actual generated image is ready.</p>
 
 <h2>TopicImageReady() : 'image-ready' <a href="#TopicImageReady" id="TopicImageReady" class="deep-link">#</a></h2>
@@ -225,20 +225,20 @@ actual generated image is ready.</p>
 
 <h2>* pushToFront(width, height) <a href="#* pushToFront" id="* pushToFront" class="deep-link">#</a></h2>
 
-<p>Trigger the event notification that the image ready. This will call the proper
+<p>Trigger the event notification that says the image ready. This will call the proper
 method to either send the ImageData or an ImageURL.</p>
 
 <h2>* pushToFrontAsImage(width, height) <a href="#* pushToFrontAsImage" id="* pushToFrontAsImage" class="deep-link">#</a></h2>
 
-<p>Method called as <strong>pushToFront</strong> when <strong>setPushMethodAsImage()</strong> is used.</p>
+<p>Called as <strong>pushToFront</strong> when <strong>setPushMethodAsImage()</strong> is used.</p>
 
 <h2>* pushToFrontAsBuffer(width, height) <a href="#* pushToFrontAsBuffer" id="* pushToFrontAsBuffer" class="deep-link">#</a></h2>
 
-<p>Method called as <strong>pushToFront</strong> when setPushMethodAsBuffer()__ is used.</p>
+<p>Called as <strong>pushToFront</strong> when setPushMethodAsBuffer()__ is used.</p>
 
 <h2>* applyLookupTable(width, height) <a href="#* applyLookupTable" id="* applyLookupTable" class="deep-link">#</a></h2>
 
-<p>Internal method used to convert RGB encoded scalar value into the appropriate
+<p>Internal method used to convert RGB encoded scalar values into the appropriate
 color based on the current LookupTable setting.</p>
 
 <h2>* getYOffset(slice) : Integer <a href="#* getYOffset" id="* getYOffset" class="deep-link">#</a></h2>

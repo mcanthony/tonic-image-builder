@@ -106,9 +106,9 @@ field name that we want to use that lookupTable for.</p>
 <h2>setPreset(name) <a href="#setPreset" id="setPreset" class="deep-link">#</a></h2>
 
 <p>Use a preset to configure the current instance. This will reset all the
-control points and used the one defined inside the preset.</p>
+control points and use the one defined inside the preset.</p>
 
-<p>This will trigger the following change event</p>
+<p>This will trigger the following change event:</p>
 
 <pre class="brush:js">
 {
@@ -129,7 +129,7 @@ control points and used the one defined inside the preset.</p>
 
 <p>This generate a precomputed table for the lookuptable.</p>
 
-<p>If <strong>trigger</strong> is true, this will trigger the following change event</p>
+<p>If <strong>trigger</strong> is true, this will trigger the following change event:</p>
 
 <pre class="brush:js">
 {
@@ -142,7 +142,7 @@ control points and used the one defined inside the preset.</p>
 
 <p>Set the number of colors to be used for the concrete scalar to color mapping.</p>
 
-<p>This will trigger the following change event</p>
+<p>This will trigger the following change event:</p>
 
 <pre class="brush:js">
 {
@@ -157,17 +157,17 @@ control points and used the one defined inside the preset.</p>
 
 <h2>removeControlPoint(idx) : Boolean <a href="#removeControlPoint" id="removeControlPoint" class="deep-link">#</a></h2>
 
-<p>If the provided control point index is valid, the given control point will be
-removed and the method will return true. Otherwise, the method will return false letting you know that nothing has changed.</p>
+<p>Removes the provided control point index and returns true if the index is
+valid and the point was removed, the method will otherwise return false.</p>
 
 <h2>getControlPoint(idx) : {x, r, g, b} <a href="#getControlPoint" id="getControlPoint" class="deep-link">#</a></h2>
 
-<p>Return the control point define at the provided index.</p>
+<p>Return the control point defined at the provided index.</p>
 
 <h2>updateControlPoint(idx, xrgb) : Number <a href="#updateControlPoint" id="updateControlPoint" class="deep-link">#</a></h2>
 
-<p>Update the control point define in the given index by replacing it with the
-provided object. The control points will be resorted and the table rebuilt.</p>
+<p>Update the control point defined in the given index by replacing it with the
+provided object. The control points will be reset and the table rebuilt.</p>
 
 <p>The method will return the index of the updated control point which could be different if the x value is different.</p>
 
@@ -176,7 +176,7 @@ provided object. The control points will be resorted and the table rebuilt.</p>
 <p>Add a new control point and return its corresponding index while rebuilding
 the full index map.</p>
 
-<p>A control point should be composed of 4 fields x, r, g and b with a number between 0 and 1.</p>
+<p>A control point should be composed of four fields x, r, g and b with a number between 0 and 1.</p>
 
 <pre class="brush:js">
 var xrgb = {

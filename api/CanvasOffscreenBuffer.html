@@ -67,7 +67,7 @@
 </ul>
 <h1>CanvasOffscreenBuffer</h1>
 
-<p>This class definition let you create an off-screen canvas to do image manipulation.</p>
+<p>This class definition lets you create an off-screen canvas to do image manipulation.</p>
 
 <h2>Table of Contents <a href="#toc" name="toc" class="deep-link">#</a></h2>
 
@@ -100,25 +100,24 @@ instance.size(200,500);
 
 <h2>get2DContext() <a href="#get2DContext" id="get2DContext" class="deep-link">#</a></h2>
 
-<p>Return the context 2D of the given canvas.</p>
+<p>Return the 2D context of the given canvas.</p>
 
 <pre class="brush:js">
 var ctx = instance.get2DContext();
 
-ctx.fillRect(0,0,10, 200);
+ctx.fillRect(0,0,10,200);
 
 // ...
 </pre>
 
 <h2>toDataURL(type='image/png', encoderOptions=1) <a href="#toDataURL" id="toDataURL" class="deep-link">#</a></h2>
 
-<p>The method returns a data URIs containing a representation of the image in the
-format specified by the type parameter (defaults to PNG). The returned image is
-in a resolution of 96 dpi.</p>
+<p>Returns a data URI containing a representation of the image in the
+format specified by the type parameter (defaults to PNG). The returned image has a resolution of 96 dpi.</p>
 
 <ul>
-<li><strong>type</strong> : A string indicating the image format. The default type is image/png.</li>
-<li><strong>encoderOptions</strong> : A Number between 0 and 1 indicating image quality if the requested type is image/jpeg or image/webp.</li>
+<li><strong>type</strong> : A string indicating the image format, the default is image/png.</li>
+<li><strong>encoderOptions</strong> : A number between 0 and 1 indicating image quality if the requested type is image/jpeg or image/webp.</li>
 </ul>
 
 <h2>destroy() <a href="#destroy" id="destroy" class="deep-link">#</a></h2>

@@ -67,8 +67,8 @@
 </ul>
 <h1>CompositeImageBuilder</h1>
 
-<p>This class definition let you create an ImageBuilder that let you process composite
-datasets. The implementation rely on a single off-screen canvas to generate the
+<p>This class definition lets you create an ImageBuilder that lets you process composite
+datasets. The implementation relies on a single off-screen canvas to generate the
 resulting image of a composite structure (rgb.jpg + composite.json).</p>
 
 <h2>Table of Contents <a href="#toc" name="toc" class="deep-link">#</a></h2>
@@ -95,11 +95,11 @@ resulting image of a composite structure (rgb.jpg + composite.json).</p>
 <p>Create an instance of a CompositeImageBuilder using the associated
 <strong>queryDataModel</strong> that should be used to fetch the data.</p>
 
-<p>Under the cover that will create an off-screen canvas for the image generation.
-Then depending of the value of the flag <strong>pushAsBuffer</strong> the 'image-ready' notification
-won't contain the same thing.</p>
+<p>Under the hood, this will create an off-screen canvas for image generation.
+Depending of the value of the flag <strong>pushAsBuffer</strong>, the 'image-ready' notification
+will not contain the same object.</p>
 
-<p>Below are the two event structure</p>
+<p>Below are the two event structures:</p>
 
 <pre class="brush:js">
 // pushAsBuffer = true
@@ -140,7 +140,7 @@ After that method get called, the notification event will look as follow.</p>
 <h2>setPushMethodAsImage() <a href="#setPushMethodAsImage" id="setPushMethodAsImage" class="deep-link">#</a></h2>
 
 <p>Change the method to share the image to the outside world.
-After that method get called, the notification event will look as follow.</p>
+After the method gets called, the notification event will look as follows:</p>
 
 <pre class="brush:js">
 {
@@ -151,12 +151,12 @@ After that method get called, the notification event will look as follow.</p>
 
 <h2>setPipelineQuery(pipelineQuery) <a href="#setPipelineQuery" id="setPipelineQuery" class="deep-link">#</a></h2>
 
-<p>This method should be called each time the pipeline setting is changed.</p>
+<p>Should be called each time the pipeline setting is changed.</p>
 
-<p>The <strong>pipelineQuery</strong> is a String that encode the pipeline configuration such as
+<p>The <strong>pipelineQuery</strong> is a string that encodes the pipeline configuration such as
 which layer is visible or not and which field should be rendered for a given layer.</p>
 
-<p>The <strong>pipelineQuery</strong> is structured as follow.</p>
+<p>The <strong>pipelineQuery</strong> is structured as follows:</p>
 
 <pre class="brush:js">
 var pipelineQuery = "A_BBCAD_EA";
@@ -174,12 +174,12 @@ var layerSettings = [
 <h2>render() <a href="#render" id="render" class="deep-link">#</a></h2>
 
 <p>Process the current set of loaded data and render it into the background canvas.
-Once done, an event get triggered to let the application know that the image is
-ready to be rendered/display somewhere.</p>
+Once done, an event gets triggered to let the application know that the image is
+ready to be rendered/displayed somewhere.</p>
 
 <h2>onImageReady(callback) : subscription <a href="#onImageReady" id="onImageReady" class="deep-link">#</a></h2>
 
-<p>This allow the registration of a <strong>callback(data, envelope)</strong> function when the
+<p>Allows the registration of a <strong>callback(data, envelope)</strong> function when the
 actual generated image is ready.</p>
 
 <h2>TopicImageReady() : 'image-ready' <a href="#TopicImageReady" id="TopicImageReady" class="deep-link">#</a></h2>
@@ -202,16 +202,16 @@ which layer is visible or not and which field should be rendered for a given lay
 
 <h2>* pushToFront(width, height) <a href="#* pushToFront" id="* pushToFront" class="deep-link">#</a></h2>
 
-<p>Trigger the event notification that the image ready. This will call the proper
+<p>Trigger the event notification that the image is ready. This will call the proper
 method to either send the ImageData or an ImageURL.</p>
 
 <h2>* pushToFrontAsImage(width, height) <a href="#* pushToFrontAsImage" id="* pushToFrontAsImage" class="deep-link">#</a></h2>
 
-<p>Method called as <strong>pushToFront</strong> when <strong>setPushMethodAsImage()</strong> is used.</p>
+<p>Called as <strong>pushToFront</strong> when <strong>setPushMethodAsImage()</strong> is used.</p>
 
 <h2>* pushToFrontAsBuffer(width, height) <a href="#* pushToFrontAsBuffer" id="* pushToFrontAsBuffer" class="deep-link">#</a></h2>
 
-<p>Method called as <strong>pushToFront</strong> when setPushMethodAsBuffer()__ is used.</p>
+<p>Called as <strong>pushToFront</strong> when <strong>setPushMethodAsBuffer()</strong> is used.</p>
         </div>
         <script src="assets_/js/lib/jquery.js"></script>
         <script src="assets_/js/lib/syntax-highlighter/shCore.js"></script>
