@@ -1,6 +1,7 @@
 ## Tonic Image Builder
 
 [![Build Status](https://travis-ci.org/Kitware/tonic-image-builder.svg)](https://travis-ci.org/Kitware/tonic-image-builder)
+[![Dependency Status](https://david-dm.org/tonic-image-builder.svg)](https://david-dm.org/tonic-image-builder)
 
 ## Goal
 
