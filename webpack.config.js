@@ -23,6 +23,9 @@ module.exports = {
         {
           test: require.resolve("./lib/index.js"),
           loader: "expose?TonicImageBuilder"
+        },{
+          test: /\.c$/i,
+          loader: "shader"
         }
     ]
   },
