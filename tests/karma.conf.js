@@ -13,7 +13,7 @@ module.exports = function(config) {
     files: [
         'dist/TonicImageBuilder.js',
         'tests/*-browser-*.js',
-        'lib/*/tests/**/*.js'
+        'lib/*/*/tests/**/*.js'
     ],
     exclude: [
         'lib/*/tests/**/*-node-only.js'
