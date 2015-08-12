@@ -32,6 +32,7 @@ module.exports = {
   jshint: {
     esnext: true,
     browser: true,
+    devel: true,
     globalstrict: true // Babel add 'use strict'
   },
   externals: {
