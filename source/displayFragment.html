@@ -44,7 +44,7 @@
 
       <div class="header">
         
-          <h1>LookupTableManager.js</h1>
+          <h1>displayFragment.c</h1>
         
 
         
@@ -222,75 +222,22 @@
         
         
         
-          <div class='highlight'><pre><span class="hljs-keyword">var</span> LookupTable = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./LookupTable.js'</span>),
-    hasOwn = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mout/object/hasOwn'</span>),
-    Monologue = <span class="hljs-built_in">require</span>(<span class="hljs-string">'monologue.js'</span>),
-    CHANGE_TOPIC = <span class="hljs-string">'LookupTable.change'</span>,
-    LOOKUP_TABLE_LIST_CHANGE_TOPIC = <span class="hljs-string">'LookupTable.list.change'</span>;
+          <div class='highlight'><pre>
+precision mediump <span class="hljs-keyword">float</span>;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">LookupTableManager</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">this</span>.luts = {};
-    <span class="hljs-keyword">this</span>.lutSubscriptions = {};
+uniform sampler2D u_image;
+varying vec2 v_texCoord;
 
-    <span class="hljs-keyword">this</span>.onChangeCallback = ((data, envelope) =&gt; {
-        <span class="hljs-keyword">this</span>.emit(CHANGE_TOPIC, data);
-    });
-}</pre></div>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    vec4 color = texture2D(u_image, v_texCoord);
+    gl_FragColor = vec4(color.rgb, <span class="hljs-number">1.0</span>);</pre></div>
         
       
         
-        <p>Add Observer pattern using Monologue.js</p>
+        <p>gl_FragColor = color;</p>
 
         
-          <div class='highlight'><pre>Monologue.mixInto(LookupTableManager);
-
-LookupTableManager.prototype.addLookupTable = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name, range, preset</span>) </span>{
-    <span class="hljs-keyword">var</span> lut = <span class="hljs-keyword">this</span>.luts[name];
-    <span class="hljs-keyword">if</span>(lut === <span class="hljs-literal">undefined</span>) {
-        lut = <span class="hljs-keyword">new</span> LookupTable(name);
-
-        <span class="hljs-keyword">this</span>.luts[name] = lut;
-        <span class="hljs-keyword">this</span>.lutSubscriptions[name] = lut.onChange(<span class="hljs-keyword">this</span>.onChangeCallback);
-    }
-
-    lut.setPreset(preset || <span class="hljs-string">'spectral'</span>);
-    lut.setScalarRange(range[<span class="hljs-number">0</span>], range[<span class="hljs-number">1</span>]);
-
-    <span class="hljs-keyword">this</span>.emit(LOOKUP_TABLE_LIST_CHANGE_TOPIC, <span class="hljs-keyword">this</span>);
-
-    <span class="hljs-keyword">return</span> lut;
-}
-
-LookupTableManager.prototype.removeLookupTable = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>) </span>{
-    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.luts.hasOwn(name)) {
-        <span class="hljs-keyword">this</span>.lutSubscriptions[name].unsubscribe();
-        <span class="hljs-keyword">this</span>.luts[name].destroy();
-
-        <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>.luts[name];
-        <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>.lutSubscriptions[name];
-
-
-        <span class="hljs-keyword">this</span>.emit(LOOKUP_TABLE_LIST_CHANGE_TOPIC, <span class="hljs-keyword">this</span>);
-    }
-}
-
-LookupTableManager.prototype.getLookupTable = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.luts[name];
-}
-
-LookupTableManager.prototype.addFields = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fieldsRange</span>) </span>{
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> field <span class="hljs-keyword">in</span> fieldsRange) {
-        <span class="hljs-keyword">this</span>.addLookupTable(field, fieldsRange[field]);
-    }
-}
-
-LookupTableManager.prototype.onChange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">callback</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.on(CHANGE_TOPIC, callback);
-}
-
-LookupTableManager.prototype.onFieldsChange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">callback</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.on(LOOKUP_TABLE_LIST_CHANGE_TOPIC, callback);
-}</pre></div>
+          <div class='highlight'><pre>}</pre></div>
         
       
     </div>

@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Tonic Image Builder</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="/tonic-image-builder/css/main.css">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+<header class="site-header">
+
+    <nav class="mobile-nav show-on-mobiles">
+        <a class="page-link" href="/tonic-image-builder/"><i class="fa fa-home fa-fw fa-lg"></i></a>
+        <a class="page-link" href="/tonic-image-builder/docs/home"><i class="fa fa-book fa-fw fa-lg"></i></a>
+        <a class="page-link" href="/tonic-image-builder/news"><i class="fa fa-newspaper-o fa-fw fa-lg"></i></a>
+    </nav>
+    <div class="wrapper">
+
+        <a class="site-title center-on-mobiles" href="/">
+            <img src="/tonic-image-builder/img/logo.png" height="40" alt="Logo">
+            Tonic Image Builder
+        </a>
+        <nav class="site-nav hide-on-mobiles">
+            <a href="#" class="menu-icon">
+                <svg viewBox="0 0 18 15">
+                    <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                    <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                    <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                </svg>
+            </a>
+            <div class="trigger">
+                <a class="page-link" href="/tonic-image-builder/">Home</a>
+                <a class="page-link" href="/tonic-image-builder/docs/home">Docs</a>
+                <a class="page-link" href="/tonic-image-builder/news">News</a>
+            </div>
+        </nav>
+    </div>
+
+</header>
+
+  <div class="container">
+    <div class="page">
+
+      <div class="header">
+        
+          <h1>sxyz-light-compositor.js</h1>
+        
+
+        
+          <div class="toc">
+            <h3>Table of Contents</h3>
+            <ol>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="CompositorFactory.html">
+                    CompositorFactory.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="raw-rgbd-compositor.html">
+                    raw-rgbd-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="rgbd-compositor.html">
+                    rgbd-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="backgroundFragment.html">
+                    backgroundFragment.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="compositeFragment.html">
+                    compositeFragment.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="compositeJpgFragment.html">
+                    compositeJpgFragment.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="compositeLightFragment.html">
+                    compositeLightFragment.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="compositeLutFragment.html">
+                    compositeLutFragment.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="displayFragment.html">
+                    displayFragment.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="basicVertex.html">
+                    basicVertex.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="sxyz-light-compositor.html">
+                    sxyz-light-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="LookupTable.html">
+                    LookupTable.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="LookupTableManager.html">
+                    LookupTableManager.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Presets.html">
+                    Presets.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="test-lookuptable.html">
+                    test-lookuptable.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+            </ol>
+          </div>
+        
+      </div>
+
+      
+        
+        
+        
+          <div class='highlight'><pre><span class="hljs-keyword">var</span> CanvasOffscreenBuffer = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../util/CanvasOffscreenBuffer'</span>),
+    max = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mout/object/max'</span>),
+    vec3 = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gl-matrix/src/gl-matrix/vec3.js'</span>),
+    vec4 = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gl-matrix/src/gl-matrix/vec4.js'</span>),
+    WebGlUtil = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../util/WebGl'</span>),
+    merge = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mout/src/object/merge'</span>),
+    texParameter = [
+        [<span class="hljs-string">'TEXTURE_MAG_FILTER'</span>, <span class="hljs-string">'NEAREST'</span>], [<span class="hljs-string">'TEXTURE_MIN_FILTER'</span>, <span class="hljs-string">'NEAREST'</span>],
+        [<span class="hljs-string">'TEXTURE_WRAP_S'</span>, <span class="hljs-string">'CLAMP_TO_EDGE'</span>], [<span class="hljs-string">'TEXTURE_WRAP_T'</span>, <span class="hljs-string">'CLAMP_TO_EDGE'</span>]
+    ],
+    pixelStore = [ [ <span class="hljs-string">'UNPACK_FLIP_Y_WEBGL'</span>, <span class="hljs-literal">true</span> ] ];</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">spherical2Cartesian</span>(<span class="hljs-params">phi, theta</span>) </span>{
+  <span class="hljs-keyword">var</span> nPhi = <span class="hljs-built_in">parseFloat</span>(phi),
+      nTheta = <span class="hljs-built_in">parseFloat</span>(theta),
+      phiRad = (<span class="hljs-number">180.0</span> - nPhi) * <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">180.0</span>,
+      thetaRad = (<span class="hljs-number">180.0</span> - nTheta) * <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">180.0</span>;
+  <span class="hljs-keyword">return</span> [
+    <span class="hljs-built_in">Math</span>.sin(thetaRad) * <span class="hljs-built_in">Math</span>.cos(phiRad),
+    <span class="hljs-built_in">Math</span>.sin(thetaRad) * <span class="hljs-built_in">Math</span>.sin(phiRad),
+    <span class="hljs-built_in">Math</span>.cos(thetaRad)
+  ];
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">recomputeDirections</span>(<span class="hljs-params">queryModel, relativeLightPosition</span>) </span>{</pre></div>
+        
+      
+        
+        <p>construct a coordinate system relative to eye point</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">var</span> v = spherical2Cartesian(queryModel.getValue(<span class="hljs-string">'phi'</span>), queryModel.getValue(<span class="hljs-string">'theta'</span>)),
+      viewDir = vec3.fromValues(v[<span class="hljs-number">0</span>], v[<span class="hljs-number">1</span>], v[<span class="hljs-number">2</span>]),
+      at = vec3.fromValues(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-comment">//assumption always looking at 0</span>
+      north = vec3.fromValues(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>),  <span class="hljs-comment">//assumption, north is always up</span>
+      approxUp = vec3.create();
+
+  vec3.add(approxUp, north, viewDir);
+  vec3.normalize(approxUp, approxUp);
+
+  <span class="hljs-keyword">var</span> t0 = vec3.create();
+  vec3.subtract(t0, at, viewDir);
+  <span class="hljs-keyword">var</span> t1 = vec3.create();
+  vec3.subtract(t1, approxUp, viewDir);
+  <span class="hljs-keyword">var</span> right = vec3.create();
+  vec3.cross(right, t0, t1);
+  vec3.normalize(right, right);
+
+  vec3.subtract(t0, right, viewDir);
+  vec3.subtract(t1, at, viewDir);
+  <span class="hljs-keyword">var</span> up = vec3.create();
+  vec3.cross(up, t0, t1);
+  vec3.normalize(up, up);</pre></div>
+        
+      
+        
+        <p>scale down so we can alway have room before normalization</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">var</span> rm = vec3.create();
+  vec3.scale(rm, right, relativeLightPosition.x);
+  <span class="hljs-keyword">var</span> um = vec3.create();
+  vec3.scale(um, up, relativeLightPosition.y);
+
+  <span class="hljs-keyword">var</span> scaledView = vec3.create();
+  vec3.scale(scaledView, viewDir, <span class="hljs-number">0.3</span>);
+
+  <span class="hljs-keyword">var</span> lightDirection = vec3.create();
+  vec3.add(lightDirection, scaledView, rm);
+  vec3.add(lightDirection, lightDirection, um);
+  vec3.normalize(lightDirection, lightDirection);
+
+  <span class="hljs-keyword">return</span> {
+    lightDir: lightDirection,
+    viewDir: viewDir
+  }
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">WebGlLightCompositor</span>(<span class="hljs-params">options</span>) </span>{
+    <span class="hljs-keyword">var</span> {queryDataModel, imageBuilder, lookupTableManager} = options;
+
+    <span class="hljs-keyword">this</span>.queryDataModel = queryDataModel;
+    <span class="hljs-keyword">this</span>.compositePipeline = <span class="hljs-keyword">this</span>.queryDataModel.originalData.CompositePipeline;
+    <span class="hljs-keyword">this</span>.width = <span class="hljs-keyword">this</span>.compositePipeline.dimensions[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">this</span>.height = <span class="hljs-keyword">this</span>.compositePipeline.dimensions[<span class="hljs-number">1</span>];
+    <span class="hljs-keyword">this</span>.spriteSize = max(<span class="hljs-keyword">this</span>.compositePipeline.offset);
+    <span class="hljs-keyword">this</span>.offsetList = [];
+    <span class="hljs-keyword">this</span>.sxyzSprite = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">this</span>.removeLoadCallback = <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">this</span>.closureRenderMethod = () =&gt; { <span class="hljs-keyword">this</span>.render(); };
+
+    <span class="hljs-keyword">this</span>.dataSubscription = queryDataModel.onDataChange( (data, envelope) =&gt; {
+        <span class="hljs-keyword">this</span>.sxyzSprite = data.sxyzSprite.image;
+
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.sxyzSprite.complete) {
+            <span class="hljs-keyword">this</span>.render();
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">this</span>.removeLoadCallback = <span class="hljs-literal">true</span>;
+            <span class="hljs-keyword">this</span>.sxyzSprite.addEventListener(<span class="hljs-string">'load'</span>, <span class="hljs-keyword">this</span>.closureRenderMethod);
+        }
+    });
+
+    <span class="hljs-keyword">this</span>.imageBuilder = imageBuilder;
+
+    <span class="hljs-keyword">this</span>.lookupTableManager = lookupTableManager;
+    <span class="hljs-keyword">this</span>.lookupTableManager.addFields(<span class="hljs-keyword">this</span>.compositePipeline.ranges);
+
+    <span class="hljs-keyword">this</span>.numLutSamples = <span class="hljs-number">1024</span>;
+    <span class="hljs-keyword">this</span>.lutMap = {};
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> key <span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span>.compositePipeline.ranges) {
+        <span class="hljs-keyword">this</span>.lutMap[key] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(<span class="hljs-keyword">this</span>.numLutSamples * <span class="hljs-number">4</span>);
+        <span class="hljs-keyword">this</span>.resampleLookupTable(key);
+    }
+
+    <span class="hljs-keyword">this</span>.lookupTableManager.onChange( (data, envelope) =&gt; {
+        <span class="hljs-keyword">if</span> (data.lut.name !== <span class="hljs-string">'__internal'</span>) {
+            <span class="hljs-keyword">this</span>.resampleLookupTable(data.lut.name);
+        }
+    });
+
+
+    <span class="hljs-keyword">this</span>.bgColor = [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ];
+    <span class="hljs-keyword">this</span>.lightingTextureNames = [ <span class="hljs-string">'nx'</span>, <span class="hljs-string">'ny'</span>, <span class="hljs-string">'nz'</span>, <span class="hljs-string">'scalars'</span> ];
+    <span class="hljs-keyword">this</span>.lightingTextures = {};
+
+    <span class="hljs-keyword">this</span>.lightProperties = {
+        <span class="hljs-string">'lightTerms'</span>: {
+            ka: <span class="hljs-number">0.1</span>,
+            kd: <span class="hljs-number">0.6</span>,
+            ks: <span class="hljs-number">0.3</span>,
+            alpha: <span class="hljs-number">20</span>
+        },
+        <span class="hljs-string">'lightPosition'</span>: {
+            x: -<span class="hljs-number">1</span>,
+            y: <span class="hljs-number">1</span>
+        },
+        <span class="hljs-string">'lightColor'</span>: [ <span class="hljs-number">0.8</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.8</span> ]
+    };</pre></div>
+        
+      
+        
+        <p>Canvas</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.glCanvas = <span class="hljs-keyword">new</span> CanvasOffscreenBuffer(<span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);
+    <span class="hljs-keyword">this</span>.compositeCanvas = <span class="hljs-keyword">new</span> CanvasOffscreenBuffer(<span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);
+    <span class="hljs-keyword">this</span>.compositeCtx = <span class="hljs-keyword">this</span>.compositeCanvas.get2DContext();
+    <span class="hljs-keyword">this</span>.scalarCanvas = <span class="hljs-keyword">new</span> CanvasOffscreenBuffer(<span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);
+    <span class="hljs-keyword">this</span>.scalarCtx = <span class="hljs-keyword">this</span>.scalarCanvas.get2DContext();
+    <span class="hljs-keyword">this</span>.nxCanvas = <span class="hljs-keyword">new</span> CanvasOffscreenBuffer(<span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);
+    <span class="hljs-keyword">this</span>.nxCtx = <span class="hljs-keyword">this</span>.nxCanvas.get2DContext();
+    <span class="hljs-keyword">this</span>.nyCanvas = <span class="hljs-keyword">new</span> CanvasOffscreenBuffer(<span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);
+    <span class="hljs-keyword">this</span>.nyCtx = <span class="hljs-keyword">this</span>.nyCanvas.get2DContext();
+    <span class="hljs-keyword">this</span>.nzCanvas = <span class="hljs-keyword">new</span> CanvasOffscreenBuffer(<span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);
+    <span class="hljs-keyword">this</span>.nzCtx = <span class="hljs-keyword">this</span>.nzCanvas.get2DContext();</pre></div>
+        
+      
+        
+        <p>Inialize GL context</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.gl = <span class="hljs-keyword">this</span>.glCanvas.get3DContext();
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.gl) {
+      <span class="hljs-built_in">console</span>.error(<span class="hljs-string">"Unable to get WebGl context"</span>);
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    }</pre></div>
+        
+      
+        
+        <p>Set clear color to white, fully transparent</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.gl.clearColor(<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>);</pre></div>
+        
+      
+        
+        <p>Set up GL resources</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.glConfig = {
+            programs: {
+                displayProgram: {
+                    vertexShader:   <span class="hljs-built_in">require</span>(<span class="hljs-string">'./shaders/vertex/basicVertex.c'</span>),
+                    fragmentShader: <span class="hljs-built_in">require</span>(<span class="hljs-string">'./shaders/fragment/displayFragment.c'</span>),
+                    mapping: <span class="hljs-string">'default'</span>
+                },
+                compositeLightProgram: {
+                    vertexShader:   <span class="hljs-built_in">require</span>(<span class="hljs-string">'./shaders/vertex/basicVertex.c'</span>),
+                    fragmentShader: <span class="hljs-built_in">require</span>(<span class="hljs-string">'./shaders/fragment/compositeLightFragment.c'</span>),
+                    mapping: <span class="hljs-string">'default'</span>
+                },
+                backgroundProgram: {
+                    vertexShader:   <span class="hljs-built_in">require</span>(<span class="hljs-string">'./shaders/vertex/basicVertex.c'</span>),
+                    fragmentShader: <span class="hljs-built_in">require</span>(<span class="hljs-string">'./shaders/fragment/backgroundFragment.c'</span>),
+                    mapping: <span class="hljs-string">'default'</span>
+                }
+            },
+            resources: {
+                buffers: [
+                    {
+                        id: <span class="hljs-string">'texCoord'</span>,
+                        data: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>([
+                          <span class="hljs-number">0.0</span>,  <span class="hljs-number">0.0</span>,
+                          <span class="hljs-number">1.0</span>,  <span class="hljs-number">0.0</span>,
+                          <span class="hljs-number">0.0</span>,  <span class="hljs-number">1.0</span>,
+                          <span class="hljs-number">0.0</span>,  <span class="hljs-number">1.0</span>,
+                          <span class="hljs-number">1.0</span>,  <span class="hljs-number">0.0</span>,
+                          <span class="hljs-number">1.0</span>,  <span class="hljs-number">1.0</span>
+                        ])
+                    },{
+                        id: <span class="hljs-string">'posCoord'</span>,
+                        data: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>([
+                          -<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>,
+                           <span class="hljs-number">1</span>, -<span class="hljs-number">1</span>,
+                          -<span class="hljs-number">1</span>,  <span class="hljs-number">1</span>,
+                          -<span class="hljs-number">1</span>,  <span class="hljs-number">1</span>,
+                           <span class="hljs-number">1</span>, -<span class="hljs-number">1</span>,
+                           <span class="hljs-number">1</span>,  <span class="hljs-number">1</span>
+                        ])
+                    }
+                ],
+                textures: [
+                    { id: <span class="hljs-string">'scalars'</span>,    pixelStore, texParameter },
+                    { id: <span class="hljs-string">'nx'</span>,         pixelStore, texParameter },
+                    { id: <span class="hljs-string">'ny'</span>,         pixelStore, texParameter },
+                    { id: <span class="hljs-string">'nz'</span>,         pixelStore, texParameter },
+                    { id: <span class="hljs-string">'lutTexture'</span>, pixelStore, texParameter },
+                    { id: <span class="hljs-string">'ping'</span>,       pixelStore, texParameter },
+                    { id: <span class="hljs-string">'pong'</span>,       pixelStore, texParameter }
+                ],
+                framebuffers: [
+                    { id: <span class="hljs-string">'ping'</span>, width: <span class="hljs-keyword">this</span>.width, height: <span class="hljs-keyword">this</span>.height },
+                    { id: <span class="hljs-string">'pong'</span>, width: <span class="hljs-keyword">this</span>.width, height: <span class="hljs-keyword">this</span>.height }
+                ]
+            },
+            mappings: {
+                <span class="hljs-keyword">default</span>: [
+                    { id: <span class="hljs-string">'posCoord'</span>, name: <span class="hljs-string">'positionLocation'</span>, attribute: <span class="hljs-string">'a_position'</span>, format: [ <span class="hljs-number">2</span>, <span class="hljs-keyword">this</span>.gl.FLOAT, <span class="hljs-literal">false</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ] },
+                    { id: <span class="hljs-string">'texCoord'</span>, name: <span class="hljs-string">'texCoordLocation'</span>, attribute: <span class="hljs-string">'a_texCoord'</span>, format: [ <span class="hljs-number">2</span>, <span class="hljs-keyword">this</span>.gl.FLOAT, <span class="hljs-literal">false</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ] }
+                ]
+            }
+        };
+
+    <span class="hljs-keyword">this</span>.glResources = WebGlUtil.createGLResources(<span class="hljs-keyword">this</span>.gl, <span class="hljs-keyword">this</span>.glConfig);
+
+    <span class="hljs-keyword">this</span>.pingPong = <span class="hljs-keyword">new</span> WebGlUtil.PingPong( <span class="hljs-keyword">this</span>.gl,
+        [ <span class="hljs-keyword">this</span>.glResources.framebuffers.ping, <span class="hljs-keyword">this</span>.glResources.framebuffers.pong ],
+        [ <span class="hljs-keyword">this</span>.glResources.textures.ping,     <span class="hljs-keyword">this</span>.glResources.textures.pong ]
+    );
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+WebGlLightCompositor.prototype.WIDGETS = [ <span class="hljs-string">"LookupTableManagerWidget"</span>, <span class="hljs-string">"LightPropertiesWidget"</span>, <span class="hljs-string">"CompositeControl"</span>, <span class="hljs-string">"QueryDataModelWidget"</span> ];</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+WebGlLightCompositor.prototype.getLightProperties = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.lightProperties;
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+WebGlLightCompositor.prototype.setLightProperties = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">lightProps</span>) </span>{
+    <span class="hljs-keyword">this</span>.lightProperties = merge(<span class="hljs-keyword">this</span>.lightProperties, lightProps);
+    <span class="hljs-keyword">this</span>.render();
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+WebGlLightCompositor.prototype.resampleLookupTable = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fieldName</span>) </span>{
+    <span class="hljs-keyword">var</span> lookupTable = <span class="hljs-keyword">this</span>.lookupTableManager.getLookupTable(fieldName),
+        fieldRange = <span class="hljs-keyword">this</span>.compositePipeline.ranges[fieldName],
+        delta = (fieldRange[<span class="hljs-number">1</span>] - fieldRange[<span class="hljs-number">0</span>]) / <span class="hljs-keyword">this</span>.numLutSamples,</pre></div>
+        
+      
+        
+        <p>lutRange = lookupTable.getScalarRange(),</p>
+
+        
+          <div class='highlight'><pre>        samples = <span class="hljs-keyword">this</span>.lutMap[fieldName];
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-keyword">this</span>.numLutSamples; ++i) {
+        <span class="hljs-keyword">var</span> scalarValue = fieldRange[<span class="hljs-number">0</span>] + (i * delta),
+            colorArrayIdx = i * <span class="hljs-number">4</span>,
+            scalarColor = lookupTable.getColor(scalarValue);
+
+        samples[colorArrayIdx] = <span class="hljs-built_in">Math</span>.round(scalarColor[<span class="hljs-number">0</span>] * <span class="hljs-number">255</span>);
+        samples[colorArrayIdx+<span class="hljs-number">1</span>] = <span class="hljs-built_in">Math</span>.round(scalarColor[<span class="hljs-number">1</span>] * <span class="hljs-number">255</span>);
+        samples[colorArrayIdx+<span class="hljs-number">2</span>] = <span class="hljs-built_in">Math</span>.round(scalarColor[<span class="hljs-number">2</span>] * <span class="hljs-number">255</span>);
+        samples[colorArrayIdx+<span class="hljs-number">3</span>] = <span class="hljs-number">1.0</span>;
+    }
+
+    <span class="hljs-keyword">this</span>.render();
+};</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+WebGlLightCompositor.prototype.updateQuery = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">query</span>) </span>{
+    <span class="hljs-keyword">var</span> layers = <span class="hljs-keyword">this</span>.compositePipeline.layers,
+        count = layers.length,
+        offsets = <span class="hljs-keyword">this</span>.compositePipeline.offset,
+        fieldDependencies = <span class="hljs-keyword">this</span>.compositePipeline.color_by_dependencies;
+
+    <span class="hljs-keyword">this</span>.offsetList = [];
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> idx = <span class="hljs-number">0</span>; idx &lt; count; idx++) {
+        <span class="hljs-keyword">var</span> fieldCode = query[idx*<span class="hljs-number">2</span> + <span class="hljs-number">1</span>];
+        <span class="hljs-keyword">if</span>(fieldCode !== <span class="hljs-string">'_'</span>) {
+            <span class="hljs-keyword">if</span> (fieldDependencies[fieldCode]) {
+              <span class="hljs-keyword">var</span> depends = fieldDependencies[fieldCode];
+              <span class="hljs-keyword">if</span> (depends.normal) {
+                <span class="hljs-keyword">var</span> nx = depends.normal[<span class="hljs-number">0</span>], ny = depends.normal[<span class="hljs-number">1</span>], nz = depends.normal[<span class="hljs-number">2</span>];
+                <span class="hljs-keyword">this</span>.offsetList.push({
+                  <span class="hljs-string">'fieldName'</span> : <span class="hljs-keyword">this</span>.compositePipeline.fields[fieldCode],
+                  <span class="hljs-string">'scalar'</span>: <span class="hljs-keyword">this</span>.spriteSize - offsets[layers[idx] + fieldCode],
+                  <span class="hljs-string">'nx'</span>: <span class="hljs-keyword">this</span>.spriteSize - offsets[layers[idx] + nx],
+                  <span class="hljs-string">'ny'</span>: <span class="hljs-keyword">this</span>.spriteSize - offsets[layers[idx] + ny],
+                  <span class="hljs-string">'nz'</span>: <span class="hljs-keyword">this</span>.spriteSize - offsets[layers[idx] + nz]
+                });
+              }
+            }
+        }
+    }
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+WebGlLightCompositor.prototype.render = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.sxyzSprite || !<span class="hljs-keyword">this</span>.sxyzSprite.complete) {
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Not enough data to render"</span>);
+      <span class="hljs-keyword">return</span>;
+    }</pre></div>
+        
+      
+        
+        <p>Handle image decoding</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.removeLoadCallback) {
+        <span class="hljs-keyword">this</span>.sxyzSprite.removeEventListener(<span class="hljs-string">'load'</span>, <span class="hljs-keyword">this</span>.closureRenderMethod);
+        <span class="hljs-keyword">this</span>.removeLoadCallback = <span class="hljs-literal">false</span>;
+    }
+
+    <span class="hljs-keyword">this</span>.pingPong.clearFbo();
+
+    <span class="hljs-keyword">var</span> {lightDir, viewDir} = recomputeDirections(<span class="hljs-keyword">this</span>.queryDataModel, <span class="hljs-keyword">this</span>.lightProperties.lightPosition),
+        srcX = <span class="hljs-number">0</span>, srcY = <span class="hljs-number">0</span>, imgw = <span class="hljs-keyword">this</span>.width, imgh = <span class="hljs-keyword">this</span>.height;</pre></div>
+        
+      
+        
+        <p>Draw a background pass</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.compositeCtx.clearRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, imgw, imgh);
+    <span class="hljs-keyword">this</span>.compositeCtx.drawImage(<span class="hljs-keyword">this</span>.sxyzSprite, <span class="hljs-number">0</span>, (<span class="hljs-keyword">this</span>.spriteSize * imgh), imgw, imgh, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, imgw, imgh);
+    <span class="hljs-keyword">this</span>.drawBackgroundPass(<span class="hljs-keyword">this</span>.bgColor);
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>, size = <span class="hljs-keyword">this</span>.offsetList.length; i &lt; size; i+=<span class="hljs-number">1</span>) {
+      <span class="hljs-keyword">var</span> lOffMap = <span class="hljs-keyword">this</span>.offsetList[i],
+          field = lOffMap[<span class="hljs-string">'fieldName'</span>];
+      srcY = <span class="hljs-number">0</span>;</pre></div>
+        
+      
+        
+        <p>Copy the nx buffer</p>
+
+        
+          <div class='highlight'><pre>      srcY = lOffMap.nx * imgh;
+      <span class="hljs-keyword">this</span>.nxCtx.clearRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, imgw, imgh);
+      <span class="hljs-keyword">this</span>.nxCtx.drawImage(<span class="hljs-keyword">this</span>.sxyzSprite, srcX, srcY, imgw, imgh, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, imgw, imgh);</pre></div>
+        
+      
+        
+        <p>Copy the ny buffer</p>
+
+        
+          <div class='highlight'><pre>      srcY = lOffMap.ny * imgh;
+      <span class="hljs-keyword">this</span>.nyCtx.clearRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, imgw, imgh);
+      <span class="hljs-keyword">this</span>.nyCtx.drawImage(<span class="hljs-keyword">this</span>.sxyzSprite, srcX, srcY, imgw, imgh, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, imgw, imgh);</pre></div>
+        
+      
+        
+        <p>Copy the nz buffer</p>
+
+        
+          <div class='highlight'><pre>      srcY = lOffMap.nz * imgh;
+      <span class="hljs-keyword">this</span>.nzCtx.clearRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, imgw, imgh);
+      <span class="hljs-keyword">this</span>.nzCtx.drawImage(<span class="hljs-keyword">this</span>.sxyzSprite, srcX, srcY, imgw, imgh, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, imgw, imgh);</pre></div>
+        
+      
+        
+        <p>Copy the scalar buffer</p>
+
+        
+          <div class='highlight'><pre>      srcY = lOffMap.scalar * imgh;
+      <span class="hljs-keyword">this</span>.scalarCtx.clearRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, imgw, imgh);
+      <span class="hljs-keyword">this</span>.scalarCtx.drawImage(<span class="hljs-keyword">this</span>.sxyzSprite, srcX, srcY, imgw, imgh, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, imgw, imgh);
+
+      <span class="hljs-keyword">this</span>.drawLitCompositePass(viewDir, lightDir, <span class="hljs-keyword">this</span>.lightProperties, <span class="hljs-keyword">this</span>.lutMap[field]);
+    }
+
+    <span class="hljs-keyword">this</span>.drawDisplayPass();
+
+    <span class="hljs-keyword">var</span> readyImage = {
+            canvas: <span class="hljs-keyword">this</span>.glCanvas.el,
+            area: [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height ],
+            outputSize: [ <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height ]
+        };</pre></div>
+        
+      
+        
+        <p>Let everyone know the image is ready</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.imageBuilder.emit(<span class="hljs-keyword">this</span>.imageBuilder.IMAGE_READY_TOPIC, readyImage);
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+WebGlLightCompositor.prototype.destroy = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">this</span>.dataSubscription.unsubscribe();
+  <span class="hljs-keyword">this</span>.dataSubscription = <span class="hljs-literal">null</span>;
+
+  <span class="hljs-keyword">this</span>.glResources.destroy();
+  <span class="hljs-keyword">this</span>.glResources = <span class="hljs-literal">null</span>;
+
+  <span class="hljs-keyword">this</span>.pingPong = <span class="hljs-literal">null</span>;
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+WebGlLightCompositor.prototype.drawDisplayPass = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</pre></div>
+        
+      
+        
+        <p>Draw to the screen framebuffer</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.bindFramebuffer(<span class="hljs-keyword">this</span>.gl.FRAMEBUFFER, <span class="hljs-literal">null</span>);</pre></div>
+        
+      
+        
+        <p>Using the display shader program</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.useProgram(<span class="hljs-keyword">this</span>.glResources.programs.displayProgram);
+
+  <span class="hljs-keyword">this</span>.gl.clear(<span class="hljs-keyword">this</span>.gl.COLOR_BUFFER_BIT);
+  <span class="hljs-keyword">this</span>.gl.viewport(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);</pre></div>
+        
+      
+        
+        <p>Set up the sampler uniform and bind the rendered texture</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">var</span> u_image = <span class="hljs-keyword">this</span>.gl.getUniformLocation(<span class="hljs-keyword">this</span>.glResources.programs.displayProgram, <span class="hljs-string">"u_image"</span>);
+  <span class="hljs-keyword">this</span>.gl.uniform1i(u_image, <span class="hljs-number">0</span>);
+  <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + <span class="hljs-number">0</span>);
+  <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-keyword">this</span>.pingPong.getRenderingTexture());</pre></div>
+        
+      
+        
+        <p>Draw the rectangle.</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.drawArrays(<span class="hljs-keyword">this</span>.gl.TRIANGLES, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>);
+
+  <span class="hljs-keyword">this</span>.gl.finish();
+
+  <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0);
+  <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-literal">null</span>);
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+WebGlLightCompositor.prototype.drawBackgroundPass = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">backgroundColor</span>) </span>{</pre></div>
+        
+      
+        
+        <p>Draw to the fbo on this pass</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.bindFramebuffer(<span class="hljs-keyword">this</span>.gl.FRAMEBUFFER, <span class="hljs-keyword">this</span>.pingPong.getFramebuffer());</pre></div>
+        
+      
+        
+        <p>Using the background shader program</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.useProgram(<span class="hljs-keyword">this</span>.glResources.programs.backgroundProgram);</pre></div>
+        
+      
+        
+        <p>this.gl.clear(this.gl.COLOR_BUFFER_BIT);</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.viewport(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);
+
+  <span class="hljs-keyword">var</span> bgColor = vec4.fromValues(backgroundColor[<span class="hljs-number">0</span>], backgroundColor[<span class="hljs-number">1</span>], backgroundColor[<span class="hljs-number">2</span>], <span class="hljs-number">1.0</span>);
+  <span class="hljs-keyword">var</span> bgc = <span class="hljs-keyword">this</span>.gl.getUniformLocation(<span class="hljs-keyword">this</span>.glResources.programs.backgroundProgram, <span class="hljs-string">"backgroundColor"</span>);
+  <span class="hljs-keyword">this</span>.gl.uniform4fv(bgc, bgColor);</pre></div>
+        
+      
+        
+        <p>Set up the layer texture</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">var</span> layer = <span class="hljs-keyword">this</span>.gl.getUniformLocation(<span class="hljs-keyword">this</span>.glResources.programs.backgroundProgram, <span class="hljs-string">"backgroundSampler"</span>);
+  <span class="hljs-keyword">this</span>.gl.uniform1i(layer, <span class="hljs-number">0</span>);
+  <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + <span class="hljs-number">0</span>);
+  <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-keyword">this</span>.pingPong.getRenderingTexture());
+  <span class="hljs-keyword">this</span>.gl.texImage2D(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.gl.RGBA, <span class="hljs-keyword">this</span>.gl.RGBA, <span class="hljs-keyword">this</span>.gl.UNSIGNED_BYTE, <span class="hljs-keyword">this</span>.compositeCanvas.el);</pre></div>
+        
+      
+        
+        <p>Draw the rectangle.</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.drawArrays(<span class="hljs-keyword">this</span>.gl.TRIANGLES, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>);
+
+  <span class="hljs-keyword">this</span>.gl.finish();</pre></div>
+        
+      
+        
+        <p>Ping-pong</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.pingPong.swap();</pre></div>
+        
+      
+        
+        <p>Now unbind the textures we used</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0);
+  <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-literal">null</span>);
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+WebGlLightCompositor.prototype.drawLitCompositePass = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">viewDir, lightDir, lightProperties, lutData</span>) </span>{
+  <span class="hljs-keyword">var</span> {lightTerms, lightColor} = lightProperties;</pre></div>
+        
+      
+        
+        <p>Draw to the fbo on this pass</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.bindFramebuffer(<span class="hljs-keyword">this</span>.gl.FRAMEBUFFER, <span class="hljs-keyword">this</span>.pingPong.getFramebuffer());</pre></div>
+        
+      
+        
+        <p>Using the lighting compositing shader program</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.useProgram(<span class="hljs-keyword">this</span>.glResources.programs.compositeLightProgram);
+
+  <span class="hljs-keyword">this</span>.gl.viewport(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);
+
+  <span class="hljs-keyword">var</span> viewDirection = vec4.fromValues(viewDir[<span class="hljs-number">0</span>], viewDir[<span class="hljs-number">1</span>], viewDir[<span class="hljs-number">2</span>], <span class="hljs-number">0.0</span>);
+  <span class="hljs-keyword">var</span> vdir = <span class="hljs-keyword">this</span>.gl.getUniformLocation(<span class="hljs-keyword">this</span>.glResources.programs.compositeLightProgram, <span class="hljs-string">"viewDir"</span>);
+  <span class="hljs-keyword">this</span>.gl.uniform4fv(vdir, viewDirection);
+
+  <span class="hljs-keyword">var</span> lightDirection = vec4.fromValues(lightDir[<span class="hljs-number">0</span>], lightDir[<span class="hljs-number">1</span>], lightDir[<span class="hljs-number">2</span>], <span class="hljs-number">0.0</span>);
+  <span class="hljs-keyword">var</span> ldir = <span class="hljs-keyword">this</span>.gl.getUniformLocation(<span class="hljs-keyword">this</span>.glResources.programs.compositeLightProgram, <span class="hljs-string">"lightDir"</span>);
+  <span class="hljs-keyword">this</span>.gl.uniform4fv(ldir, lightDirection);
+
+  <span class="hljs-keyword">var</span> lightingConstants = vec4.fromValues(lightTerms.ka, lightTerms.kd, lightTerms.ks, lightTerms.alpha);
+  <span class="hljs-keyword">var</span> lterms = <span class="hljs-keyword">this</span>.gl.getUniformLocation(<span class="hljs-keyword">this</span>.glResources.programs.compositeLightProgram, <span class="hljs-string">"lightTerms"</span>);
+  <span class="hljs-keyword">this</span>.gl.uniform4fv(lterms, lightingConstants);
+
+  <span class="hljs-keyword">var</span> lightCol = vec4.fromValues(lightColor[<span class="hljs-number">0</span>], lightColor[<span class="hljs-number">1</span>], lightColor[<span class="hljs-number">2</span>], <span class="hljs-number">1.0</span>);
+  <span class="hljs-keyword">var</span> lcolor = <span class="hljs-keyword">this</span>.gl.getUniformLocation(<span class="hljs-keyword">this</span>.glResources.programs.compositeLightProgram, <span class="hljs-string">"lightColor"</span>);
+  <span class="hljs-keyword">this</span>.gl.uniform4fv(lcolor, lightCol);</pre></div>
+        
+      
+        
+        <p>Set up the scalar texture</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">var</span> scalar = <span class="hljs-keyword">this</span>.gl.getUniformLocation(<span class="hljs-keyword">this</span>.glResources.programs.compositeLightProgram, <span class="hljs-string">"scalarSampler"</span>);
+  <span class="hljs-keyword">this</span>.gl.uniform1i(scalar, <span class="hljs-number">0</span>);
+  <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + <span class="hljs-number">0</span>);
+  <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-keyword">this</span>.glResources.textures.scalars);
+  <span class="hljs-keyword">this</span>.gl.texImage2D(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.gl.RGBA,  <span class="hljs-keyword">this</span>.gl.RGBA, <span class="hljs-keyword">this</span>.gl.UNSIGNED_BYTE, <span class="hljs-keyword">this</span>.scalarCanvas.el);</pre></div>
+        
+      
+        
+        <p>Set up the normals (x component) texture</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">var</span> nx = <span class="hljs-keyword">this</span>.gl.getUniformLocation(<span class="hljs-keyword">this</span>.glResources.programs.compositeLightProgram, <span class="hljs-string">"nxSampler"</span>);
+  <span class="hljs-keyword">this</span>.gl.uniform1i(nx, <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-keyword">this</span>.glResources.textures.nx);
+  <span class="hljs-keyword">this</span>.gl.texImage2D(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.gl.RGBA,  <span class="hljs-keyword">this</span>.gl.RGBA, <span class="hljs-keyword">this</span>.gl.UNSIGNED_BYTE, <span class="hljs-keyword">this</span>.nxCanvas.el);</pre></div>
+        
+      
+        
+        <p>Set up the normals (y component) texture</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">var</span> ny = <span class="hljs-keyword">this</span>.gl.getUniformLocation(<span class="hljs-keyword">this</span>.glResources.programs.compositeLightProgram, <span class="hljs-string">"nySampler"</span>);
+  <span class="hljs-keyword">this</span>.gl.uniform1i(ny, <span class="hljs-number">2</span>);
+  <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + <span class="hljs-number">2</span>);
+  <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-keyword">this</span>.glResources.textures.ny);
+  <span class="hljs-keyword">this</span>.gl.texImage2D(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.gl.RGBA,  <span class="hljs-keyword">this</span>.gl.RGBA, <span class="hljs-keyword">this</span>.gl.UNSIGNED_BYTE, <span class="hljs-keyword">this</span>.nyCanvas.el);</pre></div>
+        
+      
+        
+        <p>Set up the normals (z component) texture</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">var</span> nz = <span class="hljs-keyword">this</span>.gl.getUniformLocation(<span class="hljs-keyword">this</span>.glResources.programs.compositeLightProgram, <span class="hljs-string">"nzSampler"</span>);
+  <span class="hljs-keyword">this</span>.gl.uniform1i(nz, <span class="hljs-number">3</span>);
+  <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + <span class="hljs-number">3</span>);
+  <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-keyword">this</span>.glResources.textures.nz);
+  <span class="hljs-keyword">this</span>.gl.texImage2D(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.gl.RGBA,  <span class="hljs-keyword">this</span>.gl.RGBA, <span class="hljs-keyword">this</span>.gl.UNSIGNED_BYTE, <span class="hljs-keyword">this</span>.nzCanvas.el);</pre></div>
+        
+      
+        
+        <p>Set up the sampler uniform and bind the rendered texture</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">var</span> composite = <span class="hljs-keyword">this</span>.gl.getUniformLocation(<span class="hljs-keyword">this</span>.glResources.programs.compositeLightProgram, <span class="hljs-string">"compositeSampler"</span>);
+  <span class="hljs-keyword">this</span>.gl.uniform1i(composite, <span class="hljs-number">4</span>);
+  <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + <span class="hljs-number">4</span>);
+  <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-keyword">this</span>.pingPong.getRenderingTexture());</pre></div>
+        
+      
+        
+        <p>Set up the lookup table texture</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">var</span> lut = <span class="hljs-keyword">this</span>.gl.getUniformLocation(<span class="hljs-keyword">this</span>.glResources.programs.compositeLightProgram, <span class="hljs-string">"lutSampler"</span>);
+  <span class="hljs-keyword">this</span>.gl.uniform1i(lut, <span class="hljs-number">5</span>);
+  <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + <span class="hljs-number">5</span>);
+  <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-keyword">this</span>.glResources.textures.lutTexture);
+  <span class="hljs-keyword">this</span>.gl.texImage2D (<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.gl.RGBA, <span class="hljs-keyword">this</span>.numLutSamples, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.gl.RGBA, <span class="hljs-keyword">this</span>.gl.UNSIGNED_BYTE, lutData);</pre></div>
+        
+      
+        
+        <p>Draw the rectangle.</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.drawArrays(<span class="hljs-keyword">this</span>.gl.TRIANGLES, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>);
+
+  <span class="hljs-keyword">this</span>.gl.finish();</pre></div>
+        
+      
+        
+        <p>Ping-pong</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.pingPong.swap();</pre></div>
+        
+      
+        
+        <p>Now unbind the textures we used</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">6</span>; i+=<span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + i);
+    <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-literal">null</span>);
+  }
+}</pre></div>
+        
+      
+    </div>
+  </div>
+</body>
+</html>

@@ -67,7 +67,13 @@
 </ul>
 <h1>CanvasOffscreenBuffer</h1>
 
-<p>This class definition lets you create an off-screen canvas to do image manipulation.</p>
+<p>This is a utility class used to create an off-screen
+canvas for image manipulation.</p>
+
+<pre class="brush:js">
+var CanvasOffscreenBuffer = require('tonic-image-builder/lib/util/CanvasOffscreenBuffer'),
+    instance = new CanvasOffscreenBuffer(100, 100);
+</pre>
 
 <h2>Table of Contents <a href="#toc" name="toc" class="deep-link">#</a></h2>
 
@@ -75,13 +81,15 @@
 <li><a href="#constructor">constructor()</a></li>
 <li><a href="#size">size()</a></li>
 <li><a href="#get2DContext">get2DContext()</a></li>
+<li><a href="#get3DContext">get3DContext()</a></li>
 <li><a href="#toDataURL">toDataURL()</a></li>
 <li><a href="#destroy">destroy()</a></li>
 </ul>
 
 <h2>constructor(width, height) <a href="#constructor" id="constructor" class="deep-link">#</a></h2>
 
-<p>Create a canvas and add it to the DOM under the <body/> element.</p>
+<p>Create a canvas and add it to the DOM as a child of the
+<code>&lt;body/&gt;</code> element.</p>
 
 <h2>size([width, [height]]) : [ width, height ] <a href="#size" id="size" class="deep-link">#</a></h2>
 
@@ -100,7 +108,7 @@ instance.size(200,500);
 
 <h2>get2DContext() <a href="#get2DContext" id="get2DContext" class="deep-link">#</a></h2>
 
-<p>Return the 2D context of the given canvas.</p>
+<p>Returns the 2D context of the given canvas.</p>
 
 <pre class="brush:js">
 var ctx = instance.get2DContext();
@@ -109,6 +117,10 @@ ctx.fillRect(0,0,10,200);
 
 // ...
 </pre>
+
+<h2>get3DContext() <a href="#get3DContext" id="get3DContext" class="deep-link">#</a></h2>
+
+<p><em>Experimental</em>, returns the 3D <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext">WebGL context</a> of the given canvas.</p>
 
 <h2>toDataURL(type='image/png', encoderOptions=1) <a href="#toDataURL" id="toDataURL" class="deep-link">#</a></h2>
 

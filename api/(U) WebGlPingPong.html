@@ -61,20 +61,48 @@
 </div>
 <div id="wrapper">
    <div id="content">
-
-<h2>Table of Contents</h2>
-<ul class="mod-list">
-    <li><a href="(IB) Composite.html">(IB) Composite</a></li>
-    <li><a href="(IB) DataProber.html">(IB) DataProber</a></li>
-    <li><a href="(IB) QueryDataModel.html">(IB) QueryDataModel</a></li>
-    <li><a href="(IB) WebGlComposite.html">(IB) WebGlComposite</a></li>
-    <li><a href="(M) CanvasOffscreenBuffer.html">(M) CanvasOffscreenBuffer</a></li>
-    <li><a href="(M) LookupTable.html">(M) LookupTable</a></li>
-    <li><a href="(M) LookupTableManager.html">(M) LookupTableManager</a></li>
-    <li><a href="(M) PipelineState.html">(M) PipelineState</a></li>
-    <li><a href="(U) WebGlPingPong.html">(U) WebGlPingPong</a></li>
-    <li><a href="(U) WebGlUtil.html">(U) WebGlUtil</a></li>
+<ul id="topnav">
+    <li><a href="index.html">Index</a></li>
+    <li><a href="#toc">TOC</a></li>
 </ul>
+<h1>PingPong</h1>
+
+<p>This is a class defined in the WebGl Util module.</p>
+
+<pre class="brush:js">
+var PingPong = require('tonic-image-builder/lib/util/WebGl').PingPong,
+    instance = new PingPong(gl, [fbo_1, fbo_2], [texture_1, texture_2]);
+</pre>
+
+<h2>Table of Contents <a href="#toc" name="toc" class="deep-link">#</a></h2>
+
+<ul>
+<li><a href="#constructor">constructor()</a></li>
+<li><a href="#swap">swap()</a></li>
+<li><a href="#clearFbo">clearFbo()</a></li>
+<li><a href="#getFramebuffer">getFramebuffer()</a></li>
+<li><a href="#getRenderingTexture">getRenderingTexture()</a></li>
+</ul>
+
+<h2>constructor(glContext, [fbo1, fbo2], [texture1, texture2]) <a href="#constructor" id="constructor" class="deep-link">#</a></h2>
+
+<p>This will bind the framebuffers with the textures.</p>
+
+<h2>swap() <a href="#swap" id="swap" class="deep-link">#</a></h2>
+
+<p>Swap active texture and framebuffer.</p>
+
+<h2>clearFbo() <a href="#clearFbo" id="clearFbo" class="deep-link">#</a></h2>
+
+<p>Clear framebuffers content.</p>
+
+<h2>getFramebuffer() : framebuffer <a href="#getFramebuffer" id="getFramebuffer" class="deep-link">#</a></h2>
+
+<p>Return the current active framebuffer.</p>
+
+<h2>getRenderingTexture() : texture <a href="#getRenderingTexture" id="getRenderingTexture" class="deep-link">#</a></h2>
+
+<p>Return the current active texture.</p>
         </div>
         <script src="assets_/js/lib/jquery.js"></script>
         <script src="assets_/js/lib/syntax-highlighter/shCore.js"></script>

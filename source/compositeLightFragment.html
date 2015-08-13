@@ -44,7 +44,7 @@
 
       <div class="header">
         
-          <h1>LookupTableManager.js</h1>
+          <h1>compositeLightFragment.c</h1>
         
 
         
@@ -222,74 +222,149 @@
         
         
         
-          <div class='highlight'><pre><span class="hljs-keyword">var</span> LookupTable = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./LookupTable.js'</span>),
-    hasOwn = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mout/object/hasOwn'</span>),
-    Monologue = <span class="hljs-built_in">require</span>(<span class="hljs-string">'monologue.js'</span>),
-    CHANGE_TOPIC = <span class="hljs-string">'LookupTable.change'</span>,
-    LOOKUP_TABLE_LIST_CHANGE_TOPIC = <span class="hljs-string">'LookupTable.list.change'</span>;
+          <div class='highlight'><pre>
+precision mediump <span class="hljs-keyword">float</span>;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">LookupTableManager</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">this</span>.luts = {};
-    <span class="hljs-keyword">this</span>.lutSubscriptions = {};
+uniform sampler2D compositeSampler;
+uniform sampler2D nxSampler;
+uniform sampler2D nySampler;
+uniform sampler2D nzSampler;
+uniform sampler2D scalarSampler;
+uniform sampler2D lutSampler;
 
-    <span class="hljs-keyword">this</span>.onChangeCallback = ((data, envelope) =&gt; {
-        <span class="hljs-keyword">this</span>.emit(CHANGE_TOPIC, data);
-    });
-}</pre></div>
+uniform vec4 viewDir;
+uniform vec4 lightDir;
+uniform vec4 lightColor;
+uniform vec4 lightTerms;
+
+varying vec2 v_texCoord;
+
+
+<span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">convert</span><span class="hljs-params">(vec4 c)</span> </span>{
+    <span class="hljs-keyword">float</span> r = c.r * <span class="hljs-number">255.0</span>;
+    <span class="hljs-keyword">float</span> g = c.g * <span class="hljs-number">255.0</span>;
+    <span class="hljs-keyword">float</span> b = c.b * <span class="hljs-number">255.0</span>;
+
+    <span class="hljs-keyword">float</span> value = (r * <span class="hljs-number">65536.0</span>) + (g * <span class="hljs-number">256.0</span>) + b;
+    <span class="hljs-keyword">return</span> ((value / <span class="hljs-number">16777216.0</span>) * <span class="hljs-number">2.0</span>) - <span class="hljs-number">1.0</span>;
+}
+
+
+<span class="hljs-function">vec4 <span class="hljs-title">scalarLookup</span><span class="hljs-params">(vec4 c)</span> </span>{
+    <span class="hljs-keyword">float</span> r = c.r * <span class="hljs-number">255.0</span>;
+    <span class="hljs-keyword">float</span> g = c.g * <span class="hljs-number">255.0</span>;
+    <span class="hljs-keyword">float</span> b = c.b * <span class="hljs-number">255.0</span>;
+
+    <span class="hljs-keyword">float</span> value = (r * <span class="hljs-number">65536.0</span>) + (g * <span class="hljs-number">256.0</span>) + b;
+    value = value / <span class="hljs-number">16777216.0</span>;
+
+    <span class="hljs-keyword">return</span> texture2D(lutSampler, vec2(value, <span class="hljs-number">0.5</span>));
+}
+
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{</pre></div>
         
       
         
-        <p>Add Observer pattern using Monologue.js</p>
+        <p>Sample the texture containing what we have composited so far</p>
 
         
-          <div class='highlight'><pre>Monologue.mixInto(LookupTableManager);
+          <div class='highlight'><pre>    vec4 color = texture2D(compositeSampler, v_texCoord);</pre></div>
+        
+      
+        
+        <p>Sample the new layer to be composited in</p>
 
-LookupTableManager.prototype.addLookupTable = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name, range, preset</span>) </span>{
-    <span class="hljs-keyword">var</span> lut = <span class="hljs-keyword">this</span>.luts[name];
-    <span class="hljs-keyword">if</span>(lut === <span class="hljs-literal">undefined</span>) {
-        lut = <span class="hljs-keyword">new</span> LookupTable(name);
+        
+          <div class='highlight'><pre>    vec4 scalarColor = texture2D(scalarSampler, v_texCoord);</pre></div>
+        
+      
+        
+        <p>Choose the fragment with the greater depth value</p>
 
-        <span class="hljs-keyword">this</span>.luts[name] = lut;
-        <span class="hljs-keyword">this</span>.lutSubscriptions[name] = lut.onChange(<span class="hljs-keyword">this</span>.onChangeCallback);
-    }
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">if</span> (color.a &gt; scalarColor.a) {
+        gl_FragColor = color;
+    } <span class="hljs-keyword">else</span> {
 
-    lut.setPreset(preset || <span class="hljs-string">'spectral'</span>);
-    lut.setScalarRange(range[<span class="hljs-number">0</span>], range[<span class="hljs-number">1</span>]);
+        vec4 nx = texture2D(nxSampler, v_texCoord);
+        vec4 ny = texture2D(nySampler, v_texCoord);
+        vec4 nz = texture2D(nzSampler, v_texCoord);
+        vec4 normal = normalize(vec4(convert(nx), convert(ny), convert(nz), <span class="hljs-number">0.0</span>));
 
-    <span class="hljs-keyword">this</span>.emit(LOOKUP_TABLE_LIST_CHANGE_TOPIC, <span class="hljs-keyword">this</span>);
+        vec4 lutColor = scalarLookup(scalarColor);
 
-    <span class="hljs-keyword">return</span> lut;
-}
+        <span class="hljs-keyword">float</span> ka = lightTerms[<span class="hljs-number">0</span>];
+        <span class="hljs-keyword">float</span> kd = lightTerms[<span class="hljs-number">1</span>];
+        <span class="hljs-keyword">float</span> ks = lightTerms[<span class="hljs-number">2</span>];
+        <span class="hljs-keyword">float</span> alpha = lightTerms[<span class="hljs-number">3</span>];
 
-LookupTableManager.prototype.removeLookupTable = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>) </span>{
-    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.luts.hasOwn(name)) {
-        <span class="hljs-keyword">this</span>.lutSubscriptions[name].unsubscribe();
-        <span class="hljs-keyword">this</span>.luts[name].destroy();
+        vec4 vDir = normalize(viewDir);
+        vec4 lDir = normalize(lightDir);</pre></div>
+        
+      
+        
+        <p>Calculate ambient term</p>
 
-        <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>.luts[name];
-        <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>.lutSubscriptions[name];
+        
+          <div class='highlight'><pre>        vec4 ambientColor = lutColor * ka;</pre></div>
+        
+      
+        
+        <p>This will be used in both diffuse and specular terms</p>
 
+        
+          <div class='highlight'><pre>        <span class="hljs-keyword">float</span> lDotN = dot(lDir, normal);</pre></div>
+        
+      
+        
+        <p>Adding this check allows us to light whichever side is facing the light</p>
 
-        <span class="hljs-keyword">this</span>.emit(LOOKUP_TABLE_LIST_CHANGE_TOPIC, <span class="hljs-keyword">this</span>);
-    }
-}
+        
+          <div class='highlight'><pre>        <span class="hljs-keyword">if</span> (lDotN &lt; <span class="hljs-number">0.0</span>) {
+            normal = -<span class="hljs-number">1.0</span> * normal;
+            lDotN = dot(lDir, normal);
+        }</pre></div>
+        
+      
+        
+        <p>Calculate diffuse term</p>
 
-LookupTableManager.prototype.getLookupTable = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.luts[name];
-}
+        
+          <div class='highlight'><pre>        vec4 diffuseColor = kd * lutColor * lDotN;</pre></div>
+        
+      
+        
+        <p>Calculate specular term</p>
 
-LookupTableManager.prototype.addFields = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fieldsRange</span>) </span>{
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> field <span class="hljs-keyword">in</span> fieldsRange) {
-        <span class="hljs-keyword">this</span>.addLookupTable(field, fieldsRange[field]);
-    }
-}
+        
+          <div class='highlight'><pre>        vec4 R = (normal * <span class="hljs-number">2.0</span> * lDotN) - lDir;
+        <span class="hljs-keyword">float</span> specularTerm = <span class="hljs-function">ks * <span class="hljs-title">pow</span><span class="hljs-params">(dot(R, vDir)</span>, alpha)</span>;
+        vec4 specularColor = lightColor * specularTerm; <span class="hljs-comment">// * step(-lDotN, 0.0);</span></pre></div>
+        
+      
+        
+        <p>Clamp them individually and sum them up</p>
 
-LookupTableManager.prototype.onChange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">callback</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.on(CHANGE_TOPIC, callback);
-}
+        
+          <div class='highlight'><pre>        vec3 fColor = clamp(ambientColor.rgb, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>) + clamp(diffuseColor.rgb, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>) + clamp(specularColor.rgb, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>);
+        gl_FragColor = vec4(fColor.rgb, scalarColor.a);</pre></div>
+        
+      
+        
+        <p>Various debugging outputs</p>
 
-LookupTableManager.prototype.onFieldsChange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">callback</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.on(LOOKUP_TABLE_LIST_CHANGE_TOPIC, callback);
+        
+      
+        
+        <p>gl_FragColor = vec4(ambientColor.rgb, scalarColor.a);
+gl_FragColor = vec4(diffuseColor.rgb, scalarColor.a);
+gl_FragColor = vec4(specularColor.rgb, scalarColor.a);
+gl_FragColor = vec4(lutColor.rgb, scalarColor.a);
+gl_FragColor = vec4(((normal.rgb + 1.0) / 2.0), scalarColor.a);</p>
+
+        
+          <div class='highlight'><pre>    }
 }</pre></div>
         
       

@@ -65,11 +65,15 @@
     <li><a href="index.html">Index</a></li>
     <li><a href="#toc">TOC</a></li>
 </ul>
-<h1>DataProberImageBuilder</h1>
+<h1>WebGlCompositeImageBuilder</h1>
 
-<p>This class definition lets you create an ImageBuilder that lets you process probe
-datasets. The implementation relies on a single off-screen canvas to generate the
-resulting image of a image stack.</p>
+<p>Similar image builder as the CompositeImageBuilder except that it is using WebGL
+code based to do the compositing and support different data structures.</p>
+
+<pre class="brush:js">
+var WebGlCompositeImageBuilder = require('tonic-image-builder/lib/builder/WebGlComposite'),
+    instance = new WebGlCompositeImageBuilder(queryDataModel, pipelineModel, lookupTableManager);
+</pre>
 
 <h2>Table of Contents <a href="#toc" name="toc" class="deep-link">#</a></h2>
 
@@ -78,42 +82,35 @@ resulting image of a image stack.</p>
 <li><a href="#update">update()</a></li>
 <li><a href="#setPushMethodAsBuffer">setPushMethodAsBuffer()</a></li>
 <li><a href="#setPushMethodAsImage">setPushMethodAsImage()</a></li>
-<li><a href="#setProbe">setProbe()</a></li>
-<li><a href="#getProbe">getProbe()</a></li>
-<li><a href="#setField">setField()</a></li>
-<li><a href="#getField">getField()</a></li>
-<li><a href="#getFields">getFields()</a></li>
-<li><a href="#getLookupTable">getLookupTable()</a></li>
-<li><a href="#getLookupTableManager">getLookupTableManager()</a></li>
+<li><a href="#setPipelineQuery">setPipelineQuery()</a></li>
 <li><a href="#render">render()</a></li>
 <li><a href="#onImageReady">onImageReady()</a></li>
-<li><a href="#TopicImageReady">TopicImageReady()</a></li>
 <li><a href="#destroy">destroy()</a></li>
-<li><a href="#* renderXY">* renderXY()</a></li>
-<li><a href="#* renderZY">* renderZY()</a></li>
-<li><a href="#* renderXZ">* renderXZ()</a></li>
-<li><a href="#* pushToFront">* pushToFront()</a></li>
-<li><a href="#* pushToFrontAsImage">* pushToFrontAsImage()</a></li>
-<li><a href="#* pushToFrontAsBuffer">* pushToFrontAsBuffer()</a></li>
-<li><a href="#* applyLookupTable">* applyLookupTable()</a></li>
-<li><a href="#* getYOffset">* getYOffset()</a></li>
-<li><a href="#* getImage">* getImage()</a></li>
+<li><a href="#setLightProperties">setLightProperties()</a></li>
+<li><a href="#getListeners">getListeners</a></li>
+<li><a href="#getControlWidgets">getControlWidgets</a></li>
+<li><a href="#getQueryDataModel">getQueryDataModel</a></li>
+<li><a href="#getPipelineModel">getPipelineModel</a></li>
+<li><a href="#getLookupTableManager">getLookupTableManager()</a></li>
+<li><a href="#getLightProperties">getLightProperties()</a></li>
 </ul>
 
-<h2>constructor(queryDataModel, pushAsBuffer, lookupTableManager) <a href="#constructor" id="constructor" class="deep-link">#</a></h2>
+<h2>constructor(queryDataModel, pipelineModel, lookupTableManager) <a href="#constructor" id="constructor" class="deep-link">#</a></h2>
 
-<p>Create an instance of a DataProberImageBuilder using the associated
-<strong>queryDataModel</strong> that should be used to fetch the data and the associated set
-of LookupTable managed by the <strong>lookupTableManager</strong> instance.</p>
+<p>Create an instance of a CompositeImageBuilder using the associated
+<strong>queryDataModel</strong> that should be used to fetch the data.</p>
+
+<p>And the <strong>pipelineModel</strong> that should be used for controlling the ImageBuilder.</p>
 
 <p>Under the hood this will create an off-screen canvas for the image generation.
-Then, depending of the value of the flag <strong>pushAsBuffer</strong>, the 'image-ready' notification
-will not contain the same object.</p>
+Then, depending if the method setPushMethodAsImage() has been called,
+the 'image-ready' notification will not contain the same object.
+By default we use the setPushMethodAsBuffer() configuration.</p>
 
 <p>Below are the two event structures</p>
 
 <pre class="brush:js">
-// pushAsBuffer = true
+// setPushMethodAsBuffer()
 var eventAsBuffer = {
     canvas: DOMElement,
     imageData: ImageDataFromCanvas,
@@ -122,7 +119,7 @@ var eventAsBuffer = {
     type: 'composite'
 };
 
-// pushAsBuffer = false
+// setPushMethodAsImage()
 var eventAsImage = {
     url: 'data:image/png:ASDGFsdfgsdgf...'
     type: 'composite'
@@ -136,7 +133,7 @@ var eventAsImage = {
 <h2>setPushMethodAsBuffer() <a href="#setPushMethodAsBuffer" id="setPushMethodAsBuffer" class="deep-link">#</a></h2>
 
 <p>Change the method to share the image to the outside world.
-After the method gets called, the notification event will look as follows:</p>
+After that method get called, the notification event will look as follow.</p>
 
 <pre class="brush:js">
 {
@@ -160,96 +157,85 @@ After the method gets called, the notification event will look as follows:</p>
 }
 </pre>
 
-<h2>setProbe(x, y, z) <a href="#setProbe" id="setProbe" class="deep-link">#</a></h2>
+<h2>setPipelineQuery(pipelineQuery) <a href="#setPipelineQuery" id="setPipelineQuery" class="deep-link">#</a></h2>
 
-<p>Update the current probe location. [x,y,z] must be integers and be within the
-extent of the dataset.</p>
+<p>Should be called each time the pipeline setting is changed.</p>
 
-<h2>getProbe() : [x, y, z] <a href="#getProbe" id="getProbe" class="deep-link">#</a></h2>
+<p>The <strong>pipelineQuery</strong> is a string that encodes the pipeline configuration such as
+which layer is visible or not and which field should be rendered for a given layer.</p>
 
-<p>Return the current probe location within the dataset.</p>
+<p>The <strong>pipelineQuery</strong> is structured as follows:</p>
 
-<h2>setField(fieldName) <a href="#setField" id="setField" class="deep-link">#</a></h2>
+<pre class="brush:js">
+var pipelineQuery = "A_BBCAD_EA";
 
-<p>Set which field should be rendered.</p>
-
-<h2>getField() : fieldName <a href="#getField" id="getField" class="deep-link">#</a></h2>
-
-<p>Return the name of the field that is currently used.</p>
-
-<h2>getFields() : [ ... ] <a href="#getFields" id="getFields" class="deep-link">#</a></h2>
-
-<p>Return the set of possible fields that can be set.</p>
-
-<h2>getLookupTable() : LookupTable <a href="#getLookupTable" id="getLookupTable" class="deep-link">#</a></h2>
-
-<p>Return the LookupTable associated to the current <strong>field</strong>.</p>
-
-<h2>getLookupTableManager() : LookupTableManager <a href="#getLookupTableManager" id="getLookupTableManager" class="deep-link">#</a></h2>
-
-<p>Return the LookupTableManager instance that was provided at the creation of
-this instance.</p>
+// In that example we have the following setting
+var layerSettings = [
+    "A_", // Layer A is invisible
+    "BB", // Layer B is using field B
+    "CA", // Layer C is using field A
+    "D_", // Layer D is invisible
+    "EA"  // Layer E is using field A
+];
+</pre>
 
 <h2>render() <a href="#render" id="render" class="deep-link">#</a></h2>
 
 <p>Process the current set of loaded data and render it into the background canvas.
-Once done, an event is triggered to let the application know that the image is
-ready to be rendered/display somewhere.</p>
-
-<p>Under the hood, one of the following methods [renderXY, renderZY, renderXZ] will be called.</p>
+Once done, an event gets triggered to let the application know that the image is
+ready to be rendered/displayed somewhere.</p>
 
 <h2>onImageReady(callback) : subscription <a href="#onImageReady" id="onImageReady" class="deep-link">#</a></h2>
 
-<p>This allows the registration of a <strong>callback(data, envelope)</strong> function when the
+<p>Allows the registration of a <strong>callback(data, envelope)</strong> function when the
 actual generated image is ready.</p>
-
-<h2>TopicImageReady() : 'image-ready' <a href="#TopicImageReady" id="TopicImageReady" class="deep-link">#</a></h2>
-
-<p>Return the topic used for the notification of the image.</p>
 
 <h2>destroy() <a href="#destroy" id="destroy" class="deep-link">#</a></h2>
 
 <p>Free the internal resources of the current instance.</p>
 
-<h2>* renderXY() <a href="#* renderXY" id="* renderXY" class="deep-link">#</a></h2>
+<h2>setLightProperties(lightProps) <a href="#setLightProperties" id="setLightProperties" class="deep-link">#</a></h2>
 
-<p>Concrete render method that get called by the generic <strong>render()</strong> one.</p>
+<pre class="brush:js">
+{
+    'lightTerms': {
+        ka: 0.1,
+        kd: 0.6,
+        ks: 0.3,
+        alpha: 20
+    },
+    'lightPosition': {
+        x: -1,
+        y: 1
+    },
+    'lightColor': [ 0.8, 0.8, 0.8 ]
+}
+</pre>
 
-<h2>* renderZY() <a href="#* renderZY" id="* renderZY" class="deep-link">#</a></h2>
+<h2>getListeners <a href="#getListeners" id="getListeners" class="deep-link">#</a></h2>
 
-<p>Concrete render method that get called by the generic <strong>render()</strong> one.</p>
+<p>Returns a list of TonicMouseHandler listeners.</p>
 
-<h2>* renderXZ() <a href="#* renderXZ" id="* renderXZ" class="deep-link">#</a></h2>
+<h2>getControlWidgets <a href="#getControlWidgets" id="getControlWidgets" class="deep-link">#</a></h2>
 
-<p>Concrete render method that get called by the generic <strong>render()</strong> one.</p>
+<p>Returns an array of control widgets, that is meant to be used with the
+WidgetFactory.</p>
 
-<h2>* pushToFront(width, height) <a href="#* pushToFront" id="* pushToFront" class="deep-link">#</a></h2>
+<h2>getQueryDataModel <a href="#getQueryDataModel" id="getQueryDataModel" class="deep-link">#</a></h2>
 
-<p>Trigger the event notification that says the image ready. This will call the proper
-method to either send the ImageData or an ImageURL.</p>
+<p>Returns the builder's QueryDataModel.</p>
 
-<h2>* pushToFrontAsImage(width, height) <a href="#* pushToFrontAsImage" id="* pushToFrontAsImage" class="deep-link">#</a></h2>
+<h2>getPipelineModel <a href="#getPipelineModel" id="getPipelineModel" class="deep-link">#</a></h2>
 
-<p>Called as <strong>pushToFront</strong> when <strong>setPushMethodAsImage()</strong> is used.</p>
+<p>Returns the builder's PipelineModel.</p>
 
-<h2>* pushToFrontAsBuffer(width, height) <a href="#* pushToFrontAsBuffer" id="* pushToFrontAsBuffer" class="deep-link">#</a></h2>
+<h2>getLookupTableManager() <a href="#getLookupTableManager" id="getLookupTableManager" class="deep-link">#</a></h2>
 
-<p>Called as <strong>pushToFront</strong> when setPushMethodAsBuffer()__ is used.</p>
+<p>Returns the builder's LookupTableManager.</p>
 
-<h2>* applyLookupTable(width, height) <a href="#* applyLookupTable" id="* applyLookupTable" class="deep-link">#</a></h2>
+<h2>getLightProperties() : {} <a href="#getLightProperties" id="getLightProperties" class="deep-link">#</a></h2>
 
-<p>Internal method used to convert RGB encoded scalar values into the appropriate
-color based on the current LookupTable setting.</p>
-
-<h2>* getYOffset(slice) : Integer <a href="#* getYOffset" id="* getYOffset" class="deep-link">#</a></h2>
-
-<p>Internal method used to return the offset index of the image that should be used
-within the current image sprite.</p>
-
-<h2>* getImage(slice, callback) <a href="#* getImage" id="* getImage" class="deep-link">#</a></h2>
-
-<p>Internal method used to call the callback method on the image when that one is
-ready.</p>
+<p>Return the current set of light properties if any.</p>
         </div>
         <script src="assets_/js/lib/jquery.js"></script>
         <script src="assets_/js/lib/syntax-highlighter/shCore.js"></script>

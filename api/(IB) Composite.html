@@ -67,9 +67,14 @@
 </ul>
 <h1>CompositeImageBuilder</h1>
 
-<p>This class definition lets you create an ImageBuilder that lets you process composite
+<p>This is a builder which creates an ImageBuilder that lets you process composite
 datasets. The implementation relies on a single off-screen canvas to generate the
 resulting image of a composite structure (rgb.jpg + composite.json).</p>
+
+<pre class="brush:js">
+var CompositeImageBuilder = require('tonic-image-builder/lib/builder/Composite'),
+    instance = new CompositeImageBuilder(qdm, pm);
+</pre>
 
 <h2>Table of Contents <a href="#toc" name="toc" class="deep-link">#</a></h2>
 
@@ -81,28 +86,34 @@ resulting image of a composite structure (rgb.jpg + composite.json).</p>
 <li><a href="#setPipelineQuery">setPipelineQuery()</a></li>
 <li><a href="#render">render()</a></li>
 <li><a href="#onImageReady">onImageReady()</a></li>
-<li><a href="#TopicImageReady">TopicImageReady()</a></li>
 <li><a href="#destroy">destroy()</a></li>
 <li><a href="#* updateCompositeMap">* updateCompositeMap()</a></li>
 <li><a href="#* updateOffsetMap">* updateOffsetMap()</a></li>
 <li><a href="#* pushToFront">* pushToFront()</a></li>
 <li><a href="#* pushToFrontAsImage">* pushToFrontAsImage()</a></li>
 <li><a href="#* pushToFrontAsBuffer">* pushToFrontAsBuffer()</a></li>
+<li><a href="#getListeners">getListeners</a></li>
+<li><a href="#getControlWidgets">getControlWidgets</a></li>
+<li><a href="#getQueryDataModel">getQueryDataModel</a></li>
+<li><a href="#getPipelineModel">getPipelineModel</a></li>
 </ul>
 
-<h2>constructor(queryDataModel, pushAsBuffer) <a href="#constructor" id="constructor" class="deep-link">#</a></h2>
+<h2>constructor(queryDataModel, pipelineModel) <a href="#constructor" id="constructor" class="deep-link">#</a></h2>
 
 <p>Create an instance of a CompositeImageBuilder using the associated
 <strong>queryDataModel</strong> that should be used to fetch the data.</p>
 
-<p>Under the hood, this will create an off-screen canvas for image generation.
-Depending of the value of the flag <strong>pushAsBuffer</strong>, the 'image-ready' notification
-will not contain the same object.</p>
+<p>And the <strong>pipelineModel</strong> that should be used for controlling the ImageBuilder.</p>
 
-<p>Below are the two event structures:</p>
+<p>Under the hood this will create an off-screen canvas for the image generation.
+Then, depending if the method setPushMethodAsImage() has been called,
+the 'image-ready' notification will not contain the same object.
+By default we use the setPushMethodAsBuffer() configuration.</p>
+
+<p>Below are the two event structures</p>
 
 <pre class="brush:js">
-// pushAsBuffer = true
+// setPushMethodAsBuffer()
 var eventAsBuffer = {
     canvas: DOMElement,
     imageData: ImageDataFromCanvas,
@@ -111,7 +122,7 @@ var eventAsBuffer = {
     type: 'composite'
 };
 
-// pushAsBuffer = false
+// setPushMethodAsImage()
 var eventAsImage = {
     url: 'data:image/png:ASDGFsdfgsdgf...'
     type: 'composite'
@@ -182,10 +193,6 @@ ready to be rendered/displayed somewhere.</p>
 <p>Allows the registration of a <strong>callback(data, envelope)</strong> function when the
 actual generated image is ready.</p>
 
-<h2>TopicImageReady() : 'image-ready' <a href="#TopicImageReady" id="TopicImageReady" class="deep-link">#</a></h2>
-
-<p>Return the topic used for the notification of the image.</p>
-
 <h2>destroy() <a href="#destroy" id="destroy" class="deep-link">#</a></h2>
 
 <p>Free the internal resources of the current instance.</p>
@@ -212,6 +219,23 @@ method to either send the ImageData or an ImageURL.</p>
 <h2>* pushToFrontAsBuffer(width, height) <a href="#* pushToFrontAsBuffer" id="* pushToFrontAsBuffer" class="deep-link">#</a></h2>
 
 <p>Called as <strong>pushToFront</strong> when <strong>setPushMethodAsBuffer()</strong> is used.</p>
+
+<h2>getListeners <a href="#getListeners" id="getListeners" class="deep-link">#</a></h2>
+
+<p>Returns a list of TonicMouseHandler listeners.</p>
+
+<h2>getControlWidgets <a href="#getControlWidgets" id="getControlWidgets" class="deep-link">#</a></h2>
+
+<p>Returns an array of control widgets, <code>"CompositeControl",
+"QueryDataModelWidget" ]</code>. Meant to be used with the WidgetFactory</p>
+
+<h2>getQueryDataModel <a href="#getQueryDataModel" id="getQueryDataModel" class="deep-link">#</a></h2>
+
+<p>Returns the builder's QueryDataModel.</p>
+
+<h2>getPipelineModel <a href="#getPipelineModel" id="getPipelineModel" class="deep-link">#</a></h2>
+
+<p>Returns the builder's PipelineModel.</p>
         </div>
         <script src="assets_/js/lib/jquery.js"></script>
         <script src="assets_/js/lib/syntax-highlighter/shCore.js"></script>

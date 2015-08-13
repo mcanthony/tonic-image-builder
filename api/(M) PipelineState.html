@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Tonic Image Builder</title>
+  <meta name="description" content="JavaScript library meant to gather algorithms for image generation.">
+
+  <link rel="stylesheet" href="/tonic-image-builder/css/main.css">
+  <link rel="stylesheet" href="assets_/css/shCore.css">
+  <link rel="stylesheet" href="assets_/css/shThemeDefault.css">
+  <link rel="stylesheet" href="assets_/css/main.css">
+</head>
+
+<body data-root-path="">
+
+<header class="site-header">
+
+    <nav class="mobile-nav show-on-mobiles">
+        <a class="page-link" href="/tonic-image-builder/"><i class="fa fa-home fa-fw fa-lg"></i></a>
+        <a class="page-link" href="/tonic-image-builder/docs/home"><i class="fa fa-book fa-fw fa-lg"></i></a>
+        <a class="page-link" href="/tonic-image-builder/news"><i class="fa fa-newspaper-o fa-fw fa-lg"></i></a>
+    </nav>
+    <div class="wrapper">
+
+        <a class="site-title center-on-mobiles" href="/">
+            <img src="/tonic-image-builder/img/logo.png" height="40" alt="Logo">
+            Tonic Image Builder
+        </a>
+        <nav class="site-nav hide-on-mobiles">
+            <a href="#" class="menu-icon">
+                <svg viewBox="0 0 18 15">
+                    <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                    <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                    <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                </svg>
+            </a>
+            <div class="trigger">
+                <a class="page-link" href="/tonic-image-builder/">Home</a>
+                <a class="page-link" href="/tonic-image-builder/docs/home">Docs</a>
+                <a class="page-link" href="/tonic-image-builder/news">News</a>
+            </div>
+        </nav>
+    </div>
+
+</header>
+
+<div class="wrapper">
+    <nav class="docs-nav hide-on-mobiles">
+        <a href="#" class="menu-icon">
+            <svg viewBox="0 0 18 15">
+                <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+        </a>
+    </nav>
+</div>
+<div id="wrapper">
+   <div id="content">
+<ul id="topnav">
+    <li><a href="index.html">Index</a></li>
+    <li><a href="#toc">TOC</a></li>
+</ul>
+<h1>PipelineState</h1>
+
+<p>PipelineState represents a pipeline model which is used inside
+Widgets and ImageBuilders to keep track of the configuration that should be
+used to render an image for a given pipeline configuration.</p>
+
+<p>The class is imported using the following:</p>
+
+<pre class="brush:js">
+var PipelineState = require('tonic-image-builder/lib/model/PipelineState'),
+    instance = new PipelineState(json);
+</pre>
+
+<h2>Table of Contents <a href="#toc" name="toc" class="deep-link">#</a></h2>
+
+<ul>
+<li><a href="#constructor">constructor()</a></li>
+<li><a href="#onChange">onChange()</a></li>
+<li><a href="#TopicChange">TopicChange()</a></li>
+<li><a href="#triggerChange">triggerChange()</a></li>
+<li><a href="#isLayerActive">isLayerActive()</a></li>
+<li><a href="#setLayerActive">setLayerActive()</a></li>
+<li><a href="#toggleLayerActive">toggleLayerActive()</a></li>
+<li><a href="#isLayerVisible">isLayerVisible()</a></li>
+<li><a href="#setLayerVisible">setLayerVisible()</a></li>
+<li><a href="#toggleLayerVisible">toggleLayerVisible()</a></li>
+<li><a href="#isLayerInEditMode">isLayerInEditMode()</a></li>
+<li><a href="#toggleEditMode">toggleEditMode()</a></li>
+<li><a href="#getColor">getColor()</a></li>
+<li><a href="#getColorToLabel">getColorToLabel()</a></li>
+<li><a href="#isActiveColor">isActiveColor()</a></li>
+<li><a href="#setActiveColor">setActiveColor()</a></li>
+<li><a href="#getPipelineQuery">getPipelineQuery()</a></li>
+<li><a href="#getPipelineDescription">getPipelineDescription()</a></li>
+</ul>
+
+<h2>constructor(json) <a href="#constructor" id="constructor" class="deep-link">#</a></h2>
+
+<p>Creates an instance of a pipeline model which keeps track of the
+state of the pipeline.
+The provided JSON object should have the following type of structure:</p>
+
+<pre class="brush:js">
+{
+    "CompositePipeline": {
+        "layers": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"],
+        "dimensions": [ 500, 500 ],
+        "fields": {
+            "A": "salinity",
+            "B": "temperature",
+            "C": "bottomDepth"
+        },
+        "layer_fields": {
+            "A": [ "C" ],
+            "B": [ "B", "A" ],
+            "C": [ "B", "A" ],
+            "D": [ "B", "A" ],
+            "E": [ "B", "A" ],
+            "F": [ "B", "A" ],
+            "G": [ "B", "A" ],
+            "H": [ "B", "A" ],
+            "I": [ "B", "A" ],
+            "J": [ "B", "A" ],
+            "K": [ "B", "A" ]
+        },
+        "offset": {
+            "AC": 1,  "BA": 3,  "BB": 2,  "CA": 5,  "CB": 4,  "DA": 7,  "DB": 6,
+            "EA": 9,  "EB": 8,  "FA": 11, "FB": 10, "GA": 13, "GB": 12, "HA": 15,
+            "HB": 14, "IA": 17, "IB": 16, "JA": 19, "JB": 18, "KA": 21, "KB": 20
+        "pipeline": [
+            {
+                "ids": [ "A" ],
+                "name": "Earth core",
+                "type": "layer"
+            },
+            {
+                "children": [
+                    {
+                        "ids": [ "B" ],
+                        "name": "t=5.0",
+                        "type": "layer"
+                    },
+                    {
+                        "ids": [ "C" ],
+                        "name": "t=10.0",
+                        "type": "layer"
+                    },
+                    {
+                        "ids": [ "D" ],
+                        "name": "t=15.0",
+                        "type": "layer"
+                    },
+                    {
+                        "ids": [ "E" ],
+                        "name": "t=20.0",
+                        "type": "layer"
+                    },
+                    {
+                        "ids": [ "F" ],
+                        "name": "t=25.0",
+                        "type": "layer"
+                    }
+                ],
+                "ids": [ "B", "C", "D", "E", "F" ],
+                "name": "Contour by temperature",
+                "type": "directory"
+            },
+            {
+                "children": [
+                    {
+                        "ids": [ "G" ],
+                        "name": "s=34.0",
+                        "type": "layer"
+                    },
+                    {
+                        "ids": [ "H" ],
+                        "name": "s=35.0",
+                        "type": "layer"
+                    },
+                    {
+                        "ids": [ "I" ],
+                        "name": "s=35.5",
+                        "type": "layer"
+                    },
+                    {
+                        "ids": [ "J" ],
+                        "name": "s=36.0",
+                        "type": "layer"
+                    },
+                    {
+                        "ids": [ "K" ],
+                        "name": "s=36.5",
+                        "type": "layer"
+                    }
+                ],
+                "ids": [ "G", "H", "I", "J", "K" ],
+                "name": "Contour by salinity",
+                "type": "directory"
+            }
+        ]
+    }
+}
+</pre>
+
+<h2>onChange(callback) : subscription <a href="#onChange" id="onChange" class="deep-link">#</a></h2>
+
+<p>Callback function will be called with the pipeline query as the first argument.
+As we rely on Monologue.js, you get a subscription object as a
+response which allows for easy unsubscription.</p>
+
+<h2>TopicChange() : 'pipeline.change' <a href="#TopicChange" id="TopicChange" class="deep-link">#</a></h2>
+
+<p>Returns the name of the topic used for the pipeline change notification.</p>
+
+<h2>triggerChange() <a href="#triggerChange" id="triggerChange" class="deep-link">#</a></h2>
+
+<p>Triggers a change event. The event triggered is a string
+that represents the pipeline encoding.</p>
+
+<h2>isLayerActive(layerId) : Boolean <a href="#isLayerActive" id="isLayerActive" class="deep-link">#</a></h2>
+
+<p>Returns true if the given layer is set to active.
+By default, every layer is active.</p>
+
+<h2>setLayerActive(layerId, active) <a href="#setLayerActive" id="setLayerActive" class="deep-link">#</a></h2>
+
+<p>Updates the active state of a layer.
+If the internal state has changed, the model will trigger a change event.</p>
+
+<h2>toggleLayerActive(layerId) <a href="#toggleLayerActive" id="toggleLayerActive" class="deep-link">#</a></h2>
+
+<p>Toggles the active state of the given layer and trigger a change event.</p>
+
+<h2>isLayerVisible(layerId) <a href="#isLayerVisible" id="isLayerVisible" class="deep-link">#</a></h2>
+
+<p>Returns true if the given layer is set to visible. By default, every layer is visible.</p>
+
+<h2>setLayerVisible(layerId, visible) <a href="#setLayerVisible" id="setLayerVisible" class="deep-link">#</a></h2>
+
+<p>Updates the visible state of a layer.
+If the internal state has changed, the model will trigger a change event.</p>
+
+<h2>toggleLayerVisible(layerId) <a href="#toggleLayerVisible" id="toggleLayerVisible" class="deep-link">#</a></h2>
+
+<p>Toggles the visible state of the given layer and triggers a change event.</p>
+
+<h2>isLayerInEditMode(layerId) <a href="#isLayerInEditMode" id="isLayerInEditMode" class="deep-link">#</a></h2>
+
+<p>Returns true if the given layer is in edit mode. By default, none of the layers are in edit mode.</p>
+
+<h2>toggleEditMode(layerId) <a href="#toggleEditMode" id="toggleEditMode" class="deep-link">#</a></h2>
+
+<p>Toggles the edit mode state of the given layer and triggers a change event.</p>
+
+<h2>getColor(layerId) : Array <a href="#getColor" id="getColor" class="deep-link">#</a></h2>
+
+<p>Returns the set of color codes that given layer can have.</p>
+
+<pre class="brush:js">
+getColor('E') => ['B', 'A']
+</pre>
+
+<h2>getColorToLabel(colorCode) : String <a href="#getColorToLabel" id="getColorToLabel" class="deep-link">#</a></h2>
+
+<p>Returns the label associated to a given color code.</p>
+
+<pre class="brush:js">
+getColorToLabel('B') => 'temperature'
+</pre>
+
+<h2>isActiveColor(layerId, colorCode) : Boolean <a href="#isActiveColor" id="isActiveColor" class="deep-link">#</a></h2>
+
+<p>Returns true if the given layer is colored by the
+given color code, returns false otherwise.</p>
+
+<h2>setActiveColor(layerId, colorCode) <a href="#setActiveColor" id="setActiveColor" class="deep-link">#</a></h2>
+
+<p>Updates which <strong>ColorBy</strong> field should be used for a given layer.</p>
+
+<h2>getPipelineQuery() : String <a href="#getPipelineQuery" id="getPipelineQuery" class="deep-link">#</a></h2>
+
+<p>Returns the current pipeline configuration as an encoded string.</p>
+
+<h2>getPipelineDescription() <a href="#getPipelineDescription" id="getPipelineDescription" class="deep-link">#</a></h2>
+
+<p>Returns the pipeline tree defined inside the JSON object under the path <strong>JSON.CompositePipeline.pipeline</strong>.</p>
+        </div>
+        <script src="assets_/js/lib/jquery.js"></script>
+        <script src="assets_/js/lib/syntax-highlighter/shCore.js"></script>
+        <script src="assets_/js/lib/syntax-highlighter/shAutoloader.js"></script>
+        <script src="assets_/js/main.js"></script>
+    </body>
+</html>

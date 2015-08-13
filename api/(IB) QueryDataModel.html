@@ -65,63 +65,79 @@
     <li><a href="index.html">Index</a></li>
     <li><a href="#toc">TOC</a></li>
 </ul>
-<h1>LookupTableManager</h1>
+<h1>QueryDataModelImageBuilder</h1>
+
+<p>This is a builder which wrap a QueryDataModel to make it act like an ImageBuilder.</p>
+
+<pre class="brush:js">
+var QueryDataModelImageBuilder = require('tonic-image-builder/lib/builder/QueryDataModel'),
+    instance = new QueryDataModelImageBuilder(qdm);
+</pre>
 
 <h2>Table of Contents <a href="#toc" name="toc" class="deep-link">#</a></h2>
 
 <ul>
 <li><a href="#constructor">constructor()</a></li>
-<li><a href="#addLookupTable">addLookupTable()</a></li>
-<li><a href="#removeLookupTable">removeLookupTable()</a></li>
-<li><a href="#getLookupTable">getLookupTable()</a></li>
-<li><a href="#addFields">addFields()</a></li>
-<li><a href="#onChange">onChange()</a></li>
-<li><a href="#TopicChange">TopicChange()</a></li>
+<li><a href="#update">update()</a></li>
+<li><a href="#render">render()</a></li>
+<li><a href="#onImageReady">onImageReady()</a></li>
+<li><a href="#getListeners">getListeners</a></li>
+<li><a href="#getControlWidgets">getControlWidgets</a></li>
+<li><a href="#getQueryDataModel">getQueryDataModel</a></li>
+<li><a href="#destroy">destroy()</a></li>
 </ul>
 
-<h2>constructor() <a href="#constructor" id="constructor" class="deep-link">#</a></h2>
+<h2>constructor(queryDataModel) <a href="#constructor" id="constructor" class="deep-link">#</a></h2>
 
-<p>Create an instance of a LookupTableManager.</p>
+<p>Under the hood this will forward any image data.</p>
 
-<h2>addLookupTable(name, range, preset) : LookupTable <a href="#addLookupTable" id="addLookupTable" class="deep-link">#</a></h2>
-
-<p>Create a new LookupTable for a given name, scalar range and which preset should be used. If no preset name is provided, the 'spectral' preset will be used.</p>
-
-<p>The method will return the newly created LookupTable instance.</p>
-
-<h2>removeLookupTable(name) <a href="#removeLookupTable" id="removeLookupTable" class="deep-link">#</a></h2>
-
-<p>Remove the LookupTable instance that was registered under the given name.</p>
-
-<h2>getLookupTable(name) <a href="#getLookupTable" id="getLookupTable" class="deep-link">#</a></h2>
-
-<p>Return the LookupTable instance that was registered under the given name.</p>
-
-<h2>addFields(fieldsMap) <a href="#addFields" id="addFields" class="deep-link">#</a></h2>
-
-<p>This will create a LookupTable for each field defined within the map using
-the given scalar range.</p>
+<p>Below are the two event structures</p>
 
 <pre class="brush:js">
-// fieldsMap can look like that
-var fieldsMap = {
-    'pressure': [-2, 4],
-    'temperature': [20, 28],
-    'velocity': [0, 234]
+var eventAsBuffer = {
+    canvas: image,
+    area: [0, 0, width, height],
+    outputSize: [width, height]
 };
 </pre>
 
-<h2>onChange(callback) : subscription <a href="#onChange" id="onChange" class="deep-link">#</a></h2>
+<h2>update() <a href="#update" id="update" class="deep-link">#</a></h2>
 
-<p>Helper method used to bind a listener to the change topic.
-This will return a subscription object.</p>
+<p>Trigger the fetching of the data.</p>
 
-<p>More information can be found on Monologue.js as we rely on it for our
-observer methods.</p>
+<h2>render() <a href="#render" id="render" class="deep-link">#</a></h2>
 
-<h2>TopicChange() : 'LookupTable.change' <a href="#TopicChange" id="TopicChange" class="deep-link">#</a></h2>
+<p>Trigger a notification if the loaded data is available and decoded.</p>
 
-<p>Return the name of the topic used for change notification.</p>
+<pre class="brush:js">
+{
+    canvas: image,
+    area: [0, 0, width, height],
+    outputSize: [width, height],
+    type: 'composite'
+}
+</pre>
+
+<h2>onImageReady(callback) : subscription <a href="#onImageReady" id="onImageReady" class="deep-link">#</a></h2>
+
+<p>Allows the registration of a <strong>callback(data, envelope)</strong> function when the
+actual generated image is ready.</p>
+
+<h2>getListeners <a href="#getListeners" id="getListeners" class="deep-link">#</a></h2>
+
+<p>Returns a list of TonicMouseHandler listeners.</p>
+
+<h2>getControlWidgets <a href="#getControlWidgets" id="getControlWidgets" class="deep-link">#</a></h2>
+
+<p>Returns an array of control widgets, <code>["QueryDataModelWidget"]</code>. Meant to be used with the WidgetFactory</p>
+
+<h2>getQueryDataModel <a href="#getQueryDataModel" id="getQueryDataModel" class="deep-link">#</a></h2>
+
+<p>Returns the builder's QueryDataModel.</p>
+
+<h2>destroy() <a href="#destroy" id="destroy" class="deep-link">#</a></h2>
+
+<p>Free the internal resources of the current instance.</p>
         </div>
         <script src="assets_/js/lib/jquery.js"></script>
         <script src="assets_/js/lib/syntax-highlighter/shCore.js"></script>
