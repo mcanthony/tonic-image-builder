@@ -1,12 +1,12 @@
-# DataProberImageBuilder
+# DataProber
 
-This class definition lets you create an ImageBuilder that lets you process probe
+This is a builder which creates an ImageBuilder that lets you process probe
 datasets. The implementation relies on a single off-screen canvas to generate the
 resulting image of a image stack.
 
 ## constructor(queryDataModel, pushAsBuffer, lookupTableManager)
 
-Create an instance of a DataProberImageBuilder using the associated
+Create an instance of a DataProber using the associated
 __queryDataModel__ that should be used to fetch the data and the associated set
 of LookupTable managed by the __lookupTableManager__ instance.
 
@@ -115,21 +115,29 @@ Return the topic used for the notification of the image.
 
 Free the internal resources of the current instance.
 
+## getRenderMethod()
+
+Returns the current render method.
+
+## getRenderMethods()
+
+Returns the available render methods: `['XY', 'ZY', 'XZ']`.
+
 ## * renderXY()
 
-Concrete render method that get called by the generic __render()__ one.
+Concrete render method that gets called by the generic __render()__ one.
 
 ## * renderZY()
 
-Concrete render method that get called by the generic __render()__ one.
+Concrete render method that gets called by the generic __render()__ one.
 
 ## * renderXZ()
 
-Concrete render method that get called by the generic __render()__ one.
+Concrete render method that gets called by the generic __render()__ one.
 
 ## * pushToFront(width, height)
 
-Trigger the event notification that says the image ready. This will call the proper
+Triggers a event notification that says the image is ready. This will call the proper
 method to either send the ImageData or an ImageURL.
 
 ## * pushToFrontAsImage(width, height)
@@ -154,3 +162,31 @@ within the current image sprite.
 
 Internal method used to call the callback method on the image when that one is
 ready.
+
+## isCrossHairEnabled()
+
+Returns true if the probe crosshair is visible.
+
+## setCrossHairEnabled(useCrossHair)
+
+Enables or disables the probe crosshair depending on the truthy value of useCrossHair.
+
+## onImageReady(callback)
+
+Calls _callback_ when the image is ready.
+
+## onProbeLineReady(callback)
+
+Calls _callback_ when the probe line is drawn.
+
+## onProbeChange(callback)
+
+Calls _callback_ when the probe coordinates change.
+
+## onRenderMethodChange(callback)
+
+Calls _callback_ when the render method changes.
+
+## onCrosshairVisibilityChange(callback)
+
+Calls _callback_ when the crosshair changes visibility.

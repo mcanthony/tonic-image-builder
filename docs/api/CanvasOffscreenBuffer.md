@@ -1,10 +1,12 @@
-# CanvasOffscreenBuffer #
+# CanvasOffscreenBuffer
 
-This class definition lets you create an off-screen canvas to do image manipulation.
+This is a utility class used to create an off-screen
+canvas for image manipulation.
 
 ## constructor(width, height)
 
-Create a canvas and add it to the DOM under the <body/> element.
+Create a canvas and add it to the DOM as a child of the
+`<body/>` element.
 
 ## size([width, [height]]) : [ width, height ]
 
@@ -23,7 +25,7 @@ instance.size(200,500);
 
 ## get2DContext()
 
-Return the 2D context of the given canvas.
+Returns the 2D context of the given canvas.
 
 ```js
 var ctx = instance.get2DContext();
@@ -32,6 +34,10 @@ ctx.fillRect(0,0,10,200);
 
 // ...
 ```
+
+## get3DContext()
+
+_Experimental_, returns the 3D [WebGL context](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext) of the given canvas.
 
 ## toDataURL(type='image/png', encoderOptions=1)
 

@@ -1,6 +1,6 @@
 # CompositeImageBuilder
 
-This class definition lets you create an ImageBuilder that lets you process composite
+This is a builder which creates an ImageBuilder that lets you process composite
 datasets. The implementation relies on a single off-screen canvas to generate the
 resulting image of a composite structure (rgb.jpg + composite.json).
 
@@ -127,4 +127,19 @@ Called as __pushToFront__ when __setPushMethodAsImage()__ is used.
 
 Called as __pushToFront__ when __setPushMethodAsBuffer()__ is used.
 
+## getListeners
 
+Returns a list of TonicMouseHandler listeners.
+
+## getControlWidgets
+
+Returns an array of control widgets, `"CompositeControl",
+"QueryDataModelWidget" ]`. Meant to be used with the WidgetFactory
+
+## getQueryDataModel
+
+Returns the builder's QueryDataModel.
+
+## getPipelineModel
+
+Returns the builder's PipelineModel.

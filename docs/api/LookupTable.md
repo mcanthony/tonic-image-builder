@@ -2,8 +2,9 @@
 
 ## constructor(name)
 
-Create an instance of a LookupTable while giving it a name. Usually we use the
-field name that we want to use that lookupTable for.
+Create an instance of a LookupTable while giving it a name.
+Usually we use the field name that we want to use
+that LookupTable for.
 
 ## getName() : String
 
