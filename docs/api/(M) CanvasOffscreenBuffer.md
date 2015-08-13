@@ -3,6 +3,11 @@
 This is a utility class used to create an off-screen
 canvas for image manipulation.
 
+```js
+var CanvasOffscreenBuffer = require('tonic-image-builder/lib/util/CanvasOffscreenBuffer'),
+    instance = new CanvasOffscreenBuffer(100, 100);
+```
+
 ## constructor(width, height)
 
 Create a canvas and add it to the DOM as a child of the

@@ -4,20 +4,26 @@ This is a builder which creates an ImageBuilder that lets you process probe
 datasets. The implementation relies on a single off-screen canvas to generate the
 resulting image of a image stack.
 
-## constructor(queryDataModel, pushAsBuffer, lookupTableManager)
+```js
+var DataProberImageBuilder = require('tonic-image-builder/lib/builder/DataProber'),
+    instance = new DataProberImageBuilder(qdm, lutManager);
+```
+
+## constructor(queryDataModel, lookupTableManager)
 
 Create an instance of a DataProber using the associated
 __queryDataModel__ that should be used to fetch the data and the associated set
 of LookupTable managed by the __lookupTableManager__ instance.
 
 Under the hood this will create an off-screen canvas for the image generation.
-Then, depending of the value of the flag __pushAsBuffer__, the 'image-ready' notification
-will not contain the same object.
+Then, depending if the method setPushMethodAsImage() has been called,
+the 'image-ready' notification will not contain the same object.
+By default we use the setPushMethodAsBuffer() configuration.
 
 Below are the two event structures
 
 ```js
-// pushAsBuffer = true
+// setPushMethodAsBuffer()
 var eventAsBuffer = {
     canvas: DOMElement,
     imageData: ImageDataFromCanvas,
@@ -26,7 +32,7 @@ var eventAsBuffer = {
     type: 'composite'
 };
 
-// pushAsBuffer = false
+// setPushMethodAsImage()
 var eventAsImage = {
     url: 'data:image/png:ASDGFsdfgsdgf...'
     type: 'composite'

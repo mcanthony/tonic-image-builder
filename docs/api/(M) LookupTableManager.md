@@ -1,5 +1,10 @@
 # LookupTableManager
 
+```js
+var LookupTableManager = require('tonic-image-builder/lib/model/LookupTable/LookupTableManager'),
+    instance = new LookupTableManager();
+```
+
 ## constructor()
 
 Create an instance of a LookupTableManager.

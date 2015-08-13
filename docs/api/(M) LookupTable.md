@@ -1,5 +1,10 @@
 # LookupTable
 
+```js
+var LookupTable = require('tonic-image-builder/lib/model/LookupTable/LookupTable'),
+    instance = new LookupTable('Temperature');
+```
+
 ## constructor(name)
 
 Create an instance of a LookupTable while giving it a name.

@@ -1,22 +1,29 @@
-# CompositeImageBuilder
+# WebGlCompositeImageBuilder
 
-This is a builder which creates an ImageBuilder that lets you process composite
-datasets. The implementation relies on a single off-screen canvas to generate the
-resulting image of a composite structure (rgb.jpg + composite.json).
+Similar image builder as the CompositeImageBuilder except that it is using WebGL
+code based to do the compositing and support different data structures.
 
-## constructor(queryDataModel, pushAsBuffer)
+```js
+var WebGlCompositeImageBuilder = require('tonic-image-builder/lib/builder/WebGlComposite'),
+    instance = new WebGlCompositeImageBuilder(queryDataModel, pipelineModel, lookupTableManager);
+```
+
+## constructor(queryDataModel, pipelineModel, lookupTableManager)
 
 Create an instance of a CompositeImageBuilder using the associated
 __queryDataModel__ that should be used to fetch the data.
 
-Under the hood, this will create an off-screen canvas for image generation.
-Depending of the value of the flag __pushAsBuffer__, the 'image-ready' notification
-will not contain the same object.
+And the __pipelineModel__ that should be used for controlling the ImageBuilder.
 
-Below are the two event structures:
+Under the hood this will create an off-screen canvas for the image generation.
+Then, depending if the method setPushMethodAsImage() has been called,
+the 'image-ready' notification will not contain the same object.
+By default we use the setPushMethodAsBuffer() configuration.
+
+Below are the two event structures
 
 ```js
-// pushAsBuffer = true
+// setPushMethodAsBuffer()
 var eventAsBuffer = {
     canvas: DOMElement,
     imageData: ImageDataFromCanvas,
@@ -25,7 +32,7 @@ var eventAsBuffer = {
     type: 'composite'
 };
 
-// pushAsBuffer = false
+// setPushMethodAsImage()
 var eventAsImage = {
     url: 'data:image/png:ASDGFsdfgsdgf...'
     type: 'composite'
@@ -96,36 +103,27 @@ ready to be rendered/displayed somewhere.
 Allows the registration of a __callback(data, envelope)__ function when the
 actual generated image is ready.
 
-## TopicImageReady() : 'image-ready'
-
-Return the topic used for the notification of the image.
-
 ## destroy()
 
 Free the internal resources of the current instance.
 
-## * updateCompositeMap(query, composite)
+## setLightProperties(lightProps)
 
-Internal function used to update the composite map for faster rendering.
-
-## * updateOffsetMap(pipelineQuery)
-
-Internal function used to update the offset map based on the Pipeline configuration.
-The __pipelineQuery__ is a String that encode the pipeline configuration such as
-which layer is visible or not and which field should be rendered for a given layer.
-
-## * pushToFront(width, height)
-
-Trigger the event notification that the image is ready. This will call the proper
-method to either send the ImageData or an ImageURL.
-
-## * pushToFrontAsImage(width, height)
-
-Called as __pushToFront__ when __setPushMethodAsImage()__ is used.
-
-## * pushToFrontAsBuffer(width, height)
-
-Called as __pushToFront__ when __setPushMethodAsBuffer()__ is used.
+```js
+{
+    'lightTerms': {
+        ka: 0.1,
+        kd: 0.6,
+        ks: 0.3,
+        alpha: 20
+    },
+    'lightPosition': {
+        x: -1,
+        y: 1
+    },
+    'lightColor': [ 0.8, 0.8, 0.8 ]
+}
+```
 
 ## getListeners
 
@@ -133,8 +131,8 @@ Returns a list of TonicMouseHandler listeners.
 
 ## getControlWidgets
 
-Returns an array of control widgets, `"CompositeControl",
-"QueryDataModelWidget" ]`. Meant to be used with the WidgetFactory
+Returns an array of control widgets, that is meant to be used with the
+WidgetFactory.
 
 ## getQueryDataModel
 
@@ -143,3 +141,11 @@ Returns the builder's QueryDataModel.
 ## getPipelineModel
 
 Returns the builder's PipelineModel.
+
+## getLookupTableManager()
+
+Returns the builder's LookupTableManager.
+
+## getLightProperties() : {}
+
+Return the current set of light properties if any.
