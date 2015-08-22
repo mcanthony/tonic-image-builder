@@ -1,7 +1,7 @@
 {
   "name": "tonic-image-builder",
   "description": "JavaScript library used to gather image generation based on various input data.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
   "repository": {
@@ -9,12 +9,13 @@
     "url": "https://github.com/Kitware/tonic-image-builder.git"
   },
   "dependencies": {
-      "monologue.js": "0.3.3",
-      "mout": "0.11.0",
-      "gl-matrix": "2.3.1"
   },
   "devDependencies": {
-    "tonic-site-generator": "Kitware/tonic-site-generator",
+    "monologue.js": "0.3.3",
+    "mout": "0.11.0",
+    "gl-matrix": "2.3.1",
+
+    "tonic-site-generator": "0.1.0",
 
     "jshint": "2.8.0",
     "jshint-loader": "0.8.3",

@@ -11,7 +11,8 @@ Create an instance of a LookupTableManager.
 
 ## addLookupTable(name, range, preset) : LookupTable
 
-Create a new LookupTable for a given name, scalar range and which preset should be used. If no preset name is provided, the 'spectral' preset will be used.
+Create a new LookupTable for a given name, scalar range and which preset should
+be used. If no preset name is provided, the 'spectralflip' preset will be used.
 
 The method will return the newly created LookupTable instance.
 
@@ -45,6 +46,3 @@ This will return a subscription object.
 More information can be found on Monologue.js as we rely on it for our
 observer methods.
 
-## TopicChange() : 'LookupTable.change'
-
-Return the name of the topic used for change notification.

@@ -26,16 +26,15 @@ Below are the two event structures
 // setPushMethodAsBuffer()
 var eventAsBuffer = {
     canvas: DOMElement,
-    imageData: ImageDataFromCanvas,
     area: [0, 0, width, height],
     outputSize: [width, height],
-    type: 'composite'
+    builder: this
 };
 
 // setPushMethodAsImage()
 var eventAsImage = {
-    url: 'data:image/png:ASDGFsdfgsdgf...'
-    type: 'composite'
+    url: 'data:image/png:ASDGFsdfgsdgf...',
+    builder: this
 };
 ```
 
@@ -54,7 +53,7 @@ After that method get called, the notification event will look as follow.
     imageData: ImageDataFromCanvas,
     area: [0, 0, width, height],
     outputSize: [width, height],
-    type: 'composite'
+    builder: this
 }
 ```
 
@@ -66,7 +65,7 @@ After the method gets called, the notification event will look as follows:
 ```js
 {
     url: 'data:image/png:ASDGFsdfgsdgf...'
-    type: 'composite'
+    builder: this
 }
 ```
 

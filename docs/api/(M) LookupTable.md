@@ -115,10 +115,6 @@ Return the color that should be used for a given scalar value. If the value is o
 
 Helper method used to attach a listener to the topic that is used when the LookupTable change. We rely on Monologue.js for our observer pattern.
 
-## TopicChange() : 'lookuptable.change'
-
-Return the topic used to notify change.
-
 ## destroy()
 
 Remove any listener attached to this LookupTable instance.

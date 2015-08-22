@@ -17,7 +17,8 @@ Below are the two event structures
 var eventAsBuffer = {
     canvas: image,
     area: [0, 0, width, height],
-    outputSize: [width, height]
+    outputSize: [width, height],
+    builder: this
 };
 ```
 
@@ -34,7 +35,7 @@ Trigger a notification if the loaded data is available and decoded.
     canvas: image,
     area: [0, 0, width, height],
     outputSize: [width, height],
-    type: 'composite'
+    builder: this
 }
 ```
 

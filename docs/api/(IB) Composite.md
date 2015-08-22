@@ -30,13 +30,13 @@ var eventAsBuffer = {
     imageData: ImageDataFromCanvas,
     area: [0, 0, width, height],
     outputSize: [width, height],
-    type: 'composite'
+    builder: this
 };
 
 // setPushMethodAsImage()
 var eventAsImage = {
-    url: 'data:image/png:ASDGFsdfgsdgf...'
-    type: 'composite'
+    url: 'data:image/png:ASDGFsdfgsdgf...',
+    builder: this
 };
 ```
 
@@ -137,7 +137,7 @@ Returns a list of TonicMouseHandler listeners.
 
 ## getControlWidgets
 
-Returns an array of control widgets, `"CompositeControl",
+Returns an array of control widgets, ["CompositeControl",
 "QueryDataModelWidget" ]`. Meant to be used with the WidgetFactory
 
 ## getQueryDataModel
