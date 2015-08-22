@@ -66,7 +66,7 @@ which layer is visible or not and which field should be rendered for a given lay
                 </a>
                 <a class="toc-item" href="(IB) Composite.html#getControlWidgets">
                     <h4>getControlWidgets</h4>
-                    <span class="desc">Returns an array of control widgets, <code>"CompositeControl", "QueryDataModelWidget" ]</code>. Meant to be used with the WidgetFactory</span>
+                    <span class="desc">Returns an array of control widgets, ["CompositeControl", "QueryDataModelWidget" ]`. Meant to be used with the WidgetFactory</span>
                 </a>
                 <a class="toc-item" href="(IB) Composite.html#getQueryDataModel">
                     <h4>getQueryDataModel</h4>
@@ -212,6 +212,53 @@ ready to be rendered/display somewhere.</span>
                 <a class="toc-item" href="(IB) DataProber.html#onCrosshairVisibilityChange">
                     <h4>onCrosshairVisibilityChange(callback)</h4>
                     <span class="desc">Calls <em>callback</em> when the crosshair changes visibility. </span>
+                </a>
+            </div>
+            <h3 class="toc-mod-title"><a href="(IB) PixelOperator.html">(IB) PixelOperator</a></h3>
+            <div class="toc-list">
+                <a class="toc-item" href="(IB) PixelOperator.html#constructor">
+                    <h4>constructor(operation=&#x27;a-b&#x27;, dependency=[&#x27;a&#x27;,&#x27;b&#x27;])</h4>
+                    <span class="desc">Create an instance of a PixelOperatorImageBuilder using the pixel operation that we want to achieve on a set of image data.</span>
+                </a>
+                <a class="toc-item" href="(IB) PixelOperator.html#setOperation">
+                    <h4>setOperation(String)</h4>
+                    <span class="desc">Update the operation that you would like to perform on each pixel.</span>
+                </a>
+                <a class="toc-item" href="(IB) PixelOperator.html#getOperation">
+                    <h4>getOperation() : String</h4>
+                    <span class="desc">Return the operation that was previously set.</span>
+                </a>
+                <a class="toc-item" href="(IB) PixelOperator.html#setDependencies">
+                    <h4>setDependencies(Array[String])</h4>
+                    <span class="desc">List the data names that you expect in order to perform your pixel operation. This will prevent invalid execution if all the data was not fully provided.</span>
+                </a>
+                <a class="toc-item" href="(IB) PixelOperator.html#updateOperationFunction">
+                    <h4>updateOperationFunction()</h4>
+                    <span class="desc">Internal method used to compile the Operation provided as a String.</span>
+                </a>
+                <a class="toc-item" href="(IB) PixelOperator.html#updateData">
+                    <h4>updateData(name, imageReadyEvent)</h4>
+                    <span class="desc">Method that should be called when new data become available for a given ImageBuilder.</span>
+                </a>
+                <a class="toc-item" href="(IB) PixelOperator.html#processData">
+                    <h4>processData()</h4>
+                    <span class="desc">Internal method used to trigger the computation of the Pixel Operation.</span>
+                </a>
+                <a class="toc-item" href="(IB) PixelOperator.html#onImageReady">
+                    <h4>onImageReady(callback) : subscription</h4>
+                    <span class="desc">Allows the registration of a <strong>callback(data, envelope)</strong> function when the actual generated image is ready.</span>
+                </a>
+                <a class="toc-item" href="(IB) PixelOperator.html#destroy">
+                    <h4>destroy()</h4>
+                    <span class="desc">Free the internal resources of the current instance.</span>
+                </a>
+                <a class="toc-item" href="(IB) PixelOperator.html#getListeners">
+                    <h4>getListeners</h4>
+                    <span class="desc">Returns a list of TonicMouseHandler listeners. This will actually return {}.</span>
+                </a>
+                <a class="toc-item" href="(IB) PixelOperator.html#getControlWidgets">
+                    <h4>getControlWidgets</h4>
+                    <span class="desc">Returns an array of control widgets, that is meant to be used with the WidgetFactory.</span>
                 </a>
             </div>
             <h3 class="toc-mod-title"><a href="(IB) QueryDataModel.html">(IB) QueryDataModel</a></h3>
@@ -420,10 +467,6 @@ that LookupTable for.</span>
                     <h4>onChange(callback) : subscription</h4>
                     <span class="desc">Helper method used to attach a listener to the topic that is used when the LookupTable change. We rely on Monologue.js for our observer pattern.</span>
                 </a>
-                <a class="toc-item" href="(M) LookupTable.html#TopicChange">
-                    <h4>TopicChange() : &#x27;lookuptable.change&#x27;</h4>
-                    <span class="desc">Return the topic used to notify change.</span>
-                </a>
                 <a class="toc-item" href="(M) LookupTable.html#destroy">
                     <h4>destroy()</h4>
                     <span class="desc">Remove any listener attached to this LookupTable instance.</span>
@@ -437,7 +480,7 @@ that LookupTable for.</span>
                 </a>
                 <a class="toc-item" href="(M) LookupTableManager.html#addLookupTable">
                     <h4>addLookupTable(name, range, preset) : LookupTable</h4>
-                    <span class="desc">Create a new LookupTable for a given name, scalar range and which preset should be used. If no preset name is provided, the 'spectral' preset will be used.</span>
+                    <span class="desc">Create a new LookupTable for a given name, scalar range and which preset should be used. If no preset name is provided, the 'spectralflip' preset will be used.</span>
                 </a>
                 <a class="toc-item" href="(M) LookupTableManager.html#removeLookupTable">
                     <h4>removeLookupTable(name)</h4>
@@ -454,10 +497,6 @@ that LookupTable for.</span>
                 <a class="toc-item" href="(M) LookupTableManager.html#onChange">
                     <h4>onChange(callback) : subscription</h4>
                     <span class="desc">Helper method used to bind a listener to the change topic. This will return a subscription object.</span>
-                </a>
-                <a class="toc-item" href="(M) LookupTableManager.html#TopicChange">
-                    <h4>TopicChange() : &#x27;LookupTable.change&#x27;</h4>
-                    <span class="desc">Return the name of the topic used for change notification. </span>
                 </a>
             </div>
             <h3 class="toc-mod-title"><a href="(M) PipelineState.html">(M) PipelineState</a></h3>
@@ -535,6 +574,41 @@ response which allows for easy unsubscription.</span>
                 <a class="toc-item" href="(M) PipelineState.html#getPipelineDescription">
                     <h4>getPipelineDescription()</h4>
                     <span class="desc">Returns the pipeline tree defined inside the JSON object under the path <strong>JSON.CompositePipeline.pipeline</strong>. </span>
+                </a>
+            </div>
+            <h3 class="toc-mod-title"><a href="(P) LineChart.html">(P) LineChart</a></h3>
+            <div class="toc-list">
+                <a class="toc-item" href="(P) LineChart.html#updateData">
+                    <h4>updateData(data)</h4>
+                    <span class="desc">Update the data to render and emit a PainterReady event. The data format should be as follow:</span>
+                </a>
+                <a class="toc-item" href="(P) LineChart.html#setTitle">
+                    <h4>setTitle(title)</h4>
+                    <span class="desc">Update the title that should be rendered within the Line Chart.</span>
+                </a>
+                <a class="toc-item" href="(P) LineChart.html#setMarkerLocation">
+                    <h4>setMarkerLocation(xRatio)</h4>
+                    <span class="desc">Set a line marker for the line chart. The value provided should be a fraction of the range along X. Its value should be within the following range [0.0, 1.0].</span>
+                </a>
+                <a class="toc-item" href="(P) LineChart.html#enableMarker">
+                    <h4>enableMarker(show)</h4>
+                    <span class="desc">Choose to show or hide the marker.</span>
+                </a>
+                <a class="toc-item" href="(P) LineChart.html#isReady">
+                    <h4>isReady() : Boolean</h4>
+                    <span class="desc">Method that can be used to see if the Painter is ready for painting the data.</span>
+                </a>
+                <a class="toc-item" href="(P) LineChart.html#paint">
+                    <h4>paint(ctx, location)</h4>
+                    <span class="desc">Method called by the renderer to let the painter fill the given location of the canvas context.</span>
+                </a>
+                <a class="toc-item" href="(P) LineChart.html#onPainterReady">
+                    <h4>onPainterReady(callback)</h4>
+                    <span class="desc">Method used to register the callback function that should be called when the painter is ready to be used.</span>
+                </a>
+                <a class="toc-item" href="(P) LineChart.html#getControlWidgets">
+                    <h4>getControlWidgets() : Array[String...]</h4>
+                    <span class="desc">Return the list of widgets that should be used to control this painter. (None for this painter)</span>
                 </a>
             </div>
             <h3 class="toc-mod-title"><a href="(U) WebGlPingPong.html">(U) WebGlPingPong</a></h3>

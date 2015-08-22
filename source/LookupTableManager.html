@@ -75,6 +75,13 @@
               
                 
                 <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="CompositorFactory.html">
                     CompositorFactory.js
                   </a>
@@ -166,6 +173,13 @@
               
                 
                 <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="LookupTable.html">
                     LookupTable.js
                   </a>
@@ -187,8 +201,43 @@
               
                 
                 <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="test-lookuptable.html">
                     test-lookuptable.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
                   </a>
                 </li>
               
@@ -253,7 +302,7 @@ LookupTableManager.prototype.addLookupTable = <span class="hljs-function"><span 
         <span class="hljs-keyword">this</span>.lutSubscriptions[name] = lut.onChange(<span class="hljs-keyword">this</span>.onChangeCallback);
     }
 
-    lut.setPreset(preset || <span class="hljs-string">'spectral'</span>);
+    lut.setPreset(preset || <span class="hljs-string">'spectralflip'</span>);
     lut.setScalarRange(range[<span class="hljs-number">0</span>], range[<span class="hljs-number">1</span>]);
 
     <span class="hljs-keyword">this</span>.emit(LOOKUP_TABLE_LIST_CHANGE_TOPIC, <span class="hljs-keyword">this</span>);

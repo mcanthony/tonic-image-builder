@@ -75,6 +75,13 @@
               
                 
                 <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="CompositorFactory.html">
                     CompositorFactory.js
                   </a>
@@ -166,6 +173,13 @@
               
                 
                 <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="LookupTable.html">
                     LookupTable.js
                   </a>
@@ -187,8 +201,43 @@
               
                 
                 <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="test-lookuptable.html">
                     test-lookuptable.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
                   </a>
                 </li>
               
@@ -659,7 +708,7 @@ WebGlLightCompositor.prototype.render = <span class="hljs-function"><span class=
 
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>, size = <span class="hljs-keyword">this</span>.offsetList.length; i &lt; size; i+=<span class="hljs-number">1</span>) {
       <span class="hljs-keyword">var</span> lOffMap = <span class="hljs-keyword">this</span>.offsetList[i],
-          field = lOffMap[<span class="hljs-string">'fieldName'</span>];
+          field = lOffMap.fieldName;
       srcY = <span class="hljs-number">0</span>;</pre></div>
         
       
@@ -706,7 +755,8 @@ WebGlLightCompositor.prototype.render = <span class="hljs-function"><span class=
     <span class="hljs-keyword">var</span> readyImage = {
             canvas: <span class="hljs-keyword">this</span>.glCanvas.el,
             area: [ <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height ],
-            outputSize: [ <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height ]
+            outputSize: [ <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height ],
+            builder: <span class="hljs-keyword">this</span>.imageBuilder
         };</pre></div>
         
       

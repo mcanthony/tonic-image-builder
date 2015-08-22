@@ -65,80 +65,99 @@
     <li><a href="index.html">Index</a></li>
     <li><a href="#toc">TOC</a></li>
 </ul>
-<h1>QueryDataModelImageBuilder</h1>
+<h1>PixelOperator</h1>
 
-<p>This is a builder which wrap a QueryDataModel to make it act like an ImageBuilder.</p>
+<p>This Image Builder is meant to compute PixelOperation based on data coming
+from other ImageBuilder.</p>
 
 <pre class="brush:js">
-var QueryDataModelImageBuilder = require('tonic-image-builder/lib/builder/QueryDataModel'),
-    instance = new QueryDataModelImageBuilder(qdm);
+var PixelOperatorImageBuilder = require('tonic-image-builder/lib/builder/PixelOperator'),
+    instance = new PixelOperatorImageBuilder('a-b', ['a', 'b']);
+
+instance.updateData('a', imageReadyEvent);
+instance.updateData('b', imageReadyEvent);
 </pre>
 
 <h2>Table of Contents <a href="#toc" name="toc" class="deep-link">#</a></h2>
 
 <ul>
 <li><a href="#constructor">constructor()</a></li>
-<li><a href="#update">update()</a></li>
-<li><a href="#render">render()</a></li>
+<li><a href="#setOperation">setOperation()</a></li>
+<li><a href="#getOperation">getOperation()</a></li>
+<li><a href="#setDependencies">setDependencies()</a></li>
+<li><a href="#updateOperationFunction">updateOperationFunction()</a></li>
+<li><a href="#updateData">updateData()</a></li>
+<li><a href="#processData">processData()</a></li>
 <li><a href="#onImageReady">onImageReady()</a></li>
+<li><a href="#destroy">destroy()</a></li>
 <li><a href="#getListeners">getListeners</a></li>
 <li><a href="#getControlWidgets">getControlWidgets</a></li>
-<li><a href="#getQueryDataModel">getQueryDataModel</a></li>
-<li><a href="#destroy">destroy()</a></li>
 </ul>
 
-<h2>constructor(queryDataModel) <a href="#constructor" id="constructor" class="deep-link">#</a></h2>
+<h2>constructor(operation='a-b', dependency=['a','b']) <a href="#constructor" id="constructor" class="deep-link">#</a></h2>
 
-<p>Under the hood this will forward any image data.</p>
+<p>Create an instance of a PixelOperatorImageBuilder using the pixel operation that
+we want to achieve on a set of image data.</p>
 
-<p>Below are the two event structures</p>
+<p>Below is the event structure</p>
 
 <pre class="brush:js">
-var eventAsBuffer = {
-    canvas: image,
+// setPushMethodAsBuffer()
+var imageReadyEvent = {
+    canvas: DOMElement,
     area: [0, 0, width, height],
     outputSize: [width, height],
     builder: this
 };
 </pre>
 
-<h2>update() <a href="#update" id="update" class="deep-link">#</a></h2>
+<h2>setOperation(String) <a href="#setOperation" id="setOperation" class="deep-link">#</a></h2>
 
-<p>Trigger the fetching of the data.</p>
+<p>Update the operation that you would like to perform on each pixel.</p>
 
-<h2>render() <a href="#render" id="render" class="deep-link">#</a></h2>
+<p>The variables name that you can use are the one that have been registered with
+the <strong>updateData(name, event)</strong> method.</p>
 
-<p>Trigger a notification if the loaded data is available and decoded.</p>
+<h2>getOperation() : String <a href="#getOperation" id="getOperation" class="deep-link">#</a></h2>
 
-<pre class="brush:js">
-{
-    canvas: image,
-    area: [0, 0, width, height],
-    outputSize: [width, height],
-    builder: this
-}
-</pre>
+<p>Return the operation that was previously set.</p>
+
+<h2>setDependencies(Array[String]) <a href="#setDependencies" id="setDependencies" class="deep-link">#</a></h2>
+
+<p>List the data names that you expect in order to perform your pixel operation.
+This will prevent invalid execution if all the data was not fully provided.</p>
+
+<h2>updateOperationFunction() <a href="#updateOperationFunction" id="updateOperationFunction" class="deep-link">#</a></h2>
+
+<p>Internal method used to compile the Operation provided as a String.</p>
+
+<h2>updateData(name, imageReadyEvent) <a href="#updateData" id="updateData" class="deep-link">#</a></h2>
+
+<p>Method that should be called when new data become available for a given
+ImageBuilder.</p>
+
+<h2>processData() <a href="#processData" id="processData" class="deep-link">#</a></h2>
+
+<p>Internal method used to trigger the computation of the Pixel Operation.</p>
 
 <h2>onImageReady(callback) : subscription <a href="#onImageReady" id="onImageReady" class="deep-link">#</a></h2>
 
 <p>Allows the registration of a <strong>callback(data, envelope)</strong> function when the
 actual generated image is ready.</p>
 
-<h2>getListeners <a href="#getListeners" id="getListeners" class="deep-link">#</a></h2>
-
-<p>Returns a list of TonicMouseHandler listeners.</p>
-
-<h2>getControlWidgets <a href="#getControlWidgets" id="getControlWidgets" class="deep-link">#</a></h2>
-
-<p>Returns an array of control widgets, <code>["QueryDataModelWidget"]</code>. Meant to be used with the WidgetFactory</p>
-
-<h2>getQueryDataModel <a href="#getQueryDataModel" id="getQueryDataModel" class="deep-link">#</a></h2>
-
-<p>Returns the builder's QueryDataModel.</p>
-
 <h2>destroy() <a href="#destroy" id="destroy" class="deep-link">#</a></h2>
 
 <p>Free the internal resources of the current instance.</p>
+
+<h2>getListeners <a href="#getListeners" id="getListeners" class="deep-link">#</a></h2>
+
+<p>Returns a list of TonicMouseHandler listeners.
+This will actually return {}.</p>
+
+<h2>getControlWidgets <a href="#getControlWidgets" id="getControlWidgets" class="deep-link">#</a></h2>
+
+<p>Returns an array of control widgets, that is meant to be used with the
+WidgetFactory.</p>
         </div>
         <script src="assets_/js/lib/jquery.js"></script>
         <script src="assets_/js/lib/syntax-highlighter/shCore.js"></script>

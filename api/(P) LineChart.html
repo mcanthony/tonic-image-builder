@@ -65,80 +65,94 @@
     <li><a href="index.html">Index</a></li>
     <li><a href="#toc">TOC</a></li>
 </ul>
-<h1>QueryDataModelImageBuilder</h1>
+<h1>LineChart Painter</h1>
 
-<p>This is a builder which wrap a QueryDataModel to make it act like an ImageBuilder.</p>
+<p>LineChart Painter allow chart data to be rendered within a Canvas.</p>
+
+<p>The class is imported using the following:</p>
 
 <pre class="brush:js">
-var QueryDataModelImageBuilder = require('tonic-image-builder/lib/builder/QueryDataModel'),
-    instance = new QueryDataModelImageBuilder(qdm);
+var LineChartPainter = require('tonic-image-builder/lib/painter/LineChart'),
+    instance = new LineChartPainter("Display data along x: {x}");
 </pre>
 
 <h2>Table of Contents <a href="#toc" name="toc" class="deep-link">#</a></h2>
 
 <ul>
-<li><a href="#constructor">constructor()</a></li>
-<li><a href="#update">update()</a></li>
-<li><a href="#render">render()</a></li>
-<li><a href="#onImageReady">onImageReady()</a></li>
-<li><a href="#getListeners">getListeners</a></li>
-<li><a href="#getControlWidgets">getControlWidgets</a></li>
-<li><a href="#getQueryDataModel">getQueryDataModel</a></li>
-<li><a href="#destroy">destroy()</a></li>
+<li><a href="#updateData">updateData()</a></li>
+<li><a href="#setTitle">setTitle()</a></li>
+<li><a href="#setMarkerLocation">setMarkerLocation()</a></li>
+<li><a href="#enableMarker">enableMarker()</a></li>
+<li><a href="#isReady">isReady()</a></li>
+<li><a href="#paint">paint()</a></li>
+<li><a href="#onPainterReady">onPainterReady()</a></li>
+<li><a href="#getControlWidgets">getControlWidgets()</a></li>
 </ul>
 
-<h2>constructor(queryDataModel) <a href="#constructor" id="constructor" class="deep-link">#</a></h2>
+<h2>constructor(title, markerColor="#0000FF", colors=["#e1002a", "#417dc0", "#1d9a57", "#e9bc2f", "#9b3880"])</h2>
 
-<p>Under the hood this will forward any image data.</p>
+<p>Creates an instance of a LineChartPainter.</p>
 
-<p>Below are the two event structures</p>
+<h2>updateData(data) <a href="#updateData" id="updateData" class="deep-link">#</a></h2>
 
-<pre class="brush:js">
-var eventAsBuffer = {
-    canvas: image,
-    area: [0, 0, width, height],
-    outputSize: [width, height],
-    builder: this
-};
-</pre>
-
-<h2>update() <a href="#update" id="update" class="deep-link">#</a></h2>
-
-<p>Trigger the fetching of the data.</p>
-
-<h2>render() <a href="#render" id="render" class="deep-link">#</a></h2>
-
-<p>Trigger a notification if the loaded data is available and decoded.</p>
+<p>Update the data to render and emit a PainterReady event.
+The data format should be as follow:</p>
 
 <pre class="brush:js">
 {
-    canvas: image,
-    area: [0, 0, width, height],
-    outputSize: [width, height],
-    builder: this
+     xRange: [ 0 , 100],
+     fields: [
+         { name: 'Temperature', data: [y0, y1, ..., yn]},
+         ...
+     ]
 }
 </pre>
 
-<h2>onImageReady(callback) : subscription <a href="#onImageReady" id="onImageReady" class="deep-link">#</a></h2>
+<h2>setTitle(title) <a href="#setTitle" id="setTitle" class="deep-link">#</a></h2>
 
-<p>Allows the registration of a <strong>callback(data, envelope)</strong> function when the
-actual generated image is ready.</p>
+<p>Update the title that should be rendered within the Line Chart.</p>
 
-<h2>getListeners <a href="#getListeners" id="getListeners" class="deep-link">#</a></h2>
+<p>If a String <strong>{x}</strong> is embedded inside the title, it will be replaced with the
+marker location value.</p>
 
-<p>Returns a list of TonicMouseHandler listeners.</p>
+<h2>setMarkerLocation(xRatio) <a href="#setMarkerLocation" id="setMarkerLocation" class="deep-link">#</a></h2>
 
-<h2>getControlWidgets <a href="#getControlWidgets" id="getControlWidgets" class="deep-link">#</a></h2>
+<p>Set a line marker for the line chart. The value provided should be a fraction
+of the range along X. Its value should be within the following range [0.0, 1.0].</p>
 
-<p>Returns an array of control widgets, <code>["QueryDataModelWidget"]</code>. Meant to be used with the WidgetFactory</p>
+<h2>enableMarker(show) <a href="#enableMarker" id="enableMarker" class="deep-link">#</a></h2>
 
-<h2>getQueryDataModel <a href="#getQueryDataModel" id="getQueryDataModel" class="deep-link">#</a></h2>
+<p>Choose to show or hide the marker.</p>
 
-<p>Returns the builder's QueryDataModel.</p>
+<h2>isReady() : Boolean <a href="#isReady" id="isReady" class="deep-link">#</a></h2>
 
-<h2>destroy() <a href="#destroy" id="destroy" class="deep-link">#</a></h2>
+<p>Method that can be used to see if the Painter is ready for painting the data.</p>
 
-<p>Free the internal resources of the current instance.</p>
+<h2>paint(ctx, location) <a href="#paint" id="paint" class="deep-link">#</a></h2>
+
+<p>Method called by the renderer to let the painter fill the given location of the
+canvas context.</p>
+
+<p>The location object should be defined as follow:</p>
+
+<pre class="brush:js">
+var location = {
+    x: 5,
+    y: 10,
+    width: 100,
+    height: 200
+};
+</pre>
+
+<h2>onPainterReady(callback) <a href="#onPainterReady" id="onPainterReady" class="deep-link">#</a></h2>
+
+<p>Method used to register the callback function that should be called when the
+painter is ready to be used.</p>
+
+<h2>getControlWidgets() : Array[String...] <a href="#getControlWidgets" id="getControlWidgets" class="deep-link">#</a></h2>
+
+<p>Return the list of widgets that should be used to control this painter.
+(None for this painter)</p>
         </div>
         <script src="assets_/js/lib/jquery.js"></script>
         <script src="assets_/js/lib/syntax-highlighter/shCore.js"></script>

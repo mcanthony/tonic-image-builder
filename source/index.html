@@ -75,6 +75,13 @@
               
                 
                 <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="CompositorFactory.html">
                     CompositorFactory.js
                   </a>
@@ -166,6 +173,13 @@
               
                 
                 <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="LookupTable.html">
                     LookupTable.js
                   </a>
@@ -182,6 +196,13 @@
                 <li>
                   <a class="source" href="Presets.html">
                     Presets.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
                   </a>
                 </li>
               
@@ -213,6 +234,34 @@
                   </a>
                 </li>
               
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
             </ol>
           </div>
         
@@ -220,361 +269,15 @@
 
       
         
-        <p>Show GL informations</p>
+        
+        
+          <div class='highlight'><pre><span class="hljs-keyword">var</span> CanvasOffscreenBuffer = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./CanvasOffscreenBuffer'</span>),
+    WebGl = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./WebGl'</span>);
 
-        
-          <div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showGlInfo</span>(<span class="hljs-params">gl</span>) </span>{
-    <span class="hljs-keyword">var</span> vertexUnits = gl.getParameter(<span class="hljs-keyword">this</span>.gl.MAX_VERTEX_TEXTURE_IMAGE_UNITS);
-    <span class="hljs-keyword">var</span> fragmentUnits = gl.getParameter(<span class="hljs-keyword">this</span>.gl.MAX_TEXTURE_IMAGE_UNITS);
-    <span class="hljs-keyword">var</span> combinedUnits = gl.getParameter(<span class="hljs-keyword">this</span>.gl.MAX_COMBINED_TEXTURE_IMAGE_UNITS);
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"vertex texture image units: "</span> + vertexUnits);
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"fragment texture image units: "</span> + fragmentUnits);
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"combined texture image units: "</span> + combinedUnits);
-}</pre></div>
-        
-      
-        
-        <p>Compile a shader</p>
-
-        
-          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compileShader</span>(<span class="hljs-params">gl, src, type</span>) </span>{
-    <span class="hljs-keyword">var</span> shader = gl.createShader( type );
-
-    gl.shaderSource( shader, src );</pre></div>
-        
-      
-        
-        <p>Compile and check status</p>
-
-        
-          <div class='highlight'><pre>    gl.compileShader( shader );
-    <span class="hljs-keyword">var</span> compiled = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
-    <span class="hljs-keyword">if</span> (!compiled)
-    {</pre></div>
-        
-      
-        
-        <p>Something went wrong during compilation; get the error</p>
-
-        
-          <div class='highlight'><pre>        <span class="hljs-keyword">var</span> lastError = gl.getShaderInfoLog(shader);
-        <span class="hljs-built_in">console</span>.error( <span class="hljs-string">"Error compiling shader '"</span> + shader + <span class="hljs-string">"':"</span> + lastError );
-        gl.deleteShader( shader );
-
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
-    }
-
-    <span class="hljs-keyword">return</span> shader;
-}</pre></div>
-        
-      
-        
-        <p>Create a shader program</p>
-
-        
-          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createShaderProgram</span>(<span class="hljs-params">gl, shaders</span>) </span>{
-  <span class="hljs-keyword">var</span> program = gl.createProgram();
-
-  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; shaders.length; i+=<span class="hljs-number">1</span>) {
-    gl.attachShader( program, shaders[ i ] );
-  }
-
-  gl.linkProgram( program );</pre></div>
-        
-      
-        
-        <p>Check the link status</p>
-
-        
-          <div class='highlight'><pre>  <span class="hljs-keyword">var</span> linked = gl.getProgramParameter(program, gl.LINK_STATUS);
-  <span class="hljs-keyword">if</span> (!linked) {</pre></div>
-        
-      
-        
-        <p>something went wrong with the link</p>
-
-        
-          <div class='highlight'><pre>    <span class="hljs-keyword">var</span> lastError = gl.getProgramInfoLog (program);
-    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">"Error in program linking:"</span> + lastError);
-    gl.deleteProgram(program);
-
-    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
-  }
-
-  program.shaders = shaders;
-  gl.useProgram(program);
-
-  <span class="hljs-keyword">return</span> program;
-}</pre></div>
-        
-      
-        
-        <p>Create a shader program</p>
-
-        
-          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildShaderProgram</span>(<span class="hljs-params">gl, name, config, resources</span>) </span>{
-    <span class="hljs-keyword">var</span> progConfig = config.programs[name],
-        compiledVertexShader = compileShader(gl, progConfig.vertexShader, gl.VERTEX_SHADER),
-        compiledFragmentShader = compileShader(gl, progConfig.fragmentShader, gl.FRAGMENT_SHADER),
-        program = createShaderProgram(gl, [compiledVertexShader, compiledFragmentShader]);</pre></div>
-        
-      
-        
-        <p>Store the created program in the resources</p>
-
-        
-          <div class='highlight'><pre>    resources.programs[name] = program;</pre></div>
-        
-      
-        
-        <p>Handle mapping if any</p>
-
-        
-          <div class='highlight'><pre>    <span class="hljs-keyword">if</span>(progConfig.mapping) {
-        applyProgramDataMapping(gl, name, progConfig.mapping, config, resources);
-    }</pre></div>
-        
-      
-        
-        <p>Return program</p>
-
-        
-          <div class='highlight'><pre>    <span class="hljs-keyword">return</span> program;
-}</pre></div>
-        
-      
-        
-        <p>Bind texture to Framebuffer</p>
-
-        
-          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bindTextureToFramebuffer</span>(<span class="hljs-params">gl, fbo, texture</span>) </span>{
-    gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
-    gl.bindTexture(gl.TEXTURE_2D, texture);
-
-    gl.texImage2D(gl.TEXTURE_2D,
-                  <span class="hljs-number">0</span>, gl.RGBA, fbo.width, fbo.height,
-                  <span class="hljs-number">0</span>, gl.RGBA, gl.UNSIGNED_BYTE, <span class="hljs-literal">null</span>);
-
-    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0,
-                            gl.TEXTURE_2D, texture, <span class="hljs-number">0</span>);</pre></div>
-        
-      
-        
-        <p>Check fbo status</p>
-
-        
-          <div class='highlight'><pre>  <span class="hljs-keyword">var</span> fbs = gl.checkFramebufferStatus(gl.FRAMEBUFFER);
-  <span class="hljs-keyword">if</span> (fbs !== gl.FRAMEBUFFER_COMPLETE) {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"ERROR: There is a problem with the framebuffer: "</span> + fbs);
-  }</pre></div>
-        
-      
-        
-        <p>Clear the bindings we created in this function.</p>
-
-        
-          <div class='highlight'><pre>  gl.bindTexture(gl.TEXTURE_2D, <span class="hljs-literal">null</span>);
-  gl.bindFramebuffer(gl.FRAMEBUFFER, <span class="hljs-literal">null</span>);
-}</pre></div>
-        
-      
-        
-        <p>Free GL resources</p>
-
-        
-          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">freeGLResources</span>(<span class="hljs-params">glResources</span>) </span>{
-    <span class="hljs-keyword">var</span> gl = glResources.gl;</pre></div>
-        
-      
-        
-        <p>Delete each program</p>
-
-        
-          <div class='highlight'><pre>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> programName <span class="hljs-keyword">in</span> glResources.programs) {
-        <span class="hljs-keyword">var</span> program = glResources.programs[programName],
-            shaders = program.shaders,
-            count = shaders.length;</pre></div>
-        
-      
-        
-        <p>Delete shaders</p>
-
-        
-          <div class='highlight'><pre>        <span class="hljs-keyword">while</span>(count--) {
-            gl.deleteShader(shaders[count]);
-        }</pre></div>
-        
-      
-        
-        <p>Delete program</p>
-
-        
-          <div class='highlight'><pre>        gl.deleteProgram(program);
-    }</pre></div>
-        
-      
-        
-        <p>Delete framebuffers</p>
-
-        
-          <div class='highlight'><pre>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> fbName <span class="hljs-keyword">in</span> glResources.framebuffers) {
-        gl.deleteFramebuffer(glResources.framebuffers[fbName]);
-    }</pre></div>
-        
-      
-        
-        <p>Delete textures</p>
-
-        
-          <div class='highlight'><pre>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> textureName <span class="hljs-keyword">in</span> glResources.textures) {
-        gl.deleteTexture(glResources.textures[textureName]);
-    }</pre></div>
-        
-      
-        
-        <p>Delete buffers</p>
-
-        
-          <div class='highlight'><pre>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> bufferName <span class="hljs-keyword">in</span> glResources.buffers) {
-        gl.deleteBuffer(glResources.buffers[bufferName]);
-    }
-}</pre></div>
-        
-      
-        
-        <p>Create GL resources</p>
-
-        
-          <div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createGLResources</span>(<span class="hljs-params">gl, glConfig</span>) </span>{
-    <span class="hljs-keyword">var</span> resources = { gl, buffers: {}, textures: {}, framebuffers: {}, programs: {} },
-        buffers = glConfig.resources.buffers || [],
-        textures = glConfig.resources.textures || [],
-        framebuffers = glConfig.resources.framebuffers || [];</pre></div>
-        
-      
-        
-        <p>Create Buffer</p>
-
-        
-          <div class='highlight'><pre>    buffers.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">buffer</span>) </span>{
-        <span class="hljs-keyword">var</span> glBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, glBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, buffer.data, gl.STATIC_DRAW);
-        resources.buffers[buffer.id] = glBuffer;
-    });</pre></div>
-        
-      
-        
-        <p>Create Texture</p>
-
-        
-          <div class='highlight'><pre>    textures.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">texture</span>) </span>{
-        <span class="hljs-keyword">var</span> glTexture = gl.createTexture(),
-            pixelStore = texture.pixelStore || [],
-            texParameter = texture.texParameter || [];
-
-        gl.bindTexture(gl.TEXTURE_2D, glTexture);
-
-        pixelStore.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">option</span>) </span>{
-            gl.pixelStorei(gl[option[<span class="hljs-number">0</span>]], option[<span class="hljs-number">1</span>]);
-        });
-
-        texParameter.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">option</span>) </span>{
-            gl.texParameteri(gl.TEXTURE_2D, gl[option[<span class="hljs-number">0</span>]], gl[option[<span class="hljs-number">1</span>]]);
-        });
-
-        resources.textures[texture.id] = glTexture;
-    });</pre></div>
-        
-      
-        
-        <p>Create Framebuffer</p>
-
-        
-          <div class='highlight'><pre>    framebuffers.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">framebuffer</span>) </span>{
-        <span class="hljs-keyword">var</span> glFramebuffer = gl.createFramebuffer();
-        glFramebuffer.width = framebuffer.width;
-        glFramebuffer.height = framebuffer.height;
-
-        resources.framebuffers[framebuffer.id] = glFramebuffer;
-    });</pre></div>
-        
-      
-        
-        <p>Create programs</p>
-
-        
-          <div class='highlight'><pre>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> programName <span class="hljs-keyword">in</span> glConfig.programs) {
-        buildShaderProgram(gl, programName, glConfig, resources);
-    }</pre></div>
-        
-      
-        
-        <p>Add destroy function</p>
-
-        
-          <div class='highlight'><pre>    resources.destroy = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ freeGLResources(resources); };
-
-    <span class="hljs-keyword">return</span> resources;
-}</pre></div>
-        
-      
-        
-        <p>Apply new mapping to a program</p>
-
-        
-          <div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">applyProgramDataMapping</span>(<span class="hljs-params">gl, programName, mappingName, glConfig, glResources</span>) </span>{
-    <span class="hljs-keyword">var</span> program = glResources.programs[programName],
-        mapping = glConfig.mappings[mappingName];
-
-    mapping.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">bufferMapping</span>) </span>{
-        <span class="hljs-keyword">var</span> glBuffer = glResources.buffers[bufferMapping.id];
-
-        gl.bindBuffer(gl.ARRAY_BUFFER, glBuffer);
-        program[bufferMapping.name] = gl.getAttribLocation(program, bufferMapping.attribute);
-        gl.enableVertexAttribArray(program[bufferMapping.name]);
-        gl.vertexAttribPointer.apply(gl, [ program[bufferMapping.name] ].concat(bufferMapping.format));
-        gl.bindBuffer(gl.ARRAY_BUFFER, <span class="hljs-literal">null</span>);
-    });
-}</pre></div>
-        
-      
-        
-        <p>Ping Pong class definition</p>
-
-        
-          <div class='highlight'><pre><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">PingPong</span>(<span class="hljs-params">gl, fbos, textures</span>) </span>{
-    <span class="hljs-keyword">this</span>.gl = gl;
-    <span class="hljs-keyword">this</span>.idx = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">this</span>.fbos = fbos;
-    <span class="hljs-keyword">this</span>.textures = textures;
-
-    bindTextureToFramebuffer(<span class="hljs-keyword">this</span>.gl, <span class="hljs-keyword">this</span>.fbos[<span class="hljs-number">0</span>], <span class="hljs-keyword">this</span>.textures[<span class="hljs-number">1</span>]);
-    bindTextureToFramebuffer(<span class="hljs-keyword">this</span>.gl, <span class="hljs-keyword">this</span>.fbos[<span class="hljs-number">1</span>], <span class="hljs-keyword">this</span>.textures[<span class="hljs-number">0</span>]);
-}
-
-PingPong.prototype.swap = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">this</span>.idx++;
-    <span class="hljs-keyword">this</span>.idx %= <span class="hljs-number">2</span>;
-}
-
-PingPong.prototype.clearFbo = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">this</span>.gl.bindFramebuffer(<span class="hljs-keyword">this</span>.gl.FRAMEBUFFER, <span class="hljs-keyword">this</span>.fbos[<span class="hljs-number">0</span>]);
-    <span class="hljs-keyword">this</span>.gl.clear(<span class="hljs-keyword">this</span>.gl.COLOR_BUFFER_BIT);
-
-    <span class="hljs-keyword">this</span>.gl.bindFramebuffer(<span class="hljs-keyword">this</span>.gl.FRAMEBUFFER, <span class="hljs-keyword">this</span>.fbos[<span class="hljs-number">1</span>]);
-    <span class="hljs-keyword">this</span>.gl.clear(<span class="hljs-keyword">this</span>.gl.COLOR_BUFFER_BIT);
-
-    <span class="hljs-keyword">this</span>.idx = <span class="hljs-number">0</span>;
-}
-
-PingPong.prototype.getFramebuffer = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.fbos[<span class="hljs-keyword">this</span>.idx];
-}
-
-PingPong.prototype.getRenderingTexture = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.textures[<span class="hljs-keyword">this</span>.idx];
-}</pre></div>
+<span class="hljs-keyword">export</span> {
+    CanvasOffscreenBuffer,
+    WebGl
+};</pre></div>
         
       
     </div>

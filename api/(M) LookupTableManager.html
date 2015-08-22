@@ -81,7 +81,6 @@ var LookupTableManager = require('tonic-image-builder/lib/model/LookupTable/Look
 <li><a href="#getLookupTable">getLookupTable()</a></li>
 <li><a href="#addFields">addFields()</a></li>
 <li><a href="#onChange">onChange()</a></li>
-<li><a href="#TopicChange">TopicChange()</a></li>
 </ul>
 
 <h2>constructor() <a href="#constructor" id="constructor" class="deep-link">#</a></h2>
@@ -90,7 +89,8 @@ var LookupTableManager = require('tonic-image-builder/lib/model/LookupTable/Look
 
 <h2>addLookupTable(name, range, preset) : LookupTable <a href="#addLookupTable" id="addLookupTable" class="deep-link">#</a></h2>
 
-<p>Create a new LookupTable for a given name, scalar range and which preset should be used. If no preset name is provided, the 'spectral' preset will be used.</p>
+<p>Create a new LookupTable for a given name, scalar range and which preset should
+be used. If no preset name is provided, the 'spectralflip' preset will be used.</p>
 
 <p>The method will return the newly created LookupTable instance.</p>
 
@@ -123,10 +123,6 @@ This will return a subscription object.</p>
 
 <p>More information can be found on Monologue.js as we rely on it for our
 observer methods.</p>
-
-<h2>TopicChange() : 'LookupTable.change' <a href="#TopicChange" id="TopicChange" class="deep-link">#</a></h2>
-
-<p>Return the name of the topic used for change notification.</p>
         </div>
         <script src="assets_/js/lib/jquery.js"></script>
         <script src="assets_/js/lib/syntax-highlighter/shCore.js"></script>

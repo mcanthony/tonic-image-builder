@@ -134,13 +134,13 @@ var eventAsBuffer = {
     imageData: ImageDataFromCanvas,
     area: [0, 0, width, height],
     outputSize: [width, height],
-    type: 'composite'
+    builder: this
 };
 
 // setPushMethodAsImage()
 var eventAsImage = {
     url: 'data:image/png:ASDGFsdfgsdgf...'
-    type: 'composite'
+    builder: this
 };
 </pre>
 
@@ -159,7 +159,7 @@ After the method gets called, the notification event will look as follows:</p>
     imageData: ImageDataFromCanvas,
     area: [0, 0, width, height],
     outputSize: [width, height],
-    type: 'composite'
+    builder: this
 }
 </pre>
 
@@ -170,8 +170,8 @@ After the method gets called, the notification event will look as follows:</p>
 
 <pre class="brush:js">
 {
-    url: 'data:image/png:ASDGFsdfgsdgf...'
-    type: 'composite'
+    url: 'data:image/png:ASDGFsdfgsdgf...',
+    builder: this
 }
 </pre>
 

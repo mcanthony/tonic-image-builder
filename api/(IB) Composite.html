@@ -119,13 +119,13 @@ var eventAsBuffer = {
     imageData: ImageDataFromCanvas,
     area: [0, 0, width, height],
     outputSize: [width, height],
-    type: 'composite'
+    builder: this
 };
 
 // setPushMethodAsImage()
 var eventAsImage = {
-    url: 'data:image/png:ASDGFsdfgsdgf...'
-    type: 'composite'
+    url: 'data:image/png:ASDGFsdfgsdgf...',
+    builder: this
 };
 </pre>
 
@@ -226,8 +226,8 @@ method to either send the ImageData or an ImageURL.</p>
 
 <h2>getControlWidgets <a href="#getControlWidgets" id="getControlWidgets" class="deep-link">#</a></h2>
 
-<p>Returns an array of control widgets, <code>"CompositeControl",
-"QueryDataModelWidget" ]</code>. Meant to be used with the WidgetFactory</p>
+<p>Returns an array of control widgets, ["CompositeControl",
+"QueryDataModelWidget" ]`. Meant to be used with the WidgetFactory</p>
 
 <h2>getQueryDataModel <a href="#getQueryDataModel" id="getQueryDataModel" class="deep-link">#</a></h2>
 

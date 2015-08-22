@@ -113,16 +113,15 @@ By default we use the setPushMethodAsBuffer() configuration.</p>
 // setPushMethodAsBuffer()
 var eventAsBuffer = {
     canvas: DOMElement,
-    imageData: ImageDataFromCanvas,
     area: [0, 0, width, height],
     outputSize: [width, height],
-    type: 'composite'
+    builder: this
 };
 
 // setPushMethodAsImage()
 var eventAsImage = {
-    url: 'data:image/png:ASDGFsdfgsdgf...'
-    type: 'composite'
+    url: 'data:image/png:ASDGFsdfgsdgf...',
+    builder: this
 };
 </pre>
 
@@ -141,7 +140,7 @@ After that method get called, the notification event will look as follow.</p>
     imageData: ImageDataFromCanvas,
     area: [0, 0, width, height],
     outputSize: [width, height],
-    type: 'composite'
+    builder: this
 }
 </pre>
 
@@ -153,7 +152,7 @@ After the method gets called, the notification event will look as follows:</p>
 <pre class="brush:js">
 {
     url: 'data:image/png:ASDGFsdfgsdgf...'
-    type: 'composite'
+    builder: this
 }
 </pre>
 

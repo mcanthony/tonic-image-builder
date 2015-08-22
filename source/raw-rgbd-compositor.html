@@ -75,6 +75,13 @@
               
                 
                 <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="CompositorFactory.html">
                     CompositorFactory.js
                   </a>
@@ -166,6 +173,13 @@
               
                 
                 <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="LookupTable.html">
                     LookupTable.js
                   </a>
@@ -187,8 +201,43 @@
               
                 
                 <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="test-lookuptable.html">
                     test-lookuptable.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
                   </a>
                 </li>
               
@@ -447,7 +496,8 @@ WebGlCompositorBinary.prototype.render = <span class="hljs-function"><span class
     <span class="hljs-keyword">var</span> readyImage = {
             canvas: <span class="hljs-keyword">this</span>.glCanvas.el,
             area: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height],
-            outputSize: [<span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height]
+            outputSize: [<span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height],
+            builder: <span class="hljs-keyword">this</span>.imageBuilder
         };
 
     <span class="hljs-keyword">this</span>.imageBuilder.emit(<span class="hljs-keyword">this</span>.imageBuilder.IMAGE_READY_TOPIC, readyImage);
