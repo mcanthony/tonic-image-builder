@@ -1,7 +1,7 @@
 {
   "name": "tonic-image-builder",
   "description": "JavaScript library used to gather image generation based on various input data.",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
   "repository": {
