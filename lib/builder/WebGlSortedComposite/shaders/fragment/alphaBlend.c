@@ -19,6 +19,4 @@ void main() {
     vec3 colOut = ((colA * alphA) + (colB * alphB * (1.0 - alphA))) / alphOut;
 
     gl_FragColor = vec4(colOut.rgb, alphOut);
-
-    // gl_FragColor = overColor;
 }

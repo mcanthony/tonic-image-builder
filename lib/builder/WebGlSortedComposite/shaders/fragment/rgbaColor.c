@@ -1,10 +1,11 @@
 
 precision mediump float;
 
-uniform sampler2D rgbaSampler;
+uniform sampler2D alphaSampler;
 uniform sampler2D orderSampler;
+uniform sampler2D alphaMultiplierSampler;
+uniform sampler2D lutSampler;
 
-uniform sampler2D equalizerSampler;
 uniform int numberOfLayers;
 
 uniform vec2 spriteDim;
@@ -61,13 +62,17 @@ void main() {
     vec4 orderVec = texture2D(orderSampler, v_texCoord);
     int layer = int(affine(0.0, orderVec.x, 1.0, 0.0, 255.0));
 
-    vec4 alphaVec = texture2D(equalizerSampler, vec2(affine(0.0, float(layer), float(numberOfLayers) - 1.0, 0.0, 1.0), 0.5));
+    float layerCoord = affine(0.0, float(layer), float(numberOfLayers) - 1.0, 0.0, 1.0);
+
+    vec4 alphaVec = texture2D(alphaMultiplierSampler, vec2(layerCoord, 0.5));
     float alpha = alphaVec.x;
 
     // Use the layer number and the provided tex coords to find address
     // of the corresponding color in the sprite.
     vec2 colorTc = getSpriteTexCoords(v_texCoord, spriteDim, imageDim, layer);
-    vec4 initialColor = texture2D(rgbaSampler, colorTc);
+    vec4 initialColor = texture2D(alphaSampler, colorTc);
 
-    gl_FragColor = vec4(initialColor.xyz, initialColor.a * alpha);
+    vec4 lutColor = texture2D(lutSampler, vec2(layerCoord, 0.5));
+
+    gl_FragColor = vec4(lutColor.xyz, initialColor.r * alpha);
 }
