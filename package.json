@@ -9,11 +9,11 @@
     "url": "https://github.com/Kitware/tonic-image-builder.git"
   },
   "dependencies": {
+    "gl-matrix": "2.3.1",
+    "monologue.js": "0.3.3",
+    "mout": "0.11.0"
   },
   "devDependencies": {
-    "monologue.js": "0.3.3",
-    "mout": "0.11.0",
-    "gl-matrix": "2.3.1"
   },
   "scripts": {
     "build": "webpack",
