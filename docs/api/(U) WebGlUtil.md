@@ -118,3 +118,71 @@ free the created resources.
 The mapping between buffers and programs is done at creation time but if other
 mapping need to be done after the resource creation, this can be performed using
 that function.
+
+## TransformShader(shaderString, variableDict, config)
+
+This function can transform shader programs before they are compiled into
+a WebGL program in one of several ways.
+
+### String replacement
+
+The variableDict can contain key value mappings and this function will look
+for the keys (which must be surrounded by "${" and "}") in the shader string,
+and replace them with the values from the dictionary.  For example, if the
+variableDict contains the mapping `"MAX_COUNT" -> "7"`, then this function will
+look for instances of the string `"${MAX_COUNT}"` in the file and replace them
+with the value `"7"`.
+
+String replacement happens before any other kind of shader transformations,
+and the result of string replacement is then passed on to the next level of
+processing, loop unrolling.
+
+### Loop unrolling
+
+This function can unroll properly annotated loops within a shader source file.
+Insert a comment just before and after the loop and then pass
+`'inlineLoops': true` in the config argument to get loops unrolled before the
+shader source is compiled, but after string replacement has occurred.
+
+The comment preceeding the loop code in the shader source must take the form
+`"//@INLINE_LOOP (<variableName>, <minLoopIndex>, <maxLoopIndex>)"`,
+where `<minLoopIndex>` is the first loop variable value, and `<maxLoopIndex>`
+is the last loop index variable (but is not inclusive).  The comment after
+the loop code in the shader must take the form `"//@INLINE_LOOP"` to indicate
+the end of the block.
+
+Following is an example of an annotated loop and how it would be unrolled:
+
+GLSL loop code:
+
+```
+//@INLINE_LOOP (loopIdx, 0, 3)
+for (int loopIdx = 0; loopIdx < 3; ++loopIdx) {
+    if (loopIdx == someVariable) {
+        gl_FragColor = texture2D(someSampler[loopIdx], someTexCoord);
+    }
+}
+//@INLINE_LOOP
+```
+
+Unrolled loop:
+
+```
+    if (0 == someVariable) {
+        gl_FragColor = texture2D(someSampler[0], someTexCoord);
+    }
+
+    if (1 == someVariable) {
+        gl_FragColor = texture2D(someSampler[1], someTexCoord);
+    }
+
+    if (2 == someVariable) {
+        gl_FragColor = texture2D(someSampler[2], someTexCoord);
+    }
+```
+
+### Shader tranformation debugging
+
+In order to get the system to print out the transformed shader to the console
+log before compiling, pass `'debug': true` to the `TransformShader` function
+within the `config` argument.
