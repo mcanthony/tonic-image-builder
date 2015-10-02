@@ -3,13 +3,11 @@ precision mediump float;
 
 uniform sampler2D orderSampler;
 uniform sampler2D intensitySampler;
-uniform sampler2D layerColorSampler;
-uniform sampler2D lutSampler;
+uniform sampler2D layerColorSampler[6];
+uniform sampler2D lutSampler[6];
 
-uniform int activeLayer;
-uniform float activeLayerAlpha;
-//uniform float numberOfLayers;
-uniform vec2 activeLayerRange;
+uniform float layerAlpha[6];
+uniform vec2 layerRange[6];
 
 varying vec2 v_texCoord;
 
@@ -25,24 +23,26 @@ void main() {
     float orderSample = texture2D(orderSampler, v_texCoord).r;
     int order = int(orderSample * 255.0);
 
-    // float oc = affine(0.0, float(order), numberOfLayers, 0.0, 1.0);
-    // gl_FragColor = vec4(oc, oc, oc, 1.0);
-
     float intensity = texture2D(intensitySampler, v_texCoord).r;
+    bool foundOne = false;
 
-    if (order == activeLayer) {
-        float f = texture2D(layerColorSampler, v_texCoord).r;
-        if (f >= activeLayerRange[0] && f <= activeLayerRange[1]) {
-            vec2 lutTCoord = vec2(affine(activeLayerRange[0], f, activeLayerRange[1], 0.0, 1.0), 0.5);
-            vec4 color = texture2D(lutSampler, lutTCoord);
-            gl_FragColor = vec4(color.xyz * intensity, activeLayerAlpha);
-            // gl_FragColor = vec4(color.xyz, activeLayerAlpha);
-        } else {
-            gl_FragColor = vec4(1.0, 0.0, 0.0, 0.2);
-            //discard;
+    for (int i = 0; i < 6; ++i) {
+        if (i == order) {
+            foundOne = true;
+            float f = texture2D(layerColorSampler[i], v_texCoord).r;
+            if (f >= layerRange[i][0] && f <= layerRange[i][1]) {
+                vec2 lutTCoord = vec2(affine(layerRange[i][0], f, layerRange[i][1], 0.0, 1.0), 0.5);
+                vec4 color = texture2D(lutSampler[i], lutTCoord);
+                gl_FragColor = vec4(color.xyz * intensity, layerAlpha[i]);
+            } else {
+                // Debug: Any cyan indicates we don't truly know the range of our scalars
+                gl_FragColor = vec4(1.0, 0.0, 1.0, 0.2);
+                //discard;
+            }
         }
-    } else {
-        //gl_FragColor = vec4(0.0, 1.0, 0.0, 0.2);
+    }
+
+    if (foundOne == false) {
         discard;
     }
 }
