@@ -44,7 +44,7 @@
 
       <div class="header">
         
-          <h1>index.js</h1>
+          <h1>addLitLayerColor.c</h1>
         
 
         
@@ -376,13 +376,145 @@
         
         
         
-          <div class='highlight'><pre><span class="hljs-keyword">var</span> CanvasOffscreenBuffer = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./CanvasOffscreenBuffer'</span>),
-    WebGl = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./WebGl'</span>);
+          <div class='highlight'><pre>
+precision mediump <span class="hljs-keyword">float</span>;
 
-<span class="hljs-keyword">export</span> {
-    CanvasOffscreenBuffer,
-    WebGl
-};</pre></div>
+uniform sampler2D orderSampler;
+uniform sampler2D normalSampler;
+uniform sampler2D layerColorSampler[${SIMULTANEOUS_LAYERS}];
+uniform sampler2D lutSampler[${SIMULTANEOUS_LAYERS}];
+
+uniform <span class="hljs-keyword">float</span> layerAlpha[${SIMULTANEOUS_LAYERS}];
+uniform vec2 layerRange[${SIMULTANEOUS_LAYERS}];
+
+uniform <span class="hljs-keyword">int</span> orderOffset;
+
+uniform vec4 lightDir;
+uniform vec4 lightColor;
+uniform vec4 lightTerms;
+
+varying vec2 v_texCoord;
+
+<span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">affine</span><span class="hljs-params">(<span class="hljs-keyword">float</span> inMin, <span class="hljs-keyword">float</span> val, <span class="hljs-keyword">float</span> inMax, <span class="hljs-keyword">float</span> outMin, <span class="hljs-keyword">float</span> outMax)</span> </span>{
+    <span class="hljs-keyword">return</span> (((val - inMin) / (inMax - inMin)) * (outMax - outMin)) + outMin;
+}
+
+<span class="hljs-function">vec4 <span class="hljs-title">unpackNormal</span><span class="hljs-params">(vec4 packedNormal)</span> </span>{
+    vec4 normal = vec4((packedNormal.xy * <span class="hljs-number">2.0</span>) - <span class="hljs-number">1.0</span>, packedNormal.z, <span class="hljs-number">0.0</span>);
+    <span class="hljs-keyword">return</span> normalize(normal);
+}</pre></div>
+        
+      
+        
+        <p>Main shader execution function</p>
+
+        
+          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{</pre></div>
+        
+      
+        
+        <p>Look up the layer number to which this pixel corresponds</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">float</span> orderSample = texture2D(orderSampler, v_texCoord).r;
+    <span class="hljs-keyword">int</span> order = <span class="hljs-keyword">int</span>(orderSample * <span class="hljs-number">255.0</span>) - orderOffset;
+
+    <span class="hljs-keyword">bool</span> foundOne = <span class="hljs-literal">false</span>;</pre></div>
+        
+      
+        
+        <p>@INLINE_LOOP (loopIdx, 0, ${SIMULTANEOUS_LAYERS})</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> loopIdx = <span class="hljs-number">0</span>; loopIdx &lt; ${SIMULTANEOUS_LAYERS}; ++loopIdx) {
+        <span class="hljs-keyword">if</span> (loopIdx == order) {
+            <span class="hljs-keyword">float</span> f = texture2D(layerColorSampler[loopIdx], v_texCoord).r;
+            <span class="hljs-keyword">if</span> (f &gt;= layerRange[loopIdx][<span class="hljs-number">0</span>] &amp;&amp; f &lt;= layerRange[loopIdx][<span class="hljs-number">1</span>]) {</pre></div>
+        
+      
+        
+        <p>If the scalar value is in range (not NaN) we first do the scalar lookup</p>
+
+        
+          <div class='highlight'><pre>                vec2 lutTCoord = vec2(affine(layerRange[loopIdx][<span class="hljs-number">0</span>], f, layerRange[loopIdx][<span class="hljs-number">1</span>], <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>), <span class="hljs-number">0.5</span>);
+                vec4 lutColor = texture2D(lutSampler[loopIdx], lutTCoord);</pre></div>
+        
+      
+        
+        <p>———– begin lighting bits ————</p>
+
+        
+          <div class='highlight'><pre>
+                vec4 packedNormal = texture2D(normalSampler, v_texCoord);
+                vec4 normal = unpackNormal(packedNormal);
+
+                <span class="hljs-keyword">float</span> ka = lightTerms[<span class="hljs-number">0</span>];
+                <span class="hljs-keyword">float</span> kd = lightTerms[<span class="hljs-number">1</span>];
+                <span class="hljs-keyword">float</span> ks = lightTerms[<span class="hljs-number">2</span>];
+                <span class="hljs-keyword">float</span> alpha = lightTerms[<span class="hljs-number">3</span>];
+
+                vec4 vDir = vec4(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>);
+                vec4 lDir = normalize(lightDir);</pre></div>
+        
+      
+        
+        <p>Calculate ambient term</p>
+
+        
+          <div class='highlight'><pre>                vec4 ambientColor = lutColor * ka;</pre></div>
+        
+      
+        
+        <p>This will be used in both diffuse and specular terms</p>
+
+        
+          <div class='highlight'><pre>                <span class="hljs-keyword">float</span> lDotN = dot(lDir, normal);</pre></div>
+        
+      
+        
+        <p>Calculate diffuse term</p>
+
+        
+          <div class='highlight'><pre>                vec4 diffuseColor = kd * lutColor * lDotN;</pre></div>
+        
+      
+        
+        <p>Calculate specular term</p>
+
+        
+          <div class='highlight'><pre>                vec4 R = (normal * 2.0 * lDotN) - lDir;
+                float specularTerm = ks * pow(dot(R, vDir), alpha);
+                vec4 specularColor = lightColor * specularTerm; // * step(-lDotN, 0.0);</pre></div>
+        
+      
+        
+        <p>Clamp them individually and sum them up</p>
+
+        
+          <div class='highlight'><pre>                vec3 fColor = clamp(ambientColor.rgb, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>) + clamp(diffuseColor.rgb, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>) + clamp(specularColor.rgb, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>);</pre></div>
+        
+      
+        
+        <p>———– end lighting bits ————</p>
+
+        
+          <div class='highlight'><pre>
+                foundOne = <span class="hljs-literal">true</span>;
+                gl_FragColor = vec4(fColor.rgb, layerAlpha[loopIdx]);
+            }
+        }
+    }</pre></div>
+        
+      
+        
+        <p>@INLINE_LOOP</p>
+
+        
+          <div class='highlight'><pre>
+    <span class="hljs-keyword">if</span> (foundOne == <span class="hljs-literal">false</span>) {
+        discard;
+    }
+}</pre></div>
         
       
     </div>

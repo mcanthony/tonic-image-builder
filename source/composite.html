@@ -44,7 +44,7 @@
 
       <div class="header">
         
-          <h1>compositeJpgFragment.c</h1>
+          <h1>composite.c</h1>
         
 
         
@@ -56,6 +56,76 @@
                 <li>
                   <a class="source" href="index.html">
                     index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="colorByHelper.html">
+                    colorByHelper.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="cpu-compositor.html">
+                    cpu-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="gpu-compositor.html">
+                    gpu-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="addLayerColor.html">
+                    addLayerColor.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="addLitLayerColor.html">
+                    addLitLayerColor.c
                   </a>
                 </li>
               
@@ -110,50 +180,36 @@
               
                 
                 <li>
-                  <a class="source" href="backgroundFragment.html">
-                    backgroundFragment.c
+                  <a class="source" href="background.html">
+                    background.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeFragment.html">
-                    compositeFragment.c
+                  <a class="source" href="composite.html">
+                    composite.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeJpgFragment.html">
-                    compositeJpgFragment.c
+                  <a class="source" href="compositeLight.html">
+                    compositeLight.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeLightFragment.html">
-                    compositeLightFragment.c
+                  <a class="source" href="compositeLut.html">
+                    compositeLut.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeLutFragment.html">
-                    compositeLutFragment.c
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="displayFragment.html">
-                    displayFragment.c
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="basicVertex.html">
-                    basicVertex.c
+                  <a class="source" href="display.html">
+                    display.c
                   </a>
                 </li>
               
@@ -161,6 +217,48 @@
                 <li>
                   <a class="source" href="sxyz-light-compositor.html">
                     sxyz-light-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="alphaBlend.html">
+                    alphaBlend.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="display.html">
+                    display.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="rgbaColor.html">
+                    rgbaColor.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="sorted-volume-compositor-cpu.html">
+                    sorted-volume-compositor-cpu.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="sorted-volume-compositor-gpu.html">
+                    sorted-volume-compositor-gpu.js
                   </a>
                 </li>
               
@@ -257,6 +355,13 @@
               
                 
                 <li>
+                  <a class="source" href="basic.html">
+                    basic.c
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="index.html">
                     index.js
                   </a>
@@ -276,7 +381,6 @@ precision mediump <span class="hljs-keyword">float</span>;
 
 uniform sampler2D compositeSampler;
 uniform sampler2D layerSampler;
-uniform sampler2D depthSampler;
 varying vec2 v_texCoord;
 
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{</pre></div>
@@ -294,31 +398,30 @@ varying vec2 v_texCoord;
 
         
           <div class='highlight'><pre>    vec4 compColor = texture2D(layerSampler, v_texCoord);
-    vec4 depthColor = texture2D(depthSampler, v_texCoord);</pre></div>
-        
-      
-        
-        <p>Choose the fragment with the greater depth value</p>
-
-        
-          <div class='highlight'><pre>    <span class="hljs-keyword">if</span> (color.a &gt; depthColor.r) {
-        gl_FragColor = color;
-    } <span class="hljs-keyword">else</span> {
-        gl_FragColor = vec4(compColor.rgb, depthColor.r);
-    }
 
 <span class="hljs-comment">/*
 </span></pre></div>
         
       
         
+        <p>Choose the fragment with the greater depth value</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">if</span> (color.a &gt; compColor.a) {
+        gl_FragColor = color;
+    } <span class="hljs-keyword">else</span> {
+        gl_FragColor = compColor;
+    }
+*/</pre></div>
+        
+      
+        
         <p>Another way to choose the fragment with the greater depth value</p>
 
         
-          <div class='highlight'><pre>    <span class="hljs-keyword">float</span> stepVal = step((depthColor.r - color.a), <span class="hljs-number">0.0</span>);
-    vec3 c = (stepVal * color.rgb) + ((<span class="hljs-number">1.0</span> - stepVal) * compColor.rgb);
+          <div class='highlight'><pre>    <span class="hljs-keyword">float</span> stepVal = step((compColor.a - color.a), <span class="hljs-number">0.0</span>);
     gl_FragColor = (stepVal * color) + ((<span class="hljs-number">1.0</span> - stepVal) * compColor);
-*/
+
 }</pre></div>
         
       

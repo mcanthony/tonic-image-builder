@@ -44,7 +44,7 @@
 
       <div class="header">
         
-          <h1>index.js</h1>
+          <h1>display.c</h1>
         
 
         
@@ -376,13 +376,15 @@
         
         
         
-          <div class='highlight'><pre><span class="hljs-keyword">var</span> CanvasOffscreenBuffer = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./CanvasOffscreenBuffer'</span>),
-    WebGl = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./WebGl'</span>);
+          <div class='highlight'><pre>
+precision mediump <span class="hljs-keyword">float</span>;
 
-<span class="hljs-keyword">export</span> {
-    CanvasOffscreenBuffer,
-    WebGl
-};</pre></div>
+uniform sampler2D u_image;
+varying vec2 v_texCoord;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    gl_FragColor = texture2D(u_image, vec2(v_texCoord.x, <span class="hljs-number">1.0</span> - v_texCoord.y));
+}</pre></div>
         
       
     </div>

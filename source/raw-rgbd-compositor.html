@@ -82,6 +82,76 @@
               
                 
                 <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="colorByHelper.html">
+                    colorByHelper.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="cpu-compositor.html">
+                    cpu-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="gpu-compositor.html">
+                    gpu-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="addLayerColor.html">
+                    addLayerColor.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="addLitLayerColor.html">
+                    addLitLayerColor.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="CompositorFactory.html">
                     CompositorFactory.js
                   </a>
@@ -110,50 +180,36 @@
               
                 
                 <li>
-                  <a class="source" href="backgroundFragment.html">
-                    backgroundFragment.c
+                  <a class="source" href="background.html">
+                    background.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeFragment.html">
-                    compositeFragment.c
+                  <a class="source" href="composite.html">
+                    composite.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeJpgFragment.html">
-                    compositeJpgFragment.c
+                  <a class="source" href="compositeLight.html">
+                    compositeLight.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeLightFragment.html">
-                    compositeLightFragment.c
+                  <a class="source" href="compositeLut.html">
+                    compositeLut.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeLutFragment.html">
-                    compositeLutFragment.c
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="displayFragment.html">
-                    displayFragment.c
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="basicVertex.html">
-                    basicVertex.c
+                  <a class="source" href="display.html">
+                    display.c
                   </a>
                 </li>
               
@@ -161,6 +217,48 @@
                 <li>
                   <a class="source" href="sxyz-light-compositor.html">
                     sxyz-light-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="alphaBlend.html">
+                    alphaBlend.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="display.html">
+                    display.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="rgbaColor.html">
+                    rgbaColor.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="sorted-volume-compositor-cpu.html">
+                    sorted-volume-compositor-cpu.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="sorted-volume-compositor-gpu.html">
+                    sorted-volume-compositor-gpu.js
                   </a>
                 </li>
               
@@ -257,6 +355,13 @@
               
                 
                 <li>
+                  <a class="source" href="basic.html">
+                    basic.c
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="index.html">
                     index.js
                   </a>
@@ -320,13 +425,13 @@
           <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.glConfig = {
             programs: {
                 displayProgram: {
-                    vertexShader:   <span class="hljs-built_in">require</span>(<span class="hljs-string">'./shaders/vertex/basicVertex.c'</span>),
-                    fragmentShader: <span class="hljs-built_in">require</span>(<span class="hljs-string">'./shaders/fragment/displayFragment.c'</span>),
+                    vertexShader:   <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../util/WebGl/shaders/vertex/basic.c'</span>),
+                    fragmentShader: <span class="hljs-built_in">require</span>(<span class="hljs-string">'./shaders/fragment/display.c'</span>),
                     mapping: <span class="hljs-string">'default'</span>
                 },
                 compositeProgram: {
-                    vertexShader:   <span class="hljs-built_in">require</span>(<span class="hljs-string">'./shaders/vertex/basicVertex.c'</span>),
-                    fragmentShader: <span class="hljs-built_in">require</span>(<span class="hljs-string">'./shaders/fragment/compositeFragment.c'</span>),
+                    vertexShader:   <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../util/WebGl/shaders/vertex/basic.c'</span>),
+                    fragmentShader: <span class="hljs-built_in">require</span>(<span class="hljs-string">'./shaders/fragment/composite.c'</span>),
                     mapping: <span class="hljs-string">'default'</span>
                 }
             },

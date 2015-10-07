@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Tonic Image Builder</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="/tonic-image-builder/css/main.css">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+<header class="site-header">
+
+    <nav class="mobile-nav show-on-mobiles">
+        <a class="page-link" href="/tonic-image-builder/"><i class="fa fa-home fa-fw fa-lg"></i></a>
+        <a class="page-link" href="/tonic-image-builder/docs/home"><i class="fa fa-book fa-fw fa-lg"></i></a>
+        <a class="page-link" href="/tonic-image-builder/news"><i class="fa fa-newspaper-o fa-fw fa-lg"></i></a>
+    </nav>
+    <div class="wrapper">
+
+        <a class="site-title center-on-mobiles" href="/">
+            <img src="/tonic-image-builder/img/logo.png" height="40" alt="Logo">
+            Tonic Image Builder
+        </a>
+        <nav class="site-nav hide-on-mobiles">
+            <a href="#" class="menu-icon">
+                <svg viewBox="0 0 18 15">
+                    <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+                    <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+                    <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+                </svg>
+            </a>
+            <div class="trigger">
+                <a class="page-link" href="/tonic-image-builder/">Home</a>
+                <a class="page-link" href="/tonic-image-builder/docs/home">Docs</a>
+                <a class="page-link" href="/tonic-image-builder/news">News</a>
+            </div>
+        </nav>
+    </div>
+
+</header>
+
+  <div class="container">
+    <div class="page">
+
+      <div class="header">
+        
+          <h1>gpu-compositor.js</h1>
+        
+
+        
+          <div class="toc">
+            <h3>Table of Contents</h3>
+            <ol>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="colorByHelper.html">
+                    colorByHelper.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="cpu-compositor.html">
+                    cpu-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="gpu-compositor.html">
+                    gpu-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="addLayerColor.html">
+                    addLayerColor.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="addLitLayerColor.html">
+                    addLitLayerColor.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="CompositorFactory.html">
+                    CompositorFactory.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="raw-rgbd-compositor.html">
+                    raw-rgbd-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="rgbd-compositor.html">
+                    rgbd-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="background.html">
+                    background.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="composite.html">
+                    composite.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="compositeLight.html">
+                    compositeLight.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="compositeLut.html">
+                    compositeLut.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="display.html">
+                    display.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="sxyz-light-compositor.html">
+                    sxyz-light-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="alphaBlend.html">
+                    alphaBlend.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="display.html">
+                    display.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="rgbaColor.html">
+                    rgbaColor.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="sorted-volume-compositor-cpu.html">
+                    sorted-volume-compositor-cpu.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="sorted-volume-compositor-gpu.html">
+                    sorted-volume-compositor-gpu.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="LookupTable.html">
+                    LookupTable.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="LookupTableManager.html">
+                    LookupTableManager.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="Presets.html">
+                    Presets.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="test-lookuptable.html">
+                    test-lookuptable.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="basic.html">
+                    basic.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+            </ol>
+          </div>
+        
+      </div>
+
+      
+        
+        
+        
+          <div class='highlight'><pre><span class="hljs-keyword">var</span> CanvasOffscreenBuffer = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../util/CanvasOffscreenBuffer'</span>),
+    WebGlUtil = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../util/WebGl'</span>),
+    vec4 = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gl-matrix/src/gl-matrix/vec4.js'</span>),
+    vec2 = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gl-matrix/src/gl-matrix/vec2.js'</span>),
+    merge = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mout/src/object/merge'</span>),
+    texParameter = [
+        [<span class="hljs-string">'TEXTURE_MAG_FILTER'</span>, <span class="hljs-string">'NEAREST'</span>], [<span class="hljs-string">'TEXTURE_MIN_FILTER'</span>, <span class="hljs-string">'NEAREST'</span>],
+        [<span class="hljs-string">'TEXTURE_WRAP_S'</span>, <span class="hljs-string">'CLAMP_TO_EDGE'</span>], [<span class="hljs-string">'TEXTURE_WRAP_T'</span>, <span class="hljs-string">'CLAMP_TO_EDGE'</span>]
+    ],
+    pixelStore = [ [ <span class="hljs-string">'UNPACK_FLIP_Y_WEBGL'</span>, <span class="hljs-literal">true</span> ] ],
+    align1PixelStore = [ [ <span class="hljs-string">'UNPACK_FLIP_Y_WEBGL'</span>, <span class="hljs-literal">true</span> ], [ <span class="hljs-string">'UNPACK_ALIGNMENT'</span>, <span class="hljs-number">1</span> ] ],
+    EMPTY_LAYER_BUFFER = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>([ <span class="hljs-number">0.0</span> ]);
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">GPUCompositor</span>(<span class="hljs-params">queryDataModel, imageBuilder, colorHelper</span>) </span>{
+    <span class="hljs-keyword">this</span>.queryDataModel = queryDataModel;
+    <span class="hljs-keyword">this</span>.imageBuilder = imageBuilder;
+    <span class="hljs-keyword">this</span>.metadata = <span class="hljs-keyword">this</span>.queryDataModel.originalData.SortedComposite;
+    <span class="hljs-keyword">this</span>.colorHelper = colorHelper;
+    <span class="hljs-keyword">this</span>.orderData = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">this</span>.intensityData = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">this</span>.numLayers = <span class="hljs-keyword">this</span>.metadata.layers;
+
+    <span class="hljs-keyword">this</span>.defaultIntensityData = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>([<span class="hljs-number">255</span>]);
+    <span class="hljs-keyword">this</span>.intensitySize = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ];
+    <span class="hljs-keyword">this</span>.hasIntensity = <span class="hljs-literal">false</span>;
+
+    <span class="hljs-keyword">this</span>.hasNormal = <span class="hljs-literal">false</span>;
+
+    <span class="hljs-keyword">this</span>.defaultLayerBufferView = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>([<span class="hljs-number">0.0</span>]);
+    <span class="hljs-keyword">this</span>.layerBufferViewSize = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ];
+
+    <span class="hljs-keyword">this</span>.width = <span class="hljs-keyword">this</span>.metadata.dimensions[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">this</span>.height = <span class="hljs-keyword">this</span>.metadata.dimensions[<span class="hljs-number">1</span>];
+
+    <span class="hljs-keyword">this</span>.lightProperties = {
+        <span class="hljs-string">'lightTerms'</span>: {
+            ka: <span class="hljs-number">0.1</span>,
+            kd: <span class="hljs-number">0.6</span>,
+            ks: <span class="hljs-number">0.3</span>,
+            alpha: <span class="hljs-number">20</span>
+        },
+        <span class="hljs-string">'lightPosition'</span>: {
+            x: -<span class="hljs-number">1</span>,
+            y: <span class="hljs-number">1</span>
+        },
+        <span class="hljs-string">'lightColor'</span>: [ <span class="hljs-number">0.8</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.8</span> ]
+    };
+
+    <span class="hljs-keyword">this</span>.glCanvas = <span class="hljs-keyword">new</span> CanvasOffscreenBuffer(<span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);</pre></div>
+        
+      
+        
+        <p>Inialize GL context</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.gl = <span class="hljs-keyword">this</span>.glCanvas.get3DContext();
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.gl) {
+      <span class="hljs-built_in">console</span>.error(<span class="hljs-string">"Unable to get WebGl context"</span>);
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    }</pre></div>
+        
+      
+        
+        <p>Set clear color to white, fully transparent</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.gl.clearColor(<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>);
+
+    <span class="hljs-keyword">var</span> maxTextureUnits = <span class="hljs-keyword">this</span>.gl.getParameter(<span class="hljs-keyword">this</span>.gl.MAX_TEXTURE_IMAGE_UNITS),
+        simultaneousLayers = (maxTextureUnits - <span class="hljs-number">2</span>) / <span class="hljs-number">2</span>;
+
+    <span class="hljs-keyword">this</span>.shaderLayers = simultaneousLayers &lt; <span class="hljs-keyword">this</span>.numLayers ? simultaneousLayers : <span class="hljs-keyword">this</span>.numLayers
+
+    <span class="hljs-keyword">this</span>.lutData = []
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-keyword">this</span>.shaderLayers; ++i) {
+        <span class="hljs-keyword">this</span>.lutData.push(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(<span class="hljs-number">256</span> * <span class="hljs-number">4</span>));
+    }</pre></div>
+        
+      
+        
+        <p>Set up GL resources</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.glConfig = {
+            programs: {
+                displayProgram: {
+                    vertexShader:   <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../util/WebGl/shaders/vertex/basic.c'</span>),
+                    fragmentShader: <span class="hljs-built_in">require</span>(<span class="hljs-string">'../WebGlSortedComposite/shaders/fragment/display.c'</span>),
+                    mapping: <span class="hljs-string">'default'</span>
+                },
+                colorProgram: {
+                    vertexShader:   <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../util/WebGl/shaders/vertex/basic.c'</span>),
+                    fragmentShader: WebGlUtil.TransformShader(<span class="hljs-built_in">require</span>(<span class="hljs-string">'./shaders/fragment/addLayerColor.c'</span>),
+                                                              {<span class="hljs-string">'SIMULTANEOUS_LAYERS'</span>: <span class="hljs-keyword">this</span>.shaderLayers},
+                                                              {<span class="hljs-string">'inlineLoops'</span>: <span class="hljs-literal">true</span>}),
+                    mapping: <span class="hljs-string">'default'</span>
+                },
+                lightColorProgram: {
+                    vertexShader:   <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../util/WebGl/shaders/vertex/basic.c'</span>),
+                    fragmentShader: WebGlUtil.TransformShader(<span class="hljs-built_in">require</span>(<span class="hljs-string">'./shaders/fragment/addLitLayerColor.c'</span>),
+                                                              {<span class="hljs-string">'SIMULTANEOUS_LAYERS'</span>: <span class="hljs-keyword">this</span>.shaderLayers},
+                                                              {<span class="hljs-string">'inlineLoops'</span>: <span class="hljs-literal">true</span>}),
+                    mapping: <span class="hljs-string">'default'</span>
+                },
+                blendProgram: {
+                    vertexShader:   <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../util/WebGl/shaders/vertex/basic.c'</span>),
+                    fragmentShader: <span class="hljs-built_in">require</span>(<span class="hljs-string">'../WebGlSortedComposite/shaders/fragment/alphaBlend.c'</span>),
+                    mapping: <span class="hljs-string">'default'</span>
+                }
+            },
+            resources: {
+                buffers: [
+                    {
+                        id: <span class="hljs-string">'texCoord'</span>,
+                        data: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>([
+                          <span class="hljs-number">0.0</span>,  <span class="hljs-number">0.0</span>,
+                          <span class="hljs-number">1.0</span>,  <span class="hljs-number">0.0</span>,
+                          <span class="hljs-number">0.0</span>,  <span class="hljs-number">1.0</span>,
+                          <span class="hljs-number">0.0</span>,  <span class="hljs-number">1.0</span>,
+                          <span class="hljs-number">1.0</span>,  <span class="hljs-number">0.0</span>,
+                          <span class="hljs-number">1.0</span>,  <span class="hljs-number">1.0</span>
+                        ])
+                    },{
+                        id: <span class="hljs-string">'posCoord'</span>,
+                        data: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>([
+                          -<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>,
+                           <span class="hljs-number">1</span>, -<span class="hljs-number">1</span>,
+                          -<span class="hljs-number">1</span>,  <span class="hljs-number">1</span>,
+                          -<span class="hljs-number">1</span>,  <span class="hljs-number">1</span>,
+                           <span class="hljs-number">1</span>, -<span class="hljs-number">1</span>,
+                           <span class="hljs-number">1</span>,  <span class="hljs-number">1</span>
+                        ])
+                    }
+                ],
+                textures: [
+                    { id: <span class="hljs-string">'orderTexture'</span>,       pixelStore: align1PixelStore, texParameter },
+                    { id: <span class="hljs-string">'intensityTexture'</span>,   pixelStore: align1PixelStore, texParameter },
+                    { id: <span class="hljs-string">'ping'</span>,               pixelStore, texParameter },
+                    { id: <span class="hljs-string">'pong'</span>,               pixelStore, texParameter },
+                    { id: <span class="hljs-string">'colorRenderTexture'</span>, pixelStore, texParameter }
+                ],
+                framebuffers: [
+                    {
+                        id: <span class="hljs-string">'ping'</span>,
+                        width: <span class="hljs-keyword">this</span>.width,
+                        height: <span class="hljs-keyword">this</span>.height
+                    },{
+                        id: <span class="hljs-string">'pong'</span>,
+                        width: <span class="hljs-keyword">this</span>.width,
+                        height: <span class="hljs-keyword">this</span>.height
+                    },{
+                        id: <span class="hljs-string">'colorFbo'</span>,
+                        width: <span class="hljs-keyword">this</span>.width,
+                        height: <span class="hljs-keyword">this</span>.height
+                    }
+                ]
+            },
+            mappings: {
+                <span class="hljs-keyword">default</span>: [
+                    { id: <span class="hljs-string">'posCoord'</span>, name: <span class="hljs-string">'positionLocation'</span>, attribute: <span class="hljs-string">'a_position'</span>, format: [ <span class="hljs-number">2</span>, <span class="hljs-keyword">this</span>.gl.FLOAT, <span class="hljs-literal">false</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ] },
+                    { id: <span class="hljs-string">'texCoord'</span>, name: <span class="hljs-string">'texCoordLocation'</span>, attribute: <span class="hljs-string">'a_texCoord'</span>, format: [ <span class="hljs-number">2</span>, <span class="hljs-keyword">this</span>.gl.FLOAT, <span class="hljs-literal">false</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span> ] }
+                ]
+            }
+        };
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-keyword">this</span>.shaderLayers; ++i) {
+        <span class="hljs-keyword">this</span>.glConfig.resources.textures.push({ id: <span class="hljs-string">'layerColorSampler_'</span> + i,   pixelStore: align1PixelStore, texParameter });
+        <span class="hljs-keyword">this</span>.glConfig.resources.textures.push({ id: <span class="hljs-string">'lutSampler_'</span> + i,   pixelStore: [[ <span class="hljs-string">'UNPACK_ALIGNMENT'</span>, <span class="hljs-number">1</span> ]], texParameter });
+    }
+
+    <span class="hljs-keyword">this</span>.glResources = WebGlUtil.createGLResources(<span class="hljs-keyword">this</span>.gl, <span class="hljs-keyword">this</span>.glConfig);
+
+    <span class="hljs-keyword">this</span>.gl.disable(<span class="hljs-keyword">this</span>.gl.DEPTH_TEST);
+    <span class="hljs-keyword">this</span>.gl.disable(<span class="hljs-keyword">this</span>.gl.BLEND);
+
+    <span class="hljs-keyword">var</span> singleFloat = <span class="hljs-keyword">this</span>.gl.getExtension(<span class="hljs-string">'OES_texture_float'</span>);
+    <span class="hljs-keyword">if</span> (singleFloat === <span class="hljs-literal">null</span>) {
+        <span class="hljs-built_in">console</span>.err(<span class="hljs-string">"Your browser does not support the WebGL Extension 'OES_texture_float', this compositor will not work!"</span>);
+    }
+
+    WebGlUtil.bindTextureToFramebuffer(<span class="hljs-keyword">this</span>.gl, <span class="hljs-keyword">this</span>.glResources.framebuffers.colorFbo, <span class="hljs-keyword">this</span>.glResources.textures.colorRenderTexture);
+
+    <span class="hljs-keyword">this</span>.pingPong = <span class="hljs-keyword">new</span> WebGlUtil.PingPong( <span class="hljs-keyword">this</span>.gl,
+        [ <span class="hljs-keyword">this</span>.glResources.framebuffers.ping, <span class="hljs-keyword">this</span>.glResources.framebuffers.pong ],
+        [ <span class="hljs-keyword">this</span>.glResources.textures.ping,     <span class="hljs-keyword">this</span>.glResources.textures.pong ]
+    );
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+GPUCompositor.prototype.updateData = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
+    <span class="hljs-keyword">this</span>.orderData = data.order.data;
+
+    <span class="hljs-keyword">if</span> (data.intensity) {
+        <span class="hljs-keyword">this</span>.intensitySize = [ <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height ];
+        <span class="hljs-keyword">this</span>.intensityData = data.intensity.data;
+        <span class="hljs-keyword">this</span>.hasIntensity = <span class="hljs-literal">true</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">this</span>.intensitySize = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ];
+        <span class="hljs-keyword">this</span>.intensityData = <span class="hljs-keyword">this</span>.defaultIntensityData;
+        <span class="hljs-keyword">this</span>.hasIntensity = <span class="hljs-literal">false</span>;
+    }
+
+    <span class="hljs-keyword">if</span> (data.normal) {
+        <span class="hljs-keyword">this</span>.normalData = data.normal.data;
+        <span class="hljs-keyword">this</span>.hasNormal = <span class="hljs-literal">true</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">this</span>.normalData = <span class="hljs-literal">null</span>;
+        <span class="hljs-keyword">this</span>.hasNormal = <span class="hljs-literal">false</span>;
+    }
+};</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+GPUCompositor.prototype.extractLayerData = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">buffer, layerIndex, pixelSize</span>) </span>{
+  <span class="hljs-keyword">var</span> offset = layerIndex * <span class="hljs-keyword">this</span>.width * <span class="hljs-keyword">this</span>.height * pixelSize,
+      length = <span class="hljs-keyword">this</span>.width * <span class="hljs-keyword">this</span>.height * pixelSize;
+
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(buffer, offset, length);
+};</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+GPUCompositor.prototype.getAndUseCurrentColorProgram = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+   <span class="hljs-keyword">var</span> currentProgram = <span class="hljs-keyword">this</span>.glResources.programs.colorProgram;</pre></div>
+        
+      
+        
+        <p>Using the coloring shader program</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.hasNormal) {
+        currentProgram = <span class="hljs-keyword">this</span>.glResources.programs.lightColorProgram;
+    }
+
+    <span class="hljs-keyword">this</span>.gl.useProgram(currentProgram);
+
+    <span class="hljs-keyword">return</span> currentProgram;
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+GPUCompositor.prototype.uploadLayerTextures = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">minIdx, maxIdx</span>) </span>{
+    <span class="hljs-keyword">var</span> layerColorUnits = [],
+        lutUnits = [],
+        texCount = <span class="hljs-number">2</span>,
+        bufferViewSizeList = [],
+        bufferViewList = [],
+        ranges = [],
+        alphas = [],
+        currentLutIndex = <span class="hljs-number">0</span>;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> activeLayerIdx = minIdx; activeLayerIdx &lt;= maxIdx; ++activeLayerIdx) {
+        <span class="hljs-keyword">var</span> lut = <span class="hljs-keyword">this</span>.colorHelper.getLayerLut(activeLayerIdx),
+            colorByName = <span class="hljs-keyword">this</span>.colorHelper.getLayerColorByName(activeLayerIdx),
+            range = <span class="hljs-keyword">this</span>.metadata.ranges[colorByName];
+
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.colorHelper.getLayerVisible(activeLayerIdx)) {
+            <span class="hljs-keyword">var</span> layerBufferView = <span class="hljs-keyword">this</span>.colorHelper.getLayerFloatData(activeLayerIdx);
+            <span class="hljs-keyword">if</span> (layerBufferView) {
+                bufferViewList.push(layerBufferView);
+                bufferViewSizeList.push([ <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height ]);
+            } <span class="hljs-keyword">else</span> {
+                bufferViewList.push(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>([ <span class="hljs-keyword">this</span>.findLayerConstantValue(activeLayerIdx) ]));
+                bufferViewSizeList.push([ <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ]);
+            }
+
+            ranges.push(range[<span class="hljs-number">0</span>]);
+            ranges.push(range[<span class="hljs-number">1</span>]);
+        } <span class="hljs-keyword">else</span> {</pre></div>
+        
+      
+        
+        <p>We only need these as placeholders so that the indices match up in the shader</p>
+
+        
+          <div class='highlight'><pre>            bufferViewList.push(EMPTY_LAYER_BUFFER);
+            bufferViewSizeList.push([ <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ]);
+
+            ranges.push(-<span class="hljs-number">1.0</span>);
+            ranges.push(-<span class="hljs-number">1.0</span>);
+        }
+
+        alphas.push(<span class="hljs-keyword">this</span>.colorHelper.getLayerAlpha(activeLayerIdx));
+
+        <span class="hljs-keyword">this</span>.sampleLookupTable(lut, colorByName, range, currentLutIndex++);</pre></div>
+        
+      
+        
+        <p>Set up array of texture units to use for layer color textures</p>
+
+        
+          <div class='highlight'><pre>        layerColorUnits.push(texCount);
+        lutUnits.push(texCount + <span class="hljs-keyword">this</span>.shaderLayers);
+        texCount += <span class="hljs-number">1</span>;
+    }
+
+    <span class="hljs-keyword">var</span> currentProgram = <span class="hljs-keyword">this</span>.getAndUseCurrentColorProgram();</pre></div>
+        
+      
+        
+        <p>Set up the color by textures</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">var</span> colorByLoc = <span class="hljs-keyword">this</span>.gl.getUniformLocation(currentProgram, <span class="hljs-string">"layerColorSampler"</span>);
+    <span class="hljs-keyword">this</span>.gl.uniform1iv(colorByLoc, layerColorUnits);
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; layerColorUnits.length; ++i) {
+        <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + layerColorUnits[i]);
+        <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-keyword">this</span>.glResources.textures[<span class="hljs-string">"layerColorSampler_"</span> + i]);
+        <span class="hljs-keyword">var</span> lbvw = bufferViewSizeList[i][<span class="hljs-number">0</span>];
+        <span class="hljs-keyword">var</span> lbvh = bufferViewSizeList[i][<span class="hljs-number">1</span>];
+        <span class="hljs-keyword">this</span>.gl.texImage2D(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.gl.LUMINANCE, lbvw, lbvh, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.gl.LUMINANCE, <span class="hljs-keyword">this</span>.gl.FLOAT, bufferViewList[i]);
+    }</pre></div>
+        
+      
+        
+        <p>Set up the lut samplers</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">var</span> lutLoc = <span class="hljs-keyword">this</span>.gl.getUniformLocation(currentProgram, <span class="hljs-string">"lutSampler"</span>);
+    <span class="hljs-keyword">this</span>.gl.uniform1iv(lutLoc, lutUnits);
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; lutUnits.length; ++i) {
+        <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + lutUnits[i]);
+        <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-keyword">this</span>.glResources.textures[<span class="hljs-string">"lutSampler_"</span> + i]);
+        <span class="hljs-keyword">this</span>.gl.texImage2D(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.gl.RGBA, <span class="hljs-number">256</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.gl.RGBA, <span class="hljs-keyword">this</span>.gl.UNSIGNED_BYTE, <span class="hljs-keyword">this</span>.lutData[i]);
+    }</pre></div>
+        
+      
+        
+        <p>Set up the ranges</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">var</span> rangeLoc = <span class="hljs-keyword">this</span>.gl.getUniformLocation(currentProgram, <span class="hljs-string">"layerRange"</span>);
+    <span class="hljs-keyword">this</span>.gl.uniform2fv(rangeLoc, ranges);</pre></div>
+        
+      
+        
+        <p>Set up the alphas</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">var</span> alphaLoc = <span class="hljs-keyword">this</span>.gl.getUniformLocation(currentProgram, <span class="hljs-string">"layerAlpha"</span>);
+    <span class="hljs-keyword">this</span>.gl.uniform1fv(alphaLoc, alphas);
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+GPUCompositor.prototype.render = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.orderData) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    }
+
+    <span class="hljs-keyword">var</span> imageSize = <span class="hljs-keyword">this</span>.width * <span class="hljs-keyword">this</span>.height,
+        height = <span class="hljs-keyword">this</span>.height,
+        width = <span class="hljs-keyword">this</span>.width;
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.shaderLayers &gt;= <span class="hljs-keyword">this</span>.numLayers) {
+        <span class="hljs-keyword">this</span>.uploadLayerTextures(<span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.numLayers - <span class="hljs-number">1</span>);
+        <span class="hljs-keyword">var</span> colorProgram = <span class="hljs-keyword">this</span>.getAndUseCurrentColorProgram();
+        <span class="hljs-keyword">var</span> offsetLoc = <span class="hljs-keyword">this</span>.gl.getUniformLocation(colorProgram, <span class="hljs-string">"orderOffset"</span>);
+        <span class="hljs-keyword">this</span>.gl.uniform1i(offsetLoc, <span class="hljs-number">0</span>);
+    }</pre></div>
+        
+      
+        
+        <p>Clear the ping pong fbo</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.pingPong.clearFbo();</pre></div>
+        
+      
+        
+        <p>Just iterate through all the layers in the data for now</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">var</span> layerIdx = <span class="hljs-keyword">this</span>.numLayers;
+    <span class="hljs-keyword">while</span> (layerIdx--) {
+        <span class="hljs-keyword">var</span> orderLayerArray = <span class="hljs-keyword">this</span>.extractLayerData(<span class="hljs-keyword">this</span>.orderData, layerIdx, <span class="hljs-number">1</span>),
+            lightingLayerArray = <span class="hljs-keyword">this</span>.extractLayerData(<span class="hljs-keyword">this</span>.intensityData, layerIdx, <span class="hljs-number">1</span>);
+
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.hasNormal) {
+            lightingLayerArray = <span class="hljs-keyword">this</span>.extractLayerData(<span class="hljs-keyword">this</span>.normalData, layerIdx, <span class="hljs-number">3</span>);
+        }
+
+        <span class="hljs-keyword">this</span>.gl.bindFramebuffer(<span class="hljs-keyword">this</span>.gl.FRAMEBUFFER, <span class="hljs-keyword">this</span>.glResources.framebuffers.colorFbo);
+        <span class="hljs-keyword">this</span>.gl.clear(<span class="hljs-keyword">this</span>.gl.COLOR_BUFFER_BIT);
+
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.shaderLayers &gt;= <span class="hljs-keyword">this</span>.numLayers) {
+            <span class="hljs-keyword">this</span>.drawColorPass(orderLayerArray, lightingLayerArray);
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> batchIndex = <span class="hljs-number">0</span>; batchIndex &lt; <span class="hljs-keyword">this</span>.numLayers; batchIndex += <span class="hljs-keyword">this</span>.shaderLayers) {
+                <span class="hljs-keyword">var</span> endIndex = batchIndex + (<span class="hljs-keyword">this</span>.shaderLayers - <span class="hljs-number">1</span>);
+                <span class="hljs-keyword">if</span> (endIndex &gt;= <span class="hljs-keyword">this</span>.numLayers) {
+                    endIndex = <span class="hljs-keyword">this</span>.numLayers - <span class="hljs-number">1</span>;
+                }
+
+                <span class="hljs-keyword">this</span>.uploadLayerTextures(batchIndex, endIndex);
+
+                <span class="hljs-keyword">var</span> colorProgram = <span class="hljs-keyword">this</span>.getAndUseCurrentColorProgram();
+                <span class="hljs-keyword">var</span> offsetLoc = <span class="hljs-keyword">this</span>.gl.getUniformLocation(colorProgram, <span class="hljs-string">"orderOffset"</span>);
+                <span class="hljs-keyword">this</span>.gl.uniform1i(offsetLoc, batchIndex);
+
+                <span class="hljs-keyword">this</span>.drawColorPass(orderLayerArray, lightingLayerArray);
+            }
+        }
+
+        <span class="hljs-keyword">this</span>.drawBlendPass();
+    }</pre></div>
+        
+      
+        
+        <p>Draw the result to the gl canvas</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.drawDisplayPass();
+
+    <span class="hljs-keyword">var</span> readyImage = {
+        canvas: <span class="hljs-keyword">this</span>.glCanvas.el,
+        area: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height],
+        outputSize: [<span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height],
+        builder: <span class="hljs-keyword">this</span>.imageBuilder,
+        <span class="hljs-built_in">arguments</span>: <span class="hljs-keyword">this</span>.queryDataModel.getQuery()
+    };
+
+    <span class="hljs-keyword">this</span>.imageBuilder.emit(<span class="hljs-keyword">this</span>.imageBuilder.IMAGE_READY_TOPIC, readyImage);
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+GPUCompositor.prototype.findLayerConstantValue = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layerIdx</span>) </span>{
+    <span class="hljs-keyword">var</span> colorByName = <span class="hljs-keyword">this</span>.colorHelper.getLayerColorByName(layerIdx),
+        colorBys = <span class="hljs-keyword">this</span>.metadata.pipeline[layerIdx].colorBy;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; colorBys.length; ++i) {
+            <span class="hljs-keyword">if</span> (colorBys[i].name === colorByName) {
+                <span class="hljs-keyword">return</span> colorBys[i].value;
+            }
+        }
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+GPUCompositor.prototype.sampleLookupTable = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">lut, colorBy, range, index</span>) </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">affine</span>(<span class="hljs-params">value, inMin, inMax, outMin, outMax</span>) </span>{
+        <span class="hljs-keyword">return</span> (((value - inMin) / (inMax - inMin)) * (outMax - outMin)) + outMin;
+    }
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">256</span>; ++i) {
+        <span class="hljs-keyword">var</span> scalarValue = affine(i, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>, range[<span class="hljs-number">0</span>], range[<span class="hljs-number">1</span>]);
+        <span class="hljs-keyword">var</span> color = lut.getColor(scalarValue);
+        <span class="hljs-keyword">this</span>.lutData[index][(i*<span class="hljs-number">4</span>)] = color[<span class="hljs-number">0</span>] * <span class="hljs-number">255</span>;
+        <span class="hljs-keyword">this</span>.lutData[index][(i*<span class="hljs-number">4</span>)+<span class="hljs-number">1</span>] = color[<span class="hljs-number">1</span>] * <span class="hljs-number">255</span>;
+        <span class="hljs-keyword">this</span>.lutData[index][(i*<span class="hljs-number">4</span>)+<span class="hljs-number">2</span>] = color[<span class="hljs-number">2</span>] * <span class="hljs-number">255</span>;
+        <span class="hljs-keyword">this</span>.lutData[index][(i*<span class="hljs-number">4</span>)+<span class="hljs-number">3</span>] = color[<span class="hljs-number">3</span>] * <span class="hljs-number">255</span>;
+    }
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+GPUCompositor.prototype.drawBlendPass = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</pre></div>
+        
+      
+        
+        <p>Draw to the ping pong fbo on this pass</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.bindFramebuffer(<span class="hljs-keyword">this</span>.gl.FRAMEBUFFER, <span class="hljs-keyword">this</span>.pingPong.getFramebuffer());</pre></div>
+        
+      
+        
+        <p>Use the alpha blending program for this pass</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.useProgram(<span class="hljs-keyword">this</span>.glResources.programs.blendProgram);
+
+  <span class="hljs-keyword">this</span>.gl.viewport(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);</pre></div>
+        
+      
+        
+        <p>Set up the ping pong render texture as the “under” layer</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">var</span> under = <span class="hljs-keyword">this</span>.gl.getUniformLocation(<span class="hljs-keyword">this</span>.glResources.programs.blendProgram, <span class="hljs-string">"underLayerSampler"</span>);
+  <span class="hljs-keyword">this</span>.gl.uniform1i(under, <span class="hljs-number">0</span>);
+  <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + <span class="hljs-number">0</span>);
+  <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-keyword">this</span>.pingPong.getRenderingTexture());</pre></div>
+        
+      
+        
+        <p>Set up the color fbo render texture as the “over” layer</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">var</span> over = <span class="hljs-keyword">this</span>.gl.getUniformLocation(<span class="hljs-keyword">this</span>.glResources.programs.blendProgram, <span class="hljs-string">"overLayerSampler"</span>);
+  <span class="hljs-keyword">this</span>.gl.uniform1i(over, <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + <span class="hljs-number">1</span>);
+  <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-keyword">this</span>.glResources.textures.colorRenderTexture);</pre></div>
+        
+      
+        
+        <p>Draw the rectangle.</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.drawArrays(<span class="hljs-keyword">this</span>.gl.TRIANGLES, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>);
+
+  <span class="hljs-keyword">this</span>.gl.finish();</pre></div>
+        
+      
+        
+        <p>Ping-pong</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.pingPong.swap();</pre></div>
+        
+      
+        
+        <p>Now unbind the textures we used</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">2</span>; i+=<span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + i);
+    <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-literal">null</span>);
+  }
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+GPUCompositor.prototype.drawDisplayPass = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</pre></div>
+        
+      
+        
+        <p>Draw to the screen framebuffer</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.bindFramebuffer(<span class="hljs-keyword">this</span>.gl.FRAMEBUFFER, <span class="hljs-literal">null</span>);</pre></div>
+        
+      
+        
+        <p>Using the display shader program</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.useProgram(<span class="hljs-keyword">this</span>.glResources.programs.displayProgram);
+
+  <span class="hljs-keyword">this</span>.gl.clear(<span class="hljs-keyword">this</span>.gl.COLOR_BUFFER_BIT);
+  <span class="hljs-keyword">this</span>.gl.viewport(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);</pre></div>
+        
+      
+        
+        <p>Set up the sampler uniform and bind the rendered texture</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">var</span> u_image = <span class="hljs-keyword">this</span>.gl.getUniformLocation(<span class="hljs-keyword">this</span>.glResources.programs.displayProgram, <span class="hljs-string">"u_image"</span>);
+  <span class="hljs-keyword">this</span>.gl.uniform1i(u_image, <span class="hljs-number">0</span>);
+  <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + <span class="hljs-number">0</span>);
+  <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-keyword">this</span>.pingPong.getRenderingTexture());</pre></div>
+        
+      
+        
+        <p>Draw the rectangle.</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.drawArrays(<span class="hljs-keyword">this</span>.gl.TRIANGLES, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>);
+
+  <span class="hljs-keyword">this</span>.gl.finish();</pre></div>
+        
+      
+        
+        <p>Unbind the single texture we used</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0);
+  <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-literal">null</span>);
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+GPUCompositor.prototype.drawColorPass = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">layerOrderData, layerLightingData</span>) </span>{</pre></div>
+        
+      
+        
+        <p>Draw to the color fbo on this pass</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.bindFramebuffer(<span class="hljs-keyword">this</span>.gl.FRAMEBUFFER, <span class="hljs-keyword">this</span>.glResources.framebuffers.colorFbo);
+
+  <span class="hljs-keyword">var</span> currentProgram = <span class="hljs-keyword">this</span>.glResources.programs.colorProgram;</pre></div>
+        
+      
+        
+        <p>Using the coloring shader program</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.hasNormal) {
+      currentProgram = <span class="hljs-keyword">this</span>.glResources.programs.lightColorProgram;
+  }
+
+  <span class="hljs-keyword">this</span>.gl.useProgram(currentProgram);</pre></div>
+        
+      
+        
+        <p>this.gl.clear(this.gl.COLOR_BUFFER_BIT);</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.viewport(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);
+
+  <span class="hljs-keyword">var</span> texCount = <span class="hljs-number">0</span>;</pre></div>
+        
+      
+        
+        <p>Set up the order layer texture</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">var</span> orderLayer = <span class="hljs-keyword">this</span>.gl.getUniformLocation(currentProgram, <span class="hljs-string">"orderSampler"</span>);
+  <span class="hljs-keyword">this</span>.gl.uniform1i(orderLayer, texCount);
+  <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + texCount);
+  texCount += <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-keyword">this</span>.glResources.textures.orderTexture);
+  <span class="hljs-keyword">this</span>.gl.texImage2D(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.gl.LUMINANCE, <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.gl.LUMINANCE, <span class="hljs-keyword">this</span>.gl.UNSIGNED_BYTE, layerOrderData);
+
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.hasNormal) {</pre></div>
+        
+      
+        
+        <p>Set up the intensity texture</p>
+
+        
+          <div class='highlight'><pre>      <span class="hljs-keyword">var</span> intensitySpriteLoc = <span class="hljs-keyword">this</span>.gl.getUniformLocation(currentProgram, <span class="hljs-string">"normalSampler"</span>);
+      <span class="hljs-keyword">this</span>.gl.uniform1i(intensitySpriteLoc, texCount);
+      <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + texCount);
+      texCount += <span class="hljs-number">1</span>;
+      <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-keyword">this</span>.glResources.textures.intensityTexture);
+      <span class="hljs-keyword">this</span>.gl.texImage2D(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.gl.RGB, <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.gl.RGB, <span class="hljs-keyword">this</span>.gl.UNSIGNED_BYTE, layerLightingData);
+
+      <span class="hljs-keyword">var</span> {lightTerms, lightPosition, lightColor} = <span class="hljs-keyword">this</span>.lightProperties;
+
+      <span class="hljs-keyword">var</span> lightDirection = vec4.fromValues(lightPosition.x, lightPosition.y, <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>);
+      <span class="hljs-keyword">var</span> ldir = <span class="hljs-keyword">this</span>.gl.getUniformLocation(currentProgram, <span class="hljs-string">"lightDir"</span>);
+      <span class="hljs-keyword">this</span>.gl.uniform4fv(ldir, lightDirection);
+
+      <span class="hljs-keyword">var</span> lightingConstants = vec4.fromValues(lightTerms.ka, lightTerms.kd, lightTerms.ks, lightTerms.alpha);
+      <span class="hljs-keyword">var</span> lterms = <span class="hljs-keyword">this</span>.gl.getUniformLocation(currentProgram, <span class="hljs-string">"lightTerms"</span>);
+      <span class="hljs-keyword">this</span>.gl.uniform4fv(lterms, lightingConstants);
+
+      <span class="hljs-keyword">var</span> lightCol = vec4.fromValues(lightColor[<span class="hljs-number">0</span>], lightColor[<span class="hljs-number">1</span>], lightColor[<span class="hljs-number">2</span>], <span class="hljs-number">1.0</span>);
+      <span class="hljs-keyword">var</span> lcolor = <span class="hljs-keyword">this</span>.gl.getUniformLocation(currentProgram, <span class="hljs-string">"lightColor"</span>);
+      <span class="hljs-keyword">this</span>.gl.uniform4fv(lcolor, lightCol);
+  } <span class="hljs-keyword">else</span> {</pre></div>
+        
+      
+        
+        <p>Set up the normal texture</p>
+
+        
+          <div class='highlight'><pre>      <span class="hljs-keyword">var</span> intensitySpriteLoc = <span class="hljs-keyword">this</span>.gl.getUniformLocation(currentProgram, <span class="hljs-string">"intensitySampler"</span>);
+      <span class="hljs-keyword">this</span>.gl.uniform1i(intensitySpriteLoc, texCount);
+      <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + texCount);
+      texCount += <span class="hljs-number">1</span>;
+      <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-keyword">this</span>.glResources.textures.intensityTexture);
+      <span class="hljs-keyword">this</span>.gl.texImage2D(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.gl.LUMINANCE, <span class="hljs-keyword">this</span>.intensitySize[<span class="hljs-number">0</span>], <span class="hljs-keyword">this</span>.intensitySize[<span class="hljs-number">1</span>], <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.gl.LUMINANCE, <span class="hljs-keyword">this</span>.gl.UNSIGNED_BYTE, layerLightingData);
+  }</pre></div>
+        
+      
+        
+        <p>Draw the rectangle.</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">this</span>.gl.drawArrays(<span class="hljs-keyword">this</span>.gl.TRIANGLES, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>);
+
+  <span class="hljs-keyword">this</span>.gl.finish();</pre></div>
+        
+      
+        
+        <p>Now unbind the textures we used</p>
+
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; texCount; i+=<span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">this</span>.gl.activeTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE0 + i);
+    <span class="hljs-keyword">this</span>.gl.bindTexture(<span class="hljs-keyword">this</span>.gl.TEXTURE_2D, <span class="hljs-literal">null</span>);
+  }
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+GPUCompositor.prototype.destroy = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">this</span>.queryDataModel = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">this</span>.imageBuilder = <span class="hljs-literal">null</span>;
+
+    <span class="hljs-keyword">this</span>.glResources.destroy();
+    <span class="hljs-keyword">this</span>.glResources = <span class="hljs-literal">null</span>;
+
+    <span class="hljs-keyword">this</span>.pingPong = <span class="hljs-literal">null</span>;
+
+    <span class="hljs-keyword">this</span>.glCanvas.destroy();
+    <span class="hljs-keyword">this</span>.glCanvas = <span class="hljs-literal">null</span>;
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        <h2 id="lighting-widget-called-methods">Lighting Widget called methods</h2>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+GPUCompositor.prototype.getLightProperties = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.lightProperties;
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+GPUCompositor.prototype.setLightProperties = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">lightProps</span>) </span>{
+    <span class="hljs-keyword">this</span>.lightProperties = merge(<span class="hljs-keyword">this</span>.lightProperties, lightProps);
+}</pre></div>
+        
+      
+    </div>
+  </div>
+</body>
+</html>

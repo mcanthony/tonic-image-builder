@@ -44,7 +44,7 @@
 
       <div class="header">
         
-          <h1>index.js</h1>
+          <h1>colorByHelper.js</h1>
         
 
         
@@ -376,13 +376,134 @@
         
         
         
-          <div class='highlight'><pre><span class="hljs-keyword">var</span> CanvasOffscreenBuffer = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./CanvasOffscreenBuffer'</span>),
-    WebGl = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./WebGl'</span>);
+          <div class='highlight'><pre><span class="hljs-keyword">var</span> encoding = <span class="hljs-string">'ABCDEFGHIJKLMNOPQRSTUVWXYZ'</span>;
 
-<span class="hljs-keyword">export</span> {
-    CanvasOffscreenBuffer,
-    WebGl
-};</pre></div>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createColorLookupConst</span>(<span class="hljs-params">lut, value</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">idx</span>) </span>{
+        <span class="hljs-keyword">return</span> lut.getColor(value);
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createColorLookup</span>(<span class="hljs-params">lut, floatMap, layer, color</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">idx</span>) </span>{
+        <span class="hljs-keyword">var</span> value = floatMap[layer][color][idx];
+        <span class="hljs-keyword">return</span> lut.getColor(value);
+    }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ColorByHelper</span> </span>{
+    constructor(layers, fieldCodes, lookupTableManager) {
+        <span class="hljs-keyword">this</span>.nbLayers = layers.length;
+        <span class="hljs-keyword">this</span>.fieldCodes = fieldCodes;
+        <span class="hljs-keyword">this</span>.lookupTableManager = lookupTableManager;
+        <span class="hljs-keyword">this</span>.layerFloatData = {};
+        <span class="hljs-keyword">this</span>.layerVisible = {};
+        <span class="hljs-keyword">this</span>.layerAlpha = {};
+        <span class="hljs-keyword">this</span>.layerColorBy = {};
+        <span class="hljs-keyword">this</span>.layerGetColor = {};
+        <span class="hljs-keyword">this</span>.categories = [];</pre></div>
+        
+      
+        
+        <p>Fill function map to get color</p>
+
+        
+          <div class='highlight'><pre>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> layerIdx = <span class="hljs-number">0</span>; layerIdx &lt; <span class="hljs-keyword">this</span>.nbLayers; layerIdx++) {
+            <span class="hljs-keyword">this</span>.layerFloatData[encoding[layerIdx]] = {};
+            <span class="hljs-keyword">this</span>.layerVisible[encoding[layerIdx]] = <span class="hljs-number">1.0</span>;
+            <span class="hljs-keyword">this</span>.layerAlpha[encoding[layerIdx]] = <span class="hljs-number">1.0</span>;
+            <span class="hljs-keyword">this</span>.layerGetColor[encoding[layerIdx]] = {};
+
+            <span class="hljs-keyword">var</span> array = layers[layerIdx].colorBy,
+                count = array.length;
+            <span class="hljs-keyword">while</span>(count--) {
+                <span class="hljs-keyword">var</span> colorBy = array[count],
+                    layerCode = encoding[layerIdx],
+                    colorName = colorBy.name,
+                    lut = <span class="hljs-keyword">this</span>.lookupTableManager.getLookupTable(colorBy.name);
+
+                <span class="hljs-keyword">if</span>(colorBy.type === <span class="hljs-string">'const'</span>) {
+                    <span class="hljs-keyword">this</span>.layerGetColor[layerCode][colorName] = createColorLookupConst(lut, colorBy.value);
+                } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(colorBy.type === <span class="hljs-string">'field'</span>) {
+                    <span class="hljs-keyword">this</span>.layerGetColor[layerCode][colorName] = createColorLookup(lut, <span class="hljs-keyword">this</span>.layerFloatData, layerCode, colorName);
+                }
+            }
+        }
+    }
+
+    updateData(data) {
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> name <span class="hljs-keyword">in</span> data) {
+            <span class="hljs-keyword">if</span>(name.indexOf(<span class="hljs-string">'_'</span>) !== -<span class="hljs-number">1</span>) {
+                <span class="hljs-keyword">var</span> splitName = name.split(<span class="hljs-string">'_'</span>),
+                    layerName = encoding[<span class="hljs-built_in">Number</span>(splitName[<span class="hljs-number">0</span>])],
+                    colorBy = splitName[<span class="hljs-number">1</span>];
+
+                <span class="hljs-keyword">this</span>.layerFloatData[layerName][colorBy] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>(data[name].data);
+            }
+        }
+    }
+
+    updatePipeline(query) {
+        <span class="hljs-keyword">this</span>.categories = [];
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> layerIdx = <span class="hljs-number">0</span>; layerIdx &lt; <span class="hljs-keyword">this</span>.nbLayers; layerIdx++) {
+            <span class="hljs-keyword">var</span> layerCode = encoding[layerIdx],
+                colorCode = query[layerIdx*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>];
+
+            <span class="hljs-keyword">if</span>(colorCode === <span class="hljs-string">'_'</span>) {
+                <span class="hljs-keyword">this</span>.layerVisible[layerCode] = <span class="hljs-number">0.0</span>;
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">this</span>.layerVisible[layerCode] = <span class="hljs-number">1.0</span>;
+                <span class="hljs-keyword">this</span>.layerColorBy[layerCode] = <span class="hljs-keyword">this</span>.fieldCodes[colorCode];
+                <span class="hljs-keyword">this</span>.categories.push([layerIdx, <span class="hljs-keyword">this</span>.fieldCodes[colorCode]].join(<span class="hljs-string">'_'</span>));
+            }
+        }
+    }
+
+    updateAlphas(alphas) {
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-keyword">this</span>.nbLayers; i++) {
+            <span class="hljs-keyword">this</span>.layerAlpha[encoding[i]] = alphas[i];
+        }
+    }
+
+    hasNoContent(layerIdx) {
+        <span class="hljs-keyword">var</span> layerCode = encoding[layerIdx],
+            alpha = <span class="hljs-keyword">this</span>.layerAlpha[layerCode] * <span class="hljs-keyword">this</span>.layerVisible[layerCode];
+        <span class="hljs-keyword">return</span> (alpha === <span class="hljs-number">0</span>);
+    }
+
+    getColor(layerIdx, pixelIdx) {
+        <span class="hljs-keyword">var</span> layerCode = encoding[layerIdx],
+            color = <span class="hljs-keyword">this</span>.layerGetColor[layerCode][<span class="hljs-keyword">this</span>.layerColorBy[layerCode]](pixelIdx),
+            alpha = <span class="hljs-keyword">this</span>.layerAlpha[layerCode] * <span class="hljs-keyword">this</span>.layerVisible[layerCode];
+
+        <span class="hljs-keyword">return</span> [color[<span class="hljs-number">0</span>] * <span class="hljs-number">255</span>, color[<span class="hljs-number">1</span>] * <span class="hljs-number">255</span>, color[<span class="hljs-number">2</span>] * <span class="hljs-number">255</span>, color[<span class="hljs-number">3</span>] * alpha];
+    }
+
+    getCategories() {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.categories;
+    }
+
+    getLayerColorByName(layerIdx) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.layerColorBy[encoding[layerIdx]];
+    }
+
+    getLayerVisible(layerIdx) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.layerVisible[encoding[layerIdx]];
+    }
+
+    getLayerLut(layerIdx) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.lookupTableManager.getLookupTable(<span class="hljs-keyword">this</span>.layerColorBy[encoding[layerIdx]]);
+    }
+
+    getLayerFloatData(layerIdx) {
+        <span class="hljs-keyword">var</span> layerName = encoding[layerIdx];
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.layerFloatData[layerName][<span class="hljs-keyword">this</span>.layerColorBy[layerName]];
+    }
+
+    getLayerAlpha(layerIdx) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.layerAlpha[encoding[layerIdx]];
+    }
+}</pre></div>
         
       
     </div>

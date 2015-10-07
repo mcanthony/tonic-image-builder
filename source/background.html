@@ -44,7 +44,7 @@
 
       <div class="header">
         
-          <h1>displayFragment.c</h1>
+          <h1>background.c</h1>
         
 
         
@@ -56,6 +56,76 @@
                 <li>
                   <a class="source" href="index.html">
                     index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="colorByHelper.html">
+                    colorByHelper.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="cpu-compositor.html">
+                    cpu-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="gpu-compositor.html">
+                    gpu-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="addLayerColor.html">
+                    addLayerColor.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="addLitLayerColor.html">
+                    addLitLayerColor.c
                   </a>
                 </li>
               
@@ -110,50 +180,36 @@
               
                 
                 <li>
-                  <a class="source" href="backgroundFragment.html">
-                    backgroundFragment.c
+                  <a class="source" href="background.html">
+                    background.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeFragment.html">
-                    compositeFragment.c
+                  <a class="source" href="composite.html">
+                    composite.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeJpgFragment.html">
-                    compositeJpgFragment.c
+                  <a class="source" href="compositeLight.html">
+                    compositeLight.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeLightFragment.html">
-                    compositeLightFragment.c
+                  <a class="source" href="compositeLut.html">
+                    compositeLut.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeLutFragment.html">
-                    compositeLutFragment.c
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="displayFragment.html">
-                    displayFragment.c
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="basicVertex.html">
-                    basicVertex.c
+                  <a class="source" href="display.html">
+                    display.c
                   </a>
                 </li>
               
@@ -161,6 +217,48 @@
                 <li>
                   <a class="source" href="sxyz-light-compositor.html">
                     sxyz-light-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="alphaBlend.html">
+                    alphaBlend.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="display.html">
+                    display.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="rgbaColor.html">
+                    rgbaColor.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="sorted-volume-compositor-cpu.html">
+                    sorted-volume-compositor-cpu.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="sorted-volume-compositor-gpu.html">
+                    sorted-volume-compositor-gpu.js
                   </a>
                 </li>
               
@@ -257,6 +355,13 @@
               
                 
                 <li>
+                  <a class="source" href="basic.html">
+                    basic.c
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="index.html">
                     index.js
                   </a>
@@ -274,19 +379,16 @@
           <div class='highlight'><pre>
 precision mediump <span class="hljs-keyword">float</span>;
 
-uniform sampler2D u_image;
+uniform sampler2D backgroundSampler;
+
+uniform vec4 backgroundColor;
+
 varying vec2 v_texCoord;
 
 <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
-    vec4 color = texture2D(u_image, v_texCoord);
-    gl_FragColor = vec4(color.rgb, <span class="hljs-number">1.0</span>);</pre></div>
-        
-      
-        
-        <p>gl_FragColor = color;</p>
-
-        
-          <div class='highlight'><pre>}</pre></div>
+    vec4 color = texture2D(backgroundSampler, v_texCoord);
+    gl_FragColor = vec4(backgroundColor.rgb, color.a);
+}</pre></div>
         
       
     </div>

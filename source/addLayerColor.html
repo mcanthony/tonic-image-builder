@@ -44,7 +44,7 @@
 
       <div class="header">
         
-          <h1>basicVertex.c</h1>
+          <h1>addLayerColor.c</h1>
         
 
         
@@ -56,6 +56,76 @@
                 <li>
                   <a class="source" href="index.html">
                     index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="colorByHelper.html">
+                    colorByHelper.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="cpu-compositor.html">
+                    cpu-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="gpu-compositor.html">
+                    gpu-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="addLayerColor.html">
+                    addLayerColor.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="addLitLayerColor.html">
+                    addLitLayerColor.c
                   </a>
                 </li>
               
@@ -110,50 +180,36 @@
               
                 
                 <li>
-                  <a class="source" href="backgroundFragment.html">
-                    backgroundFragment.c
+                  <a class="source" href="background.html">
+                    background.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeFragment.html">
-                    compositeFragment.c
+                  <a class="source" href="composite.html">
+                    composite.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeJpgFragment.html">
-                    compositeJpgFragment.c
+                  <a class="source" href="compositeLight.html">
+                    compositeLight.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeLightFragment.html">
-                    compositeLightFragment.c
+                  <a class="source" href="compositeLut.html">
+                    compositeLut.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeLutFragment.html">
-                    compositeLutFragment.c
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="displayFragment.html">
-                    displayFragment.c
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="basicVertex.html">
-                    basicVertex.c
+                  <a class="source" href="display.html">
+                    display.c
                   </a>
                 </li>
               
@@ -161,6 +217,48 @@
                 <li>
                   <a class="source" href="sxyz-light-compositor.html">
                     sxyz-light-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="alphaBlend.html">
+                    alphaBlend.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="display.html">
+                    display.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="rgbaColor.html">
+                    rgbaColor.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="sorted-volume-compositor-cpu.html">
+                    sorted-volume-compositor-cpu.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="sorted-volume-compositor-gpu.html">
+                    sorted-volume-compositor-gpu.js
                   </a>
                 </li>
               
@@ -257,6 +355,13 @@
               
                 
                 <li>
+                  <a class="source" href="basic.html">
+                    basic.c
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="index.html">
                     index.js
                   </a>
@@ -272,15 +377,68 @@
         
         
           <div class='highlight'><pre>
+precision mediump <span class="hljs-keyword">float</span>;
 
-attribute vec2 a_position;
-attribute vec2 a_texCoord;
+uniform sampler2D orderSampler;
+uniform sampler2D intensitySampler;
+uniform sampler2D layerColorSampler[${SIMULTANEOUS_LAYERS}];
+uniform sampler2D lutSampler[${SIMULTANEOUS_LAYERS}];
+
+uniform <span class="hljs-keyword">float</span> layerAlpha[${SIMULTANEOUS_LAYERS}];
+uniform vec2 layerRange[${SIMULTANEOUS_LAYERS}];
+
+uniform <span class="hljs-keyword">int</span> orderOffset;
 
 varying vec2 v_texCoord;
 
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
-    gl_Position = vec4(a_position.xy, <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>);
-    v_texCoord = a_texCoord;
+<span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">affine</span><span class="hljs-params">(<span class="hljs-keyword">float</span> inMin, <span class="hljs-keyword">float</span> val, <span class="hljs-keyword">float</span> inMax, <span class="hljs-keyword">float</span> outMin, <span class="hljs-keyword">float</span> outMax)</span> </span>{
+    <span class="hljs-keyword">return</span> (((val - inMin) / (inMax - inMin)) * (outMax - outMin)) + outMin;
+}</pre></div>
+        
+      
+        
+        <p>Main shader execution function</p>
+
+        
+          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{</pre></div>
+        
+      
+        
+        <p>Look up the layer number to which this pixel corresponds</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">float</span> orderSample = texture2D(orderSampler, v_texCoord).r;
+    <span class="hljs-keyword">int</span> order = <span class="hljs-keyword">int</span>(orderSample * <span class="hljs-number">255.0</span>) - orderOffset;
+
+    <span class="hljs-keyword">float</span> intensity = texture2D(intensitySampler, v_texCoord).r;
+    <span class="hljs-keyword">bool</span> foundOne = <span class="hljs-literal">false</span>;</pre></div>
+        
+      
+        
+        <p>@INLINE_LOOP (loopIdx, 0, ${SIMULTANEOUS_LAYERS})</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> loopIdx = <span class="hljs-number">0</span>; loopIdx &lt; ${SIMULTANEOUS_LAYERS}; ++loopIdx) {
+        <span class="hljs-keyword">if</span> (loopIdx == order) {
+            <span class="hljs-keyword">float</span> f = texture2D(layerColorSampler[loopIdx], v_texCoord).r;
+            <span class="hljs-keyword">if</span> (f &gt;= layerRange[loopIdx][<span class="hljs-number">0</span>] &amp;&amp; f &lt;= layerRange[loopIdx][<span class="hljs-number">1</span>]) {
+                vec2 lutTCoord = vec2(affine(layerRange[loopIdx][<span class="hljs-number">0</span>], f, layerRange[loopIdx][<span class="hljs-number">1</span>], <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>), <span class="hljs-number">0.5</span>);
+                vec4 color = texture2D(lutSampler[loopIdx], lutTCoord);
+                gl_FragColor = vec4(color.xyz * intensity, layerAlpha[loopIdx]);
+                foundOne = <span class="hljs-literal">true</span>;
+            }
+        }
+    }</pre></div>
+        
+      
+        
+        <p>@INLINE_LOOP</p>
+
+        
+          <div class='highlight'><pre>
+    <span class="hljs-keyword">if</span> (foundOne == <span class="hljs-literal">false</span>) {
+        discard;
+    }
 }</pre></div>
         
       

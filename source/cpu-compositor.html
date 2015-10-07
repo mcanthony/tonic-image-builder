@@ -44,7 +44,7 @@
 
       <div class="header">
         
-          <h1>LookupTableManager.js</h1>
+          <h1>cpu-compositor.js</h1>
         
 
         
@@ -376,104 +376,205 @@
         
         
         
-          <div class='highlight'><pre><span class="hljs-keyword">var</span> LookupTable = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./LookupTable.js'</span>),
-    hasOwn = <span class="hljs-built_in">require</span>(<span class="hljs-string">'mout/object/hasOwn'</span>),
-    Monologue = <span class="hljs-built_in">require</span>(<span class="hljs-string">'monologue.js'</span>),
-    CHANGE_TOPIC = <span class="hljs-string">'LookupTable.change'</span>,
-    ACTIVE_LOOKUP_TABLE_CHANGE_TOPIC = <span class="hljs-string">'LookupTable.active.change'</span>,
-    LOOKUP_TABLE_LIST_CHANGE_TOPIC = <span class="hljs-string">'LookupTable.list.change'</span>;
+          <div class='highlight'><pre><span class="hljs-keyword">var</span> CanvasOffscreenBuffer = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../util/CanvasOffscreenBuffer'</span>);
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">LookupTableManager</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">this</span>.luts = {};
-    <span class="hljs-keyword">this</span>.lutSubscriptions = {};
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CPUCompositor</span>(<span class="hljs-params">queryDataModel, imageBuilder, colorHelper</span>) </span>{
+    <span class="hljs-keyword">this</span>.queryDataModel = queryDataModel;
+    <span class="hljs-keyword">this</span>.imageBuilder = imageBuilder;
+    <span class="hljs-keyword">this</span>.metadata = <span class="hljs-keyword">this</span>.queryDataModel.originalData.SortedComposite;
+    <span class="hljs-keyword">this</span>.orderData = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">this</span>.intensityData = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">this</span>.colorHelper = colorHelper;
+    <span class="hljs-keyword">this</span>.numLayers = <span class="hljs-keyword">this</span>.metadata.layers;
 
-    <span class="hljs-keyword">this</span>.onChangeCallback = ((data, envelope) =&gt; {
-        <span class="hljs-keyword">this</span>.emit(CHANGE_TOPIC, data);
-    });
+    <span class="hljs-keyword">this</span>.width = <span class="hljs-keyword">this</span>.metadata.dimensions[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">this</span>.height = <span class="hljs-keyword">this</span>.metadata.dimensions[<span class="hljs-number">1</span>];
+    <span class="hljs-keyword">this</span>.bgCanvas = <span class="hljs-keyword">new</span> CanvasOffscreenBuffer(<span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);
+    <span class="hljs-keyword">this</span>.imageBuffer = <span class="hljs-keyword">this</span>.bgCanvas.get2DContext().createImageData(<span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);
 }</pre></div>
         
       
         
-        <p>Add Observer pattern using Monologue.js</p>
+        <hr>
 
         
-          <div class='highlight'><pre>Monologue.mixInto(LookupTableManager);
+      
+        
+        
+        
+          <div class='highlight'><pre>
+CPUCompositor.prototype.updateData = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
+    <span class="hljs-keyword">this</span>.orderData = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(data.order.data);
+    <span class="hljs-keyword">if</span> (data.intensity) {
+      <span class="hljs-keyword">this</span>.intensityData = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(data.intensity.data);
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">this</span>.intensityData = <span class="hljs-literal">null</span>;
+    }
+};</pre></div>
+        
+      
+        
+        <hr>
 
-LookupTableManager.prototype.addLookupTable = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name, range, preset</span>) </span>{
-    <span class="hljs-keyword">if</span>(!<span class="hljs-keyword">this</span>.activeField) {
-        <span class="hljs-keyword">this</span>.activeField = name;
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+CPUCompositor.prototype.render = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.orderData) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
     }
 
-    <span class="hljs-keyword">var</span> lut = <span class="hljs-keyword">this</span>.luts[name];
-    <span class="hljs-keyword">if</span>(lut === <span class="hljs-literal">undefined</span>) {
-        lut = <span class="hljs-keyword">new</span> LookupTable(name);
+    <span class="hljs-keyword">var</span> imageSize = <span class="hljs-keyword">this</span>.width * <span class="hljs-keyword">this</span>.height,
+        pixels = <span class="hljs-keyword">this</span>.imageBuffer.data,
+        height = <span class="hljs-keyword">this</span>.height,
+        width = <span class="hljs-keyword">this</span>.width,
+        ctx = <span class="hljs-keyword">this</span>.bgCanvas.get2DContext();</pre></div>
+        
+      
+        
+        <p>Reset pixels</p>
 
-        <span class="hljs-keyword">this</span>.luts[name] = lut;
-        <span class="hljs-keyword">this</span>.lutSubscriptions[name] = lut.onChange(<span class="hljs-keyword">this</span>.onChangeCallback);
-    }
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">if</span>(pixels.fill) {
+        pixels.fill(<span class="hljs-number">0</span>);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">var</span> count = width * height * <span class="hljs-number">4</span>;
+        <span class="hljs-keyword">while</span>(count--) {
+            pixels[count] = <span class="hljs-number">0</span>;
+        }
+    }</pre></div>
+        
+      
+        
+        <p>Just iterate through all the layers in the data for now</p>
 
-    lut.setPreset(preset || <span class="hljs-string">'spectralflip'</span>);
-    lut.setScalarRange(range[<span class="hljs-number">0</span>], range[<span class="hljs-number">1</span>]);
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> drawIdx = <span class="hljs-number">0</span>; drawIdx &lt; <span class="hljs-keyword">this</span>.numLayers; drawIdx++) {
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> y = <span class="hljs-number">0</span>; y &lt; <span class="hljs-keyword">this</span>.height; y++) {
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> x = <span class="hljs-number">0</span>; x &lt; <span class="hljs-keyword">this</span>.width; x++) {
+                <span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">this</span>.width * y + x,
+                    flipIdx = ((height - y - <span class="hljs-number">1</span>)*width + x),
+                    layerIdx = <span class="hljs-keyword">this</span>.orderData[drawIdx * imageSize + idx],
+                    intensity = <span class="hljs-number">1.0</span>;</pre></div>
+        
+      
+        
+        <p>Skip pixels (bg | not visible)</p>
 
-    <span class="hljs-keyword">this</span>.emit(LOOKUP_TABLE_LIST_CHANGE_TOPIC, <span class="hljs-keyword">this</span>);
+        
+          <div class='highlight'><pre>                <span class="hljs-keyword">if</span>(layerIdx === <span class="hljs-number">255</span> || <span class="hljs-keyword">this</span>.colorHelper.hasNoContent(layerIdx)) {
+                    <span class="hljs-keyword">continue</span>;
+                }
 
-    <span class="hljs-keyword">return</span> lut;
-}
+                <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.intensityData) {
+                    intensity = <span class="hljs-keyword">this</span>.intensityData[drawIdx * imageSize + idx] / <span class="hljs-number">255.0</span>;
+                }</pre></div>
+        
+      
+        
+        <p>Blend</p>
 
-LookupTableManager.prototype.removeLookupTable = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>) </span>{
-    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.luts.hasOwn(name)) {
-        <span class="hljs-keyword">this</span>.lutSubscriptions[name].unsubscribe();
-        <span class="hljs-keyword">this</span>.luts[name].destroy();
+        
+          <div class='highlight'><pre>                <span class="hljs-keyword">var</span> alphA = pixels[flipIdx*<span class="hljs-number">4</span> + <span class="hljs-number">3</span>] / <span class="hljs-number">255.0</span>,
+                    alphANeg = <span class="hljs-number">1.0</span> - alphA,
+                    rgbA = [ pixels[flipIdx*<span class="hljs-number">4</span>], pixels[flipIdx*<span class="hljs-number">4</span> + <span class="hljs-number">1</span>], pixels[flipIdx*<span class="hljs-number">4</span> + <span class="hljs-number">2</span>]],
+                    pixelRGBA = <span class="hljs-keyword">this</span>.colorHelper.getColor(layerIdx, idx),
+                    alphaB = pixelRGBA[<span class="hljs-number">3</span>] / <span class="hljs-number">255.0</span>,
+                    rgbB = [
+                        pixelRGBA[<span class="hljs-number">0</span>] * intensity * alphaB * alphANeg,
+                        pixelRGBA[<span class="hljs-number">1</span>] * intensity * alphaB * alphANeg,
+                        pixelRGBA[<span class="hljs-number">2</span>] * intensity * alphaB * alphANeg
+                    ],
+                    alphOut = alphA + (alphaB * (<span class="hljs-number">1.0</span> - alphA));
 
-        <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>.luts[name];
-        <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>.lutSubscriptions[name];
-
-
-        <span class="hljs-keyword">this</span>.emit(LOOKUP_TABLE_LIST_CHANGE_TOPIC, <span class="hljs-keyword">this</span>);
-    }
-}
-LookupTableManager.prototype.updateActiveLookupTable = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>) </span>{
-    setImmediate(()=&gt;{
-        <span class="hljs-keyword">this</span>.emit(ACTIVE_LOOKUP_TABLE_CHANGE_TOPIC, name);
-    });
-    <span class="hljs-keyword">this</span>.activeField = name;
-}
-
-LookupTableManager.prototype.getLookupTable = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.luts[name];
-}
-
-LookupTableManager.prototype.addFields = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fieldsRange, lutConfigs</span>) </span>{
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> field <span class="hljs-keyword">in</span> fieldsRange) {
-        <span class="hljs-keyword">var</span> lut = <span class="hljs-keyword">this</span>.addLookupTable(field, fieldsRange[field]);
-        <span class="hljs-keyword">if</span>(lutConfigs &amp;&amp; lutConfigs[field]) {
-            <span class="hljs-keyword">if</span>(lutConfigs[field].discrete !== <span class="hljs-literal">undefined</span>) {
-               lut.discrete = lutConfigs[field].discrete;
-            }
-            <span class="hljs-keyword">if</span>(lutConfigs[field].preset) {
-                lut.setPreset(lutConfigs[field].preset);
-            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(lutConfigs[field].controlpoints) {
-                lut.updateControlPoints(lutConfigs[field].controlpoints);
+                <span class="hljs-keyword">if</span>(alphaB &gt; <span class="hljs-number">0</span>) {
+                    pixels[flipIdx*<span class="hljs-number">4</span>  ] = ((rgbA[<span class="hljs-number">0</span>] * alphA) + rgbB[<span class="hljs-number">0</span>]) / alphOut;
+                    pixels[flipIdx*<span class="hljs-number">4</span>+<span class="hljs-number">1</span>] = ((rgbA[<span class="hljs-number">1</span>] * alphA) + rgbB[<span class="hljs-number">1</span>]) / alphOut;
+                    pixels[flipIdx*<span class="hljs-number">4</span>+<span class="hljs-number">2</span>] = ((rgbA[<span class="hljs-number">2</span>] * alphA) + rgbB[<span class="hljs-number">2</span>]) / alphOut;
+                    pixels[flipIdx*<span class="hljs-number">4</span>+<span class="hljs-number">3</span>] = alphOut * <span class="hljs-number">255.0</span>;
+                } <span class="hljs-keyword">else</span> {
+                    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'no alpha while skip should have worked'</span>, pixelRGBA[<span class="hljs-number">3</span>]);
+                }
             }
         }
-    }
-}
+    }</pre></div>
+        
+      
+        
+        <p>Draw the result to the canvas</p>
 
-LookupTableManager.prototype.getActiveField = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.activeField;
-}
+        
+          <div class='highlight'><pre>    ctx.putImageData(<span class="hljs-keyword">this</span>.imageBuffer, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
 
-LookupTableManager.prototype.onChange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">callback</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.on(CHANGE_TOPIC, callback);
-}
+    <span class="hljs-keyword">var</span> readyImage = {
+        canvas: <span class="hljs-keyword">this</span>.bgCanvas.el,
+        area: [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height],
+        outputSize: [<span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height],
+        builder: <span class="hljs-keyword">this</span>.imageBuilder,
+        <span class="hljs-built_in">arguments</span>: <span class="hljs-keyword">this</span>.queryDataModel.getQuery()
+    };
 
-LookupTableManager.prototype.onFieldsChange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">callback</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.on(LOOKUP_TABLE_LIST_CHANGE_TOPIC, callback);
-}
-
-LookupTableManager.prototype.onActiveLookupTableChange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">callback</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.on(ACTIVE_LOOKUP_TABLE_CHANGE_TOPIC, callback);
+    <span class="hljs-keyword">this</span>.imageBuilder.emit(<span class="hljs-keyword">this</span>.imageBuilder.IMAGE_READY_TOPIC, readyImage);
 }</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+CPUCompositor.prototype.destroy = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">this</span>.bgCanvas.destroy();
+    <span class="hljs-keyword">this</span>.bgCanvas = <span class="hljs-literal">null</span>;
+
+    <span class="hljs-keyword">this</span>.queryDataModel = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">this</span>.imageBuilder = <span class="hljs-literal">null</span>;
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        <h2 id="lighting-widget-called-methods">Lighting Widget called methods</h2>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+CPUCompositor.prototype.getLightProperties = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> {};
+}</pre></div>
+        
+      
+        
+        <hr>
+
+        
+      
+        
+        
+        
+          <div class='highlight'><pre>
+CPUCompositor.prototype.setLightProperties = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">lightProps</span>) </span>{</pre></div>
+        
+      
+        
+        <p>this.lightProperties = merge(this.lightProperties, lightProps);</p>
+
+        
+          <div class='highlight'><pre>}</pre></div>
         
       
     </div>

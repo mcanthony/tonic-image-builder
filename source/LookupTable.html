@@ -82,6 +82,76 @@
               
                 
                 <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="colorByHelper.html">
+                    colorByHelper.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="cpu-compositor.html">
+                    cpu-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="gpu-compositor.html">
+                    gpu-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="addLayerColor.html">
+                    addLayerColor.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="addLitLayerColor.html">
+                    addLitLayerColor.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="CompositorFactory.html">
                     CompositorFactory.js
                   </a>
@@ -110,50 +180,36 @@
               
                 
                 <li>
-                  <a class="source" href="backgroundFragment.html">
-                    backgroundFragment.c
+                  <a class="source" href="background.html">
+                    background.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeFragment.html">
-                    compositeFragment.c
+                  <a class="source" href="composite.html">
+                    composite.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeJpgFragment.html">
-                    compositeJpgFragment.c
+                  <a class="source" href="compositeLight.html">
+                    compositeLight.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeLightFragment.html">
-                    compositeLightFragment.c
+                  <a class="source" href="compositeLut.html">
+                    compositeLut.c
                   </a>
                 </li>
               
                 
                 <li>
-                  <a class="source" href="compositeLutFragment.html">
-                    compositeLutFragment.c
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="displayFragment.html">
-                    displayFragment.c
-                  </a>
-                </li>
-              
-                
-                <li>
-                  <a class="source" href="basicVertex.html">
-                    basicVertex.c
+                  <a class="source" href="display.html">
+                    display.c
                   </a>
                 </li>
               
@@ -161,6 +217,48 @@
                 <li>
                   <a class="source" href="sxyz-light-compositor.html">
                     sxyz-light-compositor.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="index.html">
+                    index.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="alphaBlend.html">
+                    alphaBlend.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="display.html">
+                    display.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="rgbaColor.html">
+                    rgbaColor.c
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="sorted-volume-compositor-cpu.html">
+                    sorted-volume-compositor-cpu.js
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="sorted-volume-compositor-gpu.html">
+                    sorted-volume-compositor-gpu.js
                   </a>
                 </li>
               
@@ -257,6 +355,13 @@
               
                 
                 <li>
+                  <a class="source" href="basic.html">
+                    basic.c
+                  </a>
+                </li>
+              
+                
+                <li>
                   <a class="source" href="index.html">
                     index.js
                   </a>
@@ -299,7 +404,8 @@
     <span class="hljs-keyword">var</span> ratio = (scalar - pointA[<span class="hljs-number">0</span>]) / (pointB[<span class="hljs-number">0</span>] - pointA[<span class="hljs-number">0</span>]);
     <span class="hljs-keyword">return</span> [ applyRatio(pointA[<span class="hljs-number">1</span>], pointB[<span class="hljs-number">1</span>], ratio),
              applyRatio(pointA[<span class="hljs-number">2</span>], pointB[<span class="hljs-number">2</span>], ratio),
-             applyRatio(pointA[<span class="hljs-number">3</span>], pointB[<span class="hljs-number">3</span>], ratio) ];
+             applyRatio(pointA[<span class="hljs-number">3</span>], pointB[<span class="hljs-number">3</span>], ratio),
+             <span class="hljs-number">255</span> ];
 }
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">extractPoint</span>(<span class="hljs-params">controlPoints, idx</span>) </span>{
@@ -320,14 +426,17 @@
         
         
           <div class='highlight'><pre>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">LookupTable</span>(<span class="hljs-params">name</span>) </span>{
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">LookupTable</span>(<span class="hljs-params">name, discrete=false</span>) </span>{
     <span class="hljs-keyword">this</span>.name = name;
     <span class="hljs-keyword">this</span>.scalarRange = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>];
     <span class="hljs-keyword">this</span>.delta = <span class="hljs-number">1</span>;
     <span class="hljs-keyword">this</span>.controlPoints = <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">this</span>.colorTableSize = <span class="hljs-number">256</span>;
     <span class="hljs-keyword">this</span>.colorTable = <span class="hljs-literal">null</span>;
-    <span class="hljs-keyword">this</span>.setPreset(<span class="hljs-string">'spectralflip'</span>);</pre></div>
+    <span class="hljs-keyword">this</span>.colorNaN = [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">this</span>.setPreset(<span class="hljs-string">'spectralflip'</span>);
+    <span class="hljs-keyword">this</span>.discrete = discrete;
+    <span class="hljs-keyword">this</span>.scale = <span class="hljs-number">1</span>;</pre></div>
         
       
         
@@ -378,8 +487,41 @@ LookupTable.prototype.setPreset = <span class="hljs-function"><span class="hljs-
     <span class="hljs-keyword">this</span>.emit(CHANGE_TOPIC, { change: <span class="hljs-string">'preset'</span>, lut: <span class="hljs-keyword">this</span> });
 };
 
+LookupTable.prototype.updateControlPoints = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">controlPoints</span>) </span>{
+    <span class="hljs-keyword">this</span>.colorTable = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">this</span>.controlPoints = [];
+
+    <span class="hljs-keyword">var</span> count = controlPoints.length;
+
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; count; i++) {
+        <span class="hljs-keyword">this</span>.controlPoints.push({
+            x: controlPoints[i].x,
+            r: controlPoints[i].r,
+            g: controlPoints[i].g,
+            b: controlPoints[i].b
+        });
+    }</pre></div>
+        
+      
+        
+        <p>Auto rebuild</p>
+
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">this</span>.build();
+
+    <span class="hljs-keyword">this</span>.emit(CHANGE_TOPIC, { change: <span class="hljs-string">'controlPoints'</span>, lut: <span class="hljs-keyword">this</span> });
+};
+
+LookupTable.prototype.setColorForNaN = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">r = 0, g = 0, b = 0, a = 0</span>) </span>{
+    <span class="hljs-keyword">this</span>.colorNaN = [r,g,b,a];
+};
+
+LookupTable.prototype.getColorForNaN = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.colorNaN;
+};
+
 LookupTable.prototype.getScalarRange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.scalarRange;
+    <span class="hljs-keyword">return</span> [<span class="hljs-built_in">Number</span>(<span class="hljs-keyword">this</span>.scalarRange[<span class="hljs-number">0</span>]), <span class="hljs-built_in">Number</span>(<span class="hljs-keyword">this</span>.scalarRange[<span class="hljs-number">1</span>])];
 };
 
 LookupTable.prototype.setScalarRange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">min, max</span>) </span>{
@@ -397,18 +539,28 @@ LookupTable.prototype.build = <span class="hljs-function"><span class="hljs-keyw
     <span class="hljs-keyword">this</span>.colorTable = [];
 
     <span class="hljs-keyword">var</span> currentControlIdx = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> idx = <span class="hljs-number">0</span>; idx &lt; <span class="hljs-keyword">this</span>.colorTableSize; idx++) {
-        <span class="hljs-keyword">var</span> value = idx / (<span class="hljs-keyword">this</span>.colorTableSize - <span class="hljs-number">1</span>),
-            pointA = extractPoint(<span class="hljs-keyword">this</span>.controlPoints, currentControlIdx),
-            pointB = extractPoint(<span class="hljs-keyword">this</span>.controlPoints, currentControlIdx + <span class="hljs-number">1</span>);
-
-        <span class="hljs-keyword">if</span> (value &gt; pointB[<span class="hljs-number">0</span>]) {
-            currentControlIdx += <span class="hljs-number">1</span>;
-            pointA = extractPoint(<span class="hljs-keyword">this</span>.controlPoints, currentControlIdx);
-            pointB = extractPoint(<span class="hljs-keyword">this</span>.controlPoints, currentControlIdx + <span class="hljs-number">1</span>);
+    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.discrete) {
+        <span class="hljs-keyword">this</span>.colorTableSize = <span class="hljs-keyword">this</span>.controlPoints.length;
+        <span class="hljs-keyword">this</span>.scale = <span class="hljs-number">50</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> idx = <span class="hljs-number">0</span>; idx &lt; <span class="hljs-keyword">this</span>.colorTableSize; idx++) {
+            <span class="hljs-keyword">var</span> color = <span class="hljs-keyword">this</span>.controlPoints[idx];
+            <span class="hljs-keyword">this</span>.colorTable.push([color.r, color.g, color.b, <span class="hljs-number">255</span>]);
         }
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">this</span>.scale = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> idx = <span class="hljs-number">0</span>; idx &lt; <span class="hljs-keyword">this</span>.colorTableSize; idx++) {
+            <span class="hljs-keyword">var</span> value = idx / (<span class="hljs-keyword">this</span>.colorTableSize - <span class="hljs-number">1</span>),
+                pointA = extractPoint(<span class="hljs-keyword">this</span>.controlPoints, currentControlIdx),
+                pointB = extractPoint(<span class="hljs-keyword">this</span>.controlPoints, currentControlIdx + <span class="hljs-number">1</span>);
 
-        <span class="hljs-keyword">this</span>.colorTable.push(interpolateColor(pointA, pointB, value));
+            <span class="hljs-keyword">if</span> (value &gt; pointB[<span class="hljs-number">0</span>]) {
+                currentControlIdx += <span class="hljs-number">1</span>;
+                pointA = extractPoint(<span class="hljs-keyword">this</span>.controlPoints, currentControlIdx);
+                pointB = extractPoint(<span class="hljs-keyword">this</span>.controlPoints, currentControlIdx + <span class="hljs-number">1</span>);
+            }
+
+            <span class="hljs-keyword">this</span>.colorTable.push(interpolateColor(pointA, pointB, value));
+        }
     }
 
     <span class="hljs-keyword">if</span>(trigger) {
@@ -521,20 +673,24 @@ LookupTable.prototype.addControlPoint = <span class="hljs-function"><span class=
 
 LookupTable.prototype.drawToCanvas = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">canvas</span>) </span>{
     <span class="hljs-keyword">var</span> colors = <span class="hljs-keyword">this</span>.colorTable,
-        length = colors.length,
+        length = <span class="hljs-keyword">this</span>.scale * colors.length,
         ctx = canvas.getContext(<span class="hljs-string">"2d"</span>),
         canvasData = ctx.getImageData(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, length, <span class="hljs-number">1</span>);
 
     <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) {
-        canvasData.data[i*<span class="hljs-number">4</span> + <span class="hljs-number">0</span>] = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-number">255</span> * colors[i][<span class="hljs-number">0</span>]);
-        canvasData.data[i*<span class="hljs-number">4</span> + <span class="hljs-number">1</span>] = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-number">255</span> * colors[i][<span class="hljs-number">1</span>]);
-        canvasData.data[i*<span class="hljs-number">4</span> + <span class="hljs-number">2</span>] = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-number">255</span> * colors[i][<span class="hljs-number">2</span>]);
+        <span class="hljs-keyword">var</span> colorIdx = <span class="hljs-built_in">Math</span>.floor(i/<span class="hljs-keyword">this</span>.scale);
+        canvasData.data[i*<span class="hljs-number">4</span> + <span class="hljs-number">0</span>] = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-number">255</span> * colors[colorIdx][<span class="hljs-number">0</span>]);
+        canvasData.data[i*<span class="hljs-number">4</span> + <span class="hljs-number">1</span>] = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-number">255</span> * colors[colorIdx][<span class="hljs-number">1</span>]);
+        canvasData.data[i*<span class="hljs-number">4</span> + <span class="hljs-number">2</span>] = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-number">255</span> * colors[colorIdx][<span class="hljs-number">2</span>]);
         canvasData.data[i*<span class="hljs-number">4</span> + <span class="hljs-number">3</span>] = <span class="hljs-number">255</span>;
     }
     ctx.putImageData(canvasData, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
 };
 
 LookupTable.prototype.getColor = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">scalar</span>) </span>{
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">isNaN</span>(scalar)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.colorNaN;
+    }
     <span class="hljs-keyword">var</span> idxValue = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-keyword">this</span>.colorTableSize * (scalar - <span class="hljs-keyword">this</span>.scalarRange[<span class="hljs-number">0</span>]) / <span class="hljs-keyword">this</span>.delta);
     <span class="hljs-keyword">if</span>(idxValue &lt; <span class="hljs-number">0</span>) {
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.colorTable[<span class="hljs-number">0</span>];

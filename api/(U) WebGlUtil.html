@@ -79,6 +79,7 @@ var WebGlUtil = require('tonic-image-builder/lib/util/WebGl');
 <li><a href="#showGlInfo">showGlInfo()</a></li>
 <li><a href="#createGLResources">createGLResources()</a></li>
 <li><a href="#applyProgramDataMapping">applyProgramDataMapping()</a></li>
+<li><a href="#TransformShader">TransformShader()</a></li>
 </ul>
 
 <h2>showGlInfo(gl) <a href="#showGlInfo" id="showGlInfo" class="deep-link">#</a></h2>
@@ -193,6 +194,76 @@ free the created resources.</p>
 <p>The mapping between buffers and programs is done at creation time but if other
 mapping need to be done after the resource creation, this can be performed using
 that function.</p>
+
+<h2>TransformShader(shaderString, variableDict, config) <a href="#TransformShader" id="TransformShader" class="deep-link">#</a></h2>
+
+<p>This function can transform shader programs before they are compiled into
+a WebGL program in one of several ways.</p>
+
+<h3>String replacement</h3>
+
+<p>The variableDict can contain key value mappings and this function will look
+for the keys (which must be surrounded by "${" and "}") in the shader string,
+and replace them with the values from the dictionary.  For example, if the
+variableDict contains the mapping <code>"MAX_COUNT" -&gt; "7"</code>, then this function will
+look for instances of the string <code>"${MAX_COUNT}"</code> in the file and replace them
+with the value <code>"7"</code>.</p>
+
+<p>String replacement happens before any other kind of shader transformations,
+and the result of string replacement is then passed on to the next level of
+processing, loop unrolling.</p>
+
+<h3>Loop unrolling</h3>
+
+<p>This function can unroll properly annotated loops within a shader source file.
+Insert a comment just before and after the loop and then pass
+<code>'inlineLoops': true</code> in the config argument to get loops unrolled before the
+shader source is compiled, but after string replacement has occurred.</p>
+
+<p>The comment preceeding the loop code in the shader source must take the form
+<code>"//@INLINE_LOOP (&lt;variableName&gt;, &lt;minLoopIndex&gt;, &lt;maxLoopIndex&gt;)"</code>,
+where <code>&lt;minLoopIndex&gt;</code> is the first loop variable value, and <code>&lt;maxLoopIndex&gt;</code>
+is the last loop index variable (but is not inclusive).  The comment after
+the loop code in the shader must take the form <code>"//@INLINE_LOOP"</code> to indicate
+the end of the block.</p>
+
+<p>Following is an example of an annotated loop and how it would be unrolled:</p>
+
+<p>GLSL loop code:</p>
+
+<p><code>
+//@INLINE_LOOP (loopIdx, 0, 3)
+for (int loopIdx = 0; loopIdx &lt; 3; ++loopIdx) {
+    if (loopIdx == someVariable) {
+        gl_FragColor = texture2D(someSampler[loopIdx], someTexCoord);
+    }
+}
+//@INLINE_LOOP
+</code></p>
+
+<p>Unrolled loop:</p>
+
+<p>```
+    if (0 == someVariable) {
+        gl_FragColor = texture2D(someSampler[0], someTexCoord);
+    }</p>
+
+<pre><code>if (1 == someVariable) {
+    gl_FragColor = texture2D(someSampler[1], someTexCoord);
+}
+
+if (2 == someVariable) {
+    gl_FragColor = texture2D(someSampler[2], someTexCoord);
+}
+</code></pre>
+
+<p>```</p>
+
+<h3>Shader tranformation debugging</h3>
+
+<p>In order to get the system to print out the transformed shader to the console
+log before compiling, pass <code>'debug': true</code> to the <code>TransformShader</code> function
+within the <code>config</code> argument.</p>
         </div>
         <script src="assets_/js/lib/jquery.js"></script>
         <script src="assets_/js/lib/syntax-highlighter/shCore.js"></script>
