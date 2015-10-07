@@ -155,9 +155,9 @@ Following is an example of an annotated loop and how it would be unrolled:
 
 GLSL loop code:
 
-```
-//@INLINE_LOOP (loopIdx, 0, 4)
-for (int loopIdx = 0; loopIdx < 4; ++loopIdx) {
+```js
+//@INLINE_LOOP (loopIdx, 0, 3)
+for (int loopIdx = 0; loopIdx < 3; ++loopIdx) {
     if (loopIdx == someVariable) {
         gl_FragColor = texture2D(someSampler[loopIdx], someTexCoord);
     }
@@ -167,7 +167,7 @@ for (int loopIdx = 0; loopIdx < 4; ++loopIdx) {
 
 Unrolled loop:
 
-```
+```js
 if (0 == someVariable) {
     gl_FragColor = texture2D(someSampler[0], someTexCoord);
 }
