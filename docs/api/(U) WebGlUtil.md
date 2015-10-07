@@ -156,8 +156,8 @@ Following is an example of an annotated loop and how it would be unrolled:
 GLSL loop code:
 
 ```
-//@INLINE_LOOP (loopIdx, 0, 3)
-for (int loopIdx = 0; loopIdx < 3; ++loopIdx) {
+//@INLINE_LOOP (loopIdx, 0, 4)
+for (int loopIdx = 0; loopIdx < 4; ++loopIdx) {
     if (loopIdx == someVariable) {
         gl_FragColor = texture2D(someSampler[loopIdx], someTexCoord);
     }
@@ -168,17 +168,17 @@ for (int loopIdx = 0; loopIdx < 3; ++loopIdx) {
 Unrolled loop:
 
 ```
-    if (0 == someVariable) {
-        gl_FragColor = texture2D(someSampler[0], someTexCoord);
-    }
+if (0 == someVariable) {
+    gl_FragColor = texture2D(someSampler[0], someTexCoord);
+}
 
-    if (1 == someVariable) {
-        gl_FragColor = texture2D(someSampler[1], someTexCoord);
-    }
+if (1 == someVariable) {
+    gl_FragColor = texture2D(someSampler[1], someTexCoord);
+}
 
-    if (2 == someVariable) {
-        gl_FragColor = texture2D(someSampler[2], someTexCoord);
-    }
+if (2 == someVariable) {
+    gl_FragColor = texture2D(someSampler[2], someTexCoord);
+}
 ```
 
 ### Shader tranformation debugging
